@@ -1,0 +1,49 @@
+/*----------------------------------------------------font-----------------------------------------------*/
+    @font-face {
+    font-family: 'painter';
+    src: url('../font/painter.ttf');
+}
+/*paramétrage du container*/
+.container-fluid{
+    padding:0;
+    margin:0;
+}
+.row{
+    
+    padding:0;
+    margin:0;
+}
+body{
+    background-color:rgb(189,190,191,0.6);
+    margin:0;
+    padding:0;
+}
+.col-12{
+    margin:0;
+    padding:0;
+}
+/*-----------------------------------------------Paramètres Carousel----------------------------*/
+.carouselText{
+    font-size:1em;
+    text-shadow: 3px 2px 1px black;
+}
+#atextmap{
+    text-shadow:none;
+}
+/*-----------------------------------------Section de recherche pour inscription----------------------------------------------------*/
+#research{
+    text-align:center;
+    margin-top:12px;
+    text-align:center;
+    font-family: 'painter';
+}
+#status{
+    margin:0;
+    text-align:center;
+}
+.research{
+    margin:0;
+    width:200px;
+    height:200px;
+    text-align:center;
+}

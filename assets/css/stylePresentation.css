@@ -1,0 +1,23 @@
+/*=====================================================Présentation pour le public===============================================*/
+body{
+    background-color:rgb(155,155,155);
+    background-image: linear-gradient(to left, rgb(204,204,204), rgb(255,255,255), rgb(204,204,204));
+}
+#publicPresent, #musicianPresent{
+    width:100%;
+    margin-top:50px;
+    padding:20px;
+    height:200px;
+}
+p{
+    font-size:0.8em;
+    text-align:center;
+}
+h1{
+    font-size:2.5em;
+    text-align:center;
+}
+.aboard{
+    font-style:italic;
+    font-size:1.5em;
+}
