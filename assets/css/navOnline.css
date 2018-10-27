@@ -1,0 +1,67 @@
+/*Listing et paramétrages des polices de texte*/
+@font-face {
+    font-family: 'jam';
+    src: url('../font/jam.ttf');
+}
+@font-face {
+    font-family: 'cool';
+    src: url('../font/cool.ttf');
+}
+#nav{
+    background-image:linear-gradient(to bottom, #8181F7, #08088A);
+    height:79px;
+    width:100%;
+    color:black;
+    box-shadow:2px 2px 5px white;
+    border-bottom:2px solid white;
+    margin:0;
+}
+#logo{
+    color:white;
+    text-decoration:none;
+    font-size:2rem;
+    font-family: 'jam';
+}
+body, .container-fluid, .row, nav{
+    margin:0;
+    padding:0;
+}
+#dropdown{
+    background-color:#1f48bf;
+    color:black;
+    margin-top:0;
+    padding:10px;
+    border:2px solid white;
+    border-radius:10px;
+    min-height:30vh;
+}
+#dropdown2{
+    background-color:#1f48bf;
+    color:black;
+    margin-top:0;
+    padding:10px;
+    border:2px solid white;
+    border-radius:10px;
+    min-height:30vh;
+}
+.listNav{
+    color:white;
+}
+.listNav:hover{
+    color:grey;
+}
+#icoUser{
+    max-height:75px;
+    max-width:50px;
+    margin:0;
+    padding:0;
+    float:right;
+}
+.linkNavClick{
+    width:20%;
+    margin:0;
+    padding:0;
+}
+.navLg, .navXs{
+    width:100%;
+}

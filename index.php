@@ -1,3 +1,6 @@
+<?php 
+include_once'controllers/connectCtrl.php';
+?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
     <head>
@@ -6,12 +9,12 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
         <link rel="stylesheet" href="assets/css/style.css" />
         <link rel="stylesheet" href="assets/css/header.css" />
-        <link rel="stylesheet" href="assets/css/footer.css" />
+        <title>Mermaid</title>
     </head>
     <body>
         <div class="container-fluid">
             <div class="row">
-                <?php include 'includeFilesPhp/header.php'; ?>
+                <?php include 'secondPage/header.php' ?>
                 <section class="col-12">
                     <!--Section carousel pour exposer des réponses aux besoins de chaque utilisateurs
                     Le but étant de les rediriger soit vers la map de l'application, soit sur un formulaire d'inscription pour la version titre pro
@@ -30,15 +33,15 @@
                             </div>
                             <!--Slide proposant aux internautes recherchant une inscription pour suivre leur groupe préféré une inscription-->
                             <div class="carousel-item"><img class="d-block w-100" src="assets/img/proCarousel.jpg" alt="second slide" width="100%" height="300" />
-                                <div id="textpro" class="carousel-caption"><p class="carouselText">Vous recherchez des musiciens pour assurer vos soirées ?<br /><a href="secondPage/" id="atextpro">inscrivez-vous et trouvez le groupe idéal !</a></p></div>
+                                <div id="textpro" class="carousel-caption"><p class="carouselText">Vous recherchez des musiciens pour assurer vos soirées ?<br /><a href="secondPage/register.php?form=pro" id="atextpro">inscrivez-vous et trouvez le groupe idéal !</a></p></div>
                             </div>
                             <!--Slide proposant aux groupes de musiques ou artistes en solo de s'inscrire pour trouver des dates plus facilement-->
                             <div class="carousel-item" ><img class="d-block w-100" src="assets/img/musicienCarousel.jpeg" alt="third slide" width="100%" height="300" />
-                                <div id="textmusicien" class="carousel-caption"><p class="carouselText">Faites-vous connaître et trouvez des dates de concerts<br /><a href="#form_groupe_hptxt" id="atextmusicien">Commencez votre tournée !</a></p></div>
+                                <div id="textmusicien" class="carousel-caption"><p class="carouselText">Faites-vous connaître et trouvez des dates de concerts<br /><a href="secondPage/register.php?form=musician" id="atextmusicien">Commencez votre tournée !</a></p></div>
                             </div>
                             <!--Slide proposant aux gérants de bars, organisateurs de festival ou autre de rechercher des musiciens pour leur soirée-->
                             <div class="carousel-item"><img class="d-block w-100" src="assets/img/publicCarousel.jpg" alt="fourth slide" width="100%" height="300" />
-                                <div id="textpublic" class="carousel-caption"><p class="carouselText">Vous pouvez suivre vos groupes préférés dans leurs représentations<br /><a href="#form_public_hptxt" id="atextpublic">Il suffit de vous inscrire !</a></p></div>
+                                <div id="textpublic" class="carousel-caption"><p class="carouselText">Vous pouvez suivre vos groupes préférés dans leurs représentations<br /><a href="secondPage/register.php?form=public" id="atextpublic">Il suffit de vous inscrire !</a></p></div>
                             </div>
                         </div>
                         <!--Section pour les flêches permettant de passer d'une slide à une autre-->
@@ -60,26 +63,24 @@
                             <div class="row">
                                 <!--Lien pour inscription d'un utilisateur public-->
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <a href="secondPage/signPage.php"><img src="assets/img/partyResearch.png" alt="Je recherche une soirée" class="research" /></a>
+                                    <a href="secondPage/register.php?form=public"><img src="assets/img/partyResearch.png" alt="Je recherche une soirée" class="research" /></a>
                                 </div>
                                 <!--Lien pour inscription d'un utilisateur professionnel de type bar ou festival-->
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">                
-                                    <a href="#form_pro_hptxt"><img src="assets/img/groupResearch.png" alt="Je recherche un groupe de musique" class="research" /></a>
+                                    <a href="secondPage/register.php?form=pro"><img src="assets/img/groupResearch.png" alt="Je recherche un groupe de musique" class="research" /></a>
                                 </div>
                                 <!--Lien inscription d'un utilisateur de type groupe de musique-->
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <a href="#form_groupe_hptxt"><img src="assets/img/concertResearch.png" alt="Je recherche une date de concert" class="research" /></a>
+                                    <a href="secondPage/register.php?form=musician"><img src="assets/img/concertResearch.png" alt="Je recherche une date de concert" class="research" /></a>
                                 </div>
                             </div>
                         </div>
                     </aside>
                 </section>
-                <?php include'includeFilesPhp/footer.php'; ?>
             </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-        <script src="assets/jq/JQLab.js"></script>
     </body>
 </html>

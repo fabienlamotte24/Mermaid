@@ -1,0 +1,43 @@
+body{
+    background-image:linear-gradient(to right bottom, #ff2e00, rgb(35,35,35));
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+.profilBlock{
+    background-color:white;
+    border:1px solid black;
+    box-shadow:1px 1px 2px black;
+    padding:30px;
+}
+.title{
+    font-size:1.5rem;
+    color:white;
+    padding-top:2%;
+    color:white;
+}
+h1{
+    font-size:1.4rem;
+}
+p{
+    font-size:0.7rem;
+}
+.blockTitle{
+    width:75%;
+    color:white;
+    border:1px solid white;
+}
+.block{
+    width:75%;
+}
+.profileName{
+    color:black;
+    font-size:1.2rem;
+}
+.friendsPicture{
+    cursor:pointer;
+    border:1px solid black;
+    margin-right:0.5vw;
+}
+#concertBlock{
+    margin-bottom:61px;
+}

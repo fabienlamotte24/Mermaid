@@ -29,33 +29,19 @@ body{
     font-size:35px;
 }
 /*Paramètres des champs de login et de mot de passe*/
-#icoUser{
+#icoUser, #icoPass{
     width:25px;
     height:25px;
     background-color:white;
     padding-top:2px;
 }
-#user{
+#user, #Pass{
     background-color:white;
     padding-left:15px;
     padding-right:15px;
     border-radius:25px;
     height:30px;
     margin:5px;
-}
-#Pass{
-    background-color:white;
-    padding-left:15px;
-    padding-right:15px;
-    border-radius:25px;
-    height:30px;
-    margin:5px;
-}
-#icoPass{
-    width:25px;
-    height:25px;
-    background-color:white;
-    padding-top:2px;
 }
 .signIn{
     color:#FF8000;
