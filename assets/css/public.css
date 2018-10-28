@@ -1,13 +1,20 @@
+@font-face {
+    font-family: 'painter';
+    src: url('../font/cool.ttf');}
 body{
-    background-image:linear-gradient(to right bottom, #ff2e00, rgb(35,35,35));
+    background-image:url('../img/qsd.jpg');
     background-size:cover;
     background-repeat: no-repeat;
+}
+.row{
+    margin:0;
+    padding:0;
 }
 .profilBlock{
     background-color:white;
     border:1px solid black;
     box-shadow:1px 1px 2px black;
-    padding:30px;
+    padding:29.6px;
 }
 .title{
     font-size:1.5rem;
@@ -17,14 +24,20 @@ body{
 }
 h1{
     font-size:1.4rem;
+    font-weight:bold;
+}
+h2{
+    font-size:1rem;
+    font-weight:bold;
 }
 p{
     font-size:0.7rem;
 }
-.blockTitle{
-    width:75%;
-    color:white;
-    border:1px solid white;
+li{
+    list-style-type:none;
+}
+.bold{
+    font-weight: bold;
 }
 .block{
     width:75%;
@@ -40,4 +53,37 @@ p{
 }
 #concertBlock{
     margin-bottom:61px;
+}
+.profil{
+    color:black;
+    background-image:linear-gradient(to right, white, #757575, white);
+    padding:5px 0 5px 0;
+    margin:0;
+    box-shadow: 1px 1px 2px black;
+    font-family: 'cool';
+}
+.profil h1{
+    text-align:center;
+}
+.hrName{
+    border:1px solid white;
+}
+.profilContent{
+    padding-top:33px;
+}
+#optionBoard{
+    background-color:white;
+    border: 2px solid black;
+    margin-top:50px;
+}
+#showDetails{
+    border-right:1px solid grey;
+    margin:33px;
+}
+#passChanging{
+    margin:33px;
+}
+#submitPass{
+    margin-top:5px;
+    cursor:pointer;
 }

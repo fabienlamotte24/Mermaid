@@ -12,9 +12,7 @@
   <body>
     <div class="container-fluid">
         <div class="row">
-            <?php include'../includeFilesPhp/header.php' ?>
-            <!--Incorporation du footer contenant les liens d'aide à la compréhension de l'utilisation du site-->
-            <?php include'../includeFilesPhp/footer.php';?>
+            <?php include'../header.php' ?>
         </div>
       </div>
     </div>

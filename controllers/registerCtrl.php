@@ -1,6 +1,6 @@
 <?php
 //Liste des regex
-include'../assets/regexList/regexList.php';
+include'assets/regexList/regexList.php';
 //Initialisation des variables
 $pseudo = '';
 $password = '';
@@ -88,7 +88,7 @@ if (isset($_POST['submit'])) {
     if (isset($pass1) && isset($pass2)) {
         //On garde en variable $password le premier mot de passe si le deux concordent
         if ($pass1 == $pass2) {
-            $password = $pass1;
+            $password = password_hash($pass1, PASSWORD_DEFAULT);
         } else {
             //Sinon on affiche un message d'erreur
             $errorList['pass'] = 'Les mots de passe ne sont pas identiques !';
@@ -181,6 +181,12 @@ if (isset($_POST['submit'])) {
         } else {
             $errorList['presentation'] = 'La présentation entrée n\'est pas valide';
         }
+    }
+    if(!empty($_POST['city']) && $_POST['city'] != 0 && empty($_POST['postalCode'])){
+        
+    }
+    if($_POST['city'] == 0){
+        $errorList['city'] = 'Veuillez sélectionner une ville';
     }
     if (!empty($_POST['city']) && !empty($_POST['postalCode'])) {
         if (preg_match($regCity, $_POST['city']) && preg_match($regPostalCode, $_POST['postalCode'])) {

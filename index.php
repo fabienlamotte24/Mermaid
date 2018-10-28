@@ -1,4 +1,5 @@
 <?php 
+include_once'config.php';
 include_once'controllers/connectCtrl.php';
 ?>
 <!DOCTYPE html>
@@ -14,7 +15,7 @@ include_once'controllers/connectCtrl.php';
     <body>
         <div class="container-fluid">
             <div class="row">
-                <?php include 'secondPage/header.php' ?>
+                <?php include 'header.php' ?>
                 <section class="col-12">
                     <!--Section carousel pour exposer des réponses aux besoins de chaque utilisateurs
                     Le but étant de les rediriger soit vers la map de l'application, soit sur un formulaire d'inscription pour la version titre pro
@@ -33,15 +34,15 @@ include_once'controllers/connectCtrl.php';
                             </div>
                             <!--Slide proposant aux internautes recherchant une inscription pour suivre leur groupe préféré une inscription-->
                             <div class="carousel-item"><img class="d-block w-100" src="assets/img/proCarousel.jpg" alt="second slide" width="100%" height="300" />
-                                <div id="textpro" class="carousel-caption"><p class="carouselText">Vous recherchez des musiciens pour assurer vos soirées ?<br /><a href="secondPage/register.php?form=pro" id="atextpro">inscrivez-vous et trouvez le groupe idéal !</a></p></div>
+                                <div id="textpro" class="carousel-caption"><p class="carouselText">Vous recherchez des musiciens pour assurer vos soirées ?<br /><a href="register.php?form=pro" id="atextpro">inscrivez-vous et trouvez le groupe idéal !</a></p></div>
                             </div>
                             <!--Slide proposant aux groupes de musiques ou artistes en solo de s'inscrire pour trouver des dates plus facilement-->
                             <div class="carousel-item" ><img class="d-block w-100" src="assets/img/musicienCarousel.jpeg" alt="third slide" width="100%" height="300" />
-                                <div id="textmusicien" class="carousel-caption"><p class="carouselText">Faites-vous connaître et trouvez des dates de concerts<br /><a href="secondPage/register.php?form=musician" id="atextmusicien">Commencez votre tournée !</a></p></div>
+                                <div id="textmusicien" class="carousel-caption"><p class="carouselText">Faites-vous connaître et trouvez des dates de concerts<br /><a href="register.php?form=musician" id="atextmusicien">Commencez votre tournée !</a></p></div>
                             </div>
                             <!--Slide proposant aux gérants de bars, organisateurs de festival ou autre de rechercher des musiciens pour leur soirée-->
                             <div class="carousel-item"><img class="d-block w-100" src="assets/img/publicCarousel.jpg" alt="fourth slide" width="100%" height="300" />
-                                <div id="textpublic" class="carousel-caption"><p class="carouselText">Vous pouvez suivre vos groupes préférés dans leurs représentations<br /><a href="secondPage/register.php?form=public" id="atextpublic">Il suffit de vous inscrire !</a></p></div>
+                                <div id="textpublic" class="carousel-caption"><p class="carouselText">Vous pouvez suivre vos groupes préférés dans leurs représentations<br /><a href="register.php?form=public" id="atextpublic">Il suffit de vous inscrire !</a></p></div>
                             </div>
                         </div>
                         <!--Section pour les flêches permettant de passer d'une slide à une autre-->
@@ -63,15 +64,15 @@ include_once'controllers/connectCtrl.php';
                             <div class="row">
                                 <!--Lien pour inscription d'un utilisateur public-->
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <a href="secondPage/register.php?form=public"><img src="assets/img/partyResearch.png" alt="Je recherche une soirée" class="research" /></a>
+                                    <a href="register.php?form=public"><img src="assets/img/partyResearch.png" alt="Je recherche une soirée" class="research" /></a>
                                 </div>
                                 <!--Lien pour inscription d'un utilisateur professionnel de type bar ou festival-->
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">                
-                                    <a href="secondPage/register.php?form=pro"><img src="assets/img/groupResearch.png" alt="Je recherche un groupe de musique" class="research" /></a>
+                                    <a href="register.php?form=pro"><img src="assets/img/groupResearch.png" alt="Je recherche un groupe de musique" class="research" /></a>
                                 </div>
                                 <!--Lien inscription d'un utilisateur de type groupe de musique-->
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <a href="secondPage/register.php?form=musician"><img src="assets/img/concertResearch.png" alt="Je recherche une date de concert" class="research" /></a>
+                                    <a href="register.php?form=musician"><img src="assets/img/concertResearch.png" alt="Je recherche une date de concert" class="research" /></a>
                                 </div>
                             </div>
                         </div>

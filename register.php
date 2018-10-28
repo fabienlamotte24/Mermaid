@@ -1,6 +1,7 @@
 <?php
-include_once'../config.php';
-include_once'../controllers/registerCtrl.php';
+include_once'config.php';
+include_once'controllers/registerCtrl.php';
+include_once'controllers/connectCtrl.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
@@ -13,19 +14,19 @@ include_once'../controllers/registerCtrl.php';
         <style>
 <?php if (isset($_GET['form']) && ($_GET['form'] === 'public')) { ?>
                 body{
-                    background: url("../assets/img/forget.jpeg") no-repeat;
+                    background: url("assets/img/forget.jpeg") no-repeat;
                     background-repeat:no-repeat;
                     background-size:cover;
                 }
 <?php } elseif (isset($_GET['form']) && ($_GET['form'] === 'pro')) { ?>
                 body{
-                    background: url("../assets/img/proCarousel.jpg") no-repeat;
+                    background: url("assets/img/proCarousel.jpg") no-repeat;
                     background-repeat:no-repeat;
                     background-size:cover;
                 }
 <?php } elseif (isset($_GET['form']) && ($_GET['form'] === 'musician')) { ?>
                 body{
-                    background: url("../assets/img/musicianForm.jpeg") no-repeat;
+                    background: url("assets/img/musicianForm.jpeg") no-repeat;
                     background-repeat:no-repeat;
                     background-size:cover;
                 }
@@ -35,13 +36,11 @@ include_once'../controllers/registerCtrl.php';
     <body>
         <div class="container-fluid">
             <div class="row">
-                <?php
-                include_once "header.php";
+                <?php include_once "header.php";
                 if (!isset($_GET['form'])) {
-                    header('location:../index.php');
+                    header('location:index.php');
                 }
-                if (isset($_GET['form']) && ($_GET['form'] == 'public')) {
-                    ?>
+                if (isset($_GET['form']) && ($_GET['form'] == 'public')) { ?>
                     <section id="section" class="col-12 text-center">
                         <form id="form-data" class="<?= (isset($_POST['submit']) && count($errorList) == 0) ? 'invisible' : 'form' ?> offset-xl-2 offset-lg-2 offset-md-2 col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12 form-group text-center" action="#" method="POST">                
                             <h1>Inscription Abonné</h1>
@@ -122,7 +121,7 @@ include_once'../controllers/registerCtrl.php';
                                     <div class="col-6">
                                         <label for="city">Ville: </label>
                                         <select name="city" id="citySelect" class="form-control">
-                                            <option name="0" value="0">Votre code postal</option>
+                                            <option name="0" value="0" selected disabled>Votre code postal</option>
                                         </select>
                                         <p class="red"><?= (isset($errorList['city'])) ? $errorList['city'] : ' ' ?></p>
                                     </div>
@@ -367,6 +366,6 @@ include_once'../controllers/registerCtrl.php';
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>        
-        <script src="../assets/js/form.js"></script>
+        <script src="assets/js/form.js"></script>
     </body>
 </html>

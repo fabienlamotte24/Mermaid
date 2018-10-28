@@ -1,3 +1,7 @@
+<?php 
+include_once'config.php';
+include_once'controllers/connectCtrl.php';
+?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
     <head>
@@ -12,7 +16,7 @@
         <div class="container-fluid">
             <div class="row">
                 <!--Incorporation de l'En-tête grâce à header.php-->
-                <?php include_once 'includeFilesPhp/header.php'; ?>
+                <?php include_once 'header.php'; ?>
                 <?php if (!isset($_GET['forget'])) { ?>
                     <section id="selectForget" class="offset-xl-3 col-xl-6 offset-lg-3 col-lg-6 offset-md-3 col-md-6 offset-sm-1 col-sm-9 offset-xs-1 col-xs-9">
                         <h1>Information de compte</h1>

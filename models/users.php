@@ -28,9 +28,13 @@ class users extends database {
     /**
      * Méthode permettant la connexion de l'utilisateur
      */
-    public function connexion(){
+    public function userConnexion(){
         $state = FALSE;
-        $query = 'SELECT `id`, `pseudo`, `password`,`mail`, `lastname`, `firstname`, `phoneNumber`, `birthDate`, `address`, `presentation`, `id_15968k4_type`, `id_15968k4_cities` FROM `15968k4_users` WHERE `pseudo` = :pseudo';        
+        $query = 'SELECT `us`.`id`, `us`.`pseudo`, `us`.`password`, `us`.`mail`, `us`.`lastname`, `us`.`firstname`, `us`.`phoneNumber`, DATE_FORMAT(`us`.`birthDate`, \'%m-%d-%Y\') AS `birthDate`, `us`.`address`, `us`.`presentation`, `us`.`id_15968k4_type`, `us`.`id_15968k4_cities`, `ci`.city, `ci`.`postalCode` '
+                . 'FROM `15968k4_users` AS `us` '
+                . 'LEFT JOIN `15968k4_cities` AS `ci` '
+                . 'ON `us`.`id_15968k4_cities` = `ci`.`id` '
+                . 'WHERE `us`.`pseudo` = :pseudo ';        
         $result = $this->db->prepare($query);
         $result->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
         if ($result->execute()) { //On vérifie que la requête s'est bien exécutée
@@ -47,8 +51,10 @@ class users extends database {
                 $this->birthDate = $selectResult->birthDate;
                 $this->address = $selectResult->address;
                 $this->presentation = $selectResult->presentation;
-                $this->idType = $selectResult->idType;
-                $this->idCities = $selectResult->idCities;
+                $this->idType = $selectResult->id_15968k4_type;
+                $this->idCities = $selectResult->id_15968k4_cities;
+                $this->city = $selectResult->city;
+                $this->postalCode = $selectResult->postalCode;
                 $state = true;
             }
         }
@@ -114,14 +120,17 @@ class users extends database {
         }
         return $bool;
     }
-
+    /**
+     * Méthode servant à la modification du mot de passe
+     */
+    public function changePass(){
+        
+    }
     /**
      * Création de la méthode magique destructeur
      */
     public function __destruct() {
         ;
     }
-
 }
-
 ?>
