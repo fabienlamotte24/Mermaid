@@ -23,7 +23,7 @@ body{
     color:white;
 }
 h1{
-    font-size:1.4rem;
+    font-size:1.5rem;
     font-weight:bold;
 }
 h2{
@@ -117,4 +117,20 @@ hr{
 }
 #eMailOptionForm, #addressOptionForm, #phoneNumberOptionForm{
     display:none;
+}
+.bandBlock{
+    background-color:white;
+    border:2px solid black;
+    border-radius:15px;
+    margin-top:30px;
+    padding:15px;
+}
+.bandRemove{
+    font-weight: bold;
+    font-size:1.2rem;
+}
+.bandRemove:hover{
+    font-weight: bold;
+    font-size:1.2rem;
+    color:grey;
 }

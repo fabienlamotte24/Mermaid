@@ -26,7 +26,7 @@ include_once'../../controllers/profileCtrl.php';
                     </div>
                 </div>
                 <div class="row profilContent">
-                    <div class="profilBlock offset-1 col-xl-3 col-lg-3 col-md-3 col-sm-10 col-xs-12 mt-3">
+                    <div class="profilBlock offset-1 col-xl-3 col-lg-3 col-md-3 col-sm-10 col-xs-10 mt-3">
                         <div class="row">
                             <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                                 <img src="../../assets/img/lapin.jpg" class="rounded-circle" width="70" height="70" />

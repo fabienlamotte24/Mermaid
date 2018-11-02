@@ -218,8 +218,8 @@ if(isset($_POST['submitPassModify'])){
         //...Sinon erreur d'entrée de valeur
         $errorList['passwordVerify'] = 'Veuillez écrire un mot de passe';
     }
-    //Si les deux variables existent
-    if(isset($pass1) && isset($pass2)){
+    //S'il n'y a pas d'erreur dans le formulaire
+    if(count($errorList) == 0){
         //...On vérifie que les deux variables ont la même valeur
         if($pass1 == $pass2){
             //...On instancie l'objet users, en utilisant la méthode de changement de mot de passe

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Création de la classe 123U_sers
+ * Création de la classe users
  */
 class users extends database {
 

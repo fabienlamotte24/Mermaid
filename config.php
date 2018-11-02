@@ -9,3 +9,4 @@ include 'class/database.php';
 include 'models/users.php';
 include 'models/cities.php';
 include 'models/type.php';
+include 'models/band.php';
