@@ -1,36 +1,37 @@
 <?php
 
 //Initialisation de plusieurs variable au chargement de la page
-$pseudo = '';
-$password = '';
+$pseudoConnect = '';
+$passwordConnect = '';
 $connected = FALSE;
 $message = '';
-$errorList = array();
+$errorConnectList = array();
 //Vérification du champs pseudo
-if (isset($_POST['pseudo'])) {
-    if (!empty($_POST['pseudo'])) {
-        $pseudo = htmlspecialchars($_POST['pseudo']);
+if (isset($_POST['pseudoConnect'])) {
+    if (!empty($_POST['pseudoConnect'])) {
+        $pseudoConnect = htmlspecialchars($_POST['pseudoConnect']);
     } else {
-        $errorList['pseudo'] = 'Entrez votre identifiant';
+        $errorConnectList['pseudoConnect'] = 'Entrez votre identifiant';
     }
 }
 //Vérification du champs mot de passe
-if (isset($_POST['pass'])) {
-    if (!empty($_POST['pass'])) {
-        $password = $_POST['pass'];
+if (isset($_POST['passConnect'])) {
+    if (!empty($_POST['passConnect'])) {
+        $passwordConnect = $_POST['passConnect'];
     } else {
-        $errorList['pass'] = 'Entrez votre mot de passe';
+        $errorConnectList['passConnect'] = 'Entrez votre mot de passe';
     }
 }
 //Si le formulaire ne présente aucune erreur
-if (isset($_POST['connexion']) && count($errorList) == 0) {
+if (isset($_POST['connexion']) && count($errorConnectList) == 0) {
     //J'utilise l'objet users
     $user = NEW users();
     //Je donne à l'attribut pseudo de mon objet la valeur stockée dans la variable $pseudo
-    $user->pseudo = $pseudo;
+    $user->pseudo = $pseudoConnect;
     if ($user->userConnexion()) {
-        if (password_verify($password, $user->password)) {
+        if (password_verify($passwordConnect, $user->password)) {
             session_start();
+            $_SESSION['id'] = $user->id;
             $_SESSION['pseudo'] = $user->pseudo;
             $_SESSION['mail'] = $user->mail;
             $_SESSION['lastname'] = $user->lastname;
@@ -46,7 +47,7 @@ if (isset($_POST['connexion']) && count($errorList) == 0) {
             $_SESSION['postalCode'] = $user->postalCode;
             $_SESSION['password'] = $user->password;
             $connected = TRUE;
-            header('location:../secondPage/publicUser/profilPublic.php');
+            header('location:../secondPage/userPages/profile.php');
         } else {
             $message = 'Erreur de connexion';
         }

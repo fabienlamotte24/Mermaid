@@ -11,22 +11,22 @@
                     <!--Section d'Identifiant de l'utilisateur-->
                     <div id="user">
                         <img src="../assets/img/icoUser.png" id="icoUser" title="icone identifiant" alt="icone identifiant" />
-                        <input type="text" name="pseudo" id="pseudo" placeholder="Identifiant" maxlength="15" size="15" style="border: hidden; border: 0" />
+                        <input type="text" name="pseudoConnect" id="pseudoConnect" placeholder="Identifiant" maxlength="15" size="15" style="border: hidden; border: 0" />
                         <abbr><a href="forget.php?forget=login" class="forgot">Oublié ?</a></abbr>
                     </div>
-                    <?php if (isset($errorList['pseudo'])) { ?>
-                        <span class="red"><?= $errorList['pseudo'] ?></span>
+                    <?php if (isset($errorConnectList['pseudoConnect'])) { ?>
+                        <span class="red"><?= $errorConnectList['pseudoConnect'] ?></span>
                     <?php } ?>
                 </li>
                 <li class="nav-item">
                     <!--Section de Mot de passe de l'utilisateur-->
                     <div id="Pass">
                         <img src="../assets/img/icoPass.png" id="icoPass" title="icone Mot de passe" alt="icone Mot de passe" />
-                        <input type="password" name="pass" id="pass" placeholder="Mot de passe" maxlength="15" size="15" style="border: hidden; border: 0" />
+                        <input type="password" name="passConnect" id="passConnect" placeholder="Mot de passe" maxlength="15" size="15" style="border: hidden; border: 0" />
                         <abbr><a href="forget.php?forget=pass" class="forgot">Oublié ?</a></abbr>
                     </div>
-                    <?php if (isset($errorList['pass'])) { ?>
-                        <span class="red"><?= $errorList['pass'] ?></span>
+                    <?php if (isset($errorConnectList['passConnect'])) { ?>
+                        <span class="red"><?= $errorConnectList['passConnect'] ?></span>
                     <?php } ?>
                 </li>
                 <li class="nav-item">

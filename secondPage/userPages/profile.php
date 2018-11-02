@@ -2,7 +2,7 @@
 session_start();
 include_once'../../config.php';
 include_once'../../controllers/connectCtrl.php';
-include_once'../../controllers/publicCtrl.php';
+include_once'../../controllers/profileCtrl.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
@@ -26,31 +26,32 @@ include_once'../../controllers/publicCtrl.php';
                     </div>
                 </div>
                 <div class="row profilContent">
-                    <div class="profilBlock offset-xl-1 offset-lg-1 offset-md-1 col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12 mt-3">
+                    <div class="profilBlock offset-1 col-xl-3 col-lg-3 col-md-3 col-sm-10 col-xs-12 mt-3">
                         <div class="row">
                             <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                                 <img src="../../assets/img/lapin.jpg" class="rounded-circle" width="70" height="70" />
                             </div>
-                            <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                            <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center p-3">
                                 <h1 class="profilePseudo"><?= $_SESSION['pseudo'] ?></h1>
-                                <p><?=($_SESSION['presentation'] != '') ? $_SESSION['presentation'] : 'Allez dans les options pour écrire un court message de présentation !'?></p>
-                            </div>
-                        </div>
-                        <div class="row text-center">
-                            <div class="col-12 text-center">
-                                <h1>Amis</h1>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12 text-center">
-                                <img src="../../assets/img/icoUser.png" class="rounded-circle friendsPicture" alt="amis" title="amis" width="35" height="35" />
-                                <img src="../../assets/img/icoUser.png" class="rounded-circle friendsPicture" alt="amis" title="amis" width="35" height="35" />
-                                <img src="../../assets/img/icoUser.png" class="rounded-circle friendsPicture" alt="amis" title="amis" width="35" height="35" />
-                                <img src="../../assets/img/icoUser.png" class="rounded-circle friendsPicture" alt="amis" title="amis" width="35" height="35" />
+                            <div class="col-12 text-center p-1">
+                                <?php if($_SESSION['presentation'] != ''){?>
+                                <p class="changePresentation"><?=$_SESSION['presentation']?><br />
+                                <a href="#">Changer</a><p>
+                                <?php } else {?>
+                                <p class="changePresentation">Vous pouvez ajouter <a href="#">ici</a> une présentation !</p>
+                                <?php } ?>
+                                <form action="#" method="POST" class="showPresentation form-group">
+                                    <textarea name="presentation" maxlength="300" placeholder="300 caractères maximum..."></textarea>
+                                    <input type="submit" name="changePresentation" value="accepter" />
+                                    <span class="red"><?= (isset($errorList['presentation'])) ? $errorList['presentation'] : '';?></span>
+                                </form>
                             </div>
                         </div>
                     </div>
-                    <div class="profilBlock offset-xl-1 offset-lg-1 offset-md-1  text-center col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-3">
+                    <div class="profilBlock offset-1 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-10 mt-3 text-center">
                         <div class="photo">
                             <h2>Vos photos</h2>
                             <p>Aucune photo...</p>
@@ -73,5 +74,13 @@ include_once'../../controllers/publicCtrl.php';
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>        
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script>
+        $(document).ready(function(){
+            $('.changePresentation').click(function(){
+               $('.showPresentation').show();
+               $('.changePresentation').hide();
+            });
+        });
+        </script>
     </body>
 </html>

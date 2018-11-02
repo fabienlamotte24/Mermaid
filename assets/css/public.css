@@ -27,7 +27,7 @@ h1{
     font-weight:bold;
 }
 h2{
-    font-size:1rem;
+    font-size:1.8rem;
     font-weight:bold;
 }
 p{
@@ -77,13 +77,44 @@ li{
     margin-top:50px;
 }
 #showDetails{
-    border-right:1px solid grey;
-    margin:33px;
+    margin-top:33px;
 }
 #passChanging{
-    margin:33px;
+    margin-top:33px;
 }
 #submitPass{
     margin-top:5px;
     cursor:pointer;
+}
+.red{
+    color:red;
+}
+.green{
+    color:green;
+}
+.showPresentation{
+    display:none;
+}
+.secondBoard{
+    margin-bottom:33px;
+    margin-top:33px;
+}
+.eMailOptionTitle, .addressOptionTitle, .phoneNumberOptionTitle, .removeUserOptionTitle{
+    font-weight:bold;
+    font-size:1.1rem;
+    cursor:pointer;
+    color:black;
+}
+.eMailOptionTitle:hover, .addressOptionTitle:hover, .phoneNumberOptionTitle:hover, .removeUserOptionTitle:hover{
+    font-weight:bold;
+    font-size:1.1rem;
+    cursor:pointer;
+    color:grey;
+    text-decoration:none;
+}
+hr{
+    width:75%;
+}
+#eMailOptionForm, #addressOptionForm, #phoneNumberOptionForm{
+    display:none;
 }

@@ -1,6 +1,7 @@
 <?php 
 include_once'config.php';
 include_once'controllers/connectCtrl.php';
+include_once'controllers/forgetCtrl.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
@@ -47,10 +48,12 @@ include_once'controllers/connectCtrl.php';
                                 <label for="email">Votre adresse mail:</label>
                                 <input type="email" name="email" id="email" class="form-control justify-content-center" placeholder="mermaid@outlook.fr" />
                             </div>
-                            <p>Vous recevrez un mail contenant votre identifiant</p>
+                            <p>Nous vous enverrons votre identifiant au mail correspondant</p>
                             <hr>
                             <!--Boutton permettant d'envoyer le mail à l'utilisateur si l'adresse mail existe-->
-                            <input type="submit" name="submit" class="button" value="Envoyer moi mon identifiant !" />
+                            <input type="submit" name="submitUserSearch" class="button" value="Envoyer moi mon identifiant !" />
+                            <p class="red"><?=(isset($errorList['submitUserSearch'])) ? $errorList['submitUserSearch'] : ''?></p>
+                            <p class="green"><?=(isset($success['submitUserSearch'])) ? $success['submitUserSearch'] : ''?></p>
                         </form>
                     </section>
                     <?php
@@ -69,10 +72,38 @@ include_once'controllers/connectCtrl.php';
                             <p>Vous recevrez un mail de modification de mot de passe</p>
                             <hr>
                             <!--Boutton submit pour envoyer un mail à l'utilisateur si l'adresse mail existe-->
-                            <input type="submit" name="submit" value="Envoyez moi un message !" id="passMailRescue" name="passMailRescue" />
+                            <input type="submit" name="submitPassChange" value="Envoyez moi un E-Mail de modification !" id="passMailRescue" />
+                            <p class="red"><?=(isset($errorList['submitPassChange'])) ? $errorList['submitPassChange'] : ''?></p>
+                            <p class="green"><?=(isset($success['submitPassChange'])) ? $success['submitPassChange'] : ''?></p>
+                        </form>
+                    </section>
+                <?php } 
+                if(isset($_GET['forget']) && ($_GET['forget'] == 'changePass') && (isset($_GET['id']))){ ?>
+                    <section id="passForgetForm"class="offset-xl-3 col-xl-6 offset-lg-3 col-lg-6 offset-md-3 col-md-6 offset-sm-1 col-sm-9 offset-xs-1 col-xs-9">
+                        <h1>Changement de votre Mot de passe</h1>
+                        <hr>
+                        <!--Formulaire pour un changement de mot de passe-->
+                        <form method="POST" action="#" class="form-group">
+                            <div class="offset-2 col-8">
+                                <!--Champs de modification de mot de passe-->
+                                <label for="password">Veuillez écrire votre nouveau mot de passe</label>
+                                <input type="password" class="form-control justify-content-center" name="password" id="password" />
+                            <p class="red"><?=(isset($errorList['password'])) ? $errorList['password'] : ''?></p>
+                                <!--Champs de réécriture de mot de passe-->
+                                <label for="passwordVerify">Réécrivez votre nouveau mot de passe</label>
+                                <input type="password" class="form-control justify-content-center" name="passwordVerify" id="passwordVerify" />
+                            <p class="red"><?=(isset($errorList['passwordVerify'])) ? $errorList['passwordVerify'] : ''?></p>
+                            </div>
+                            <p>Vous recevrez un mail de modification de mot de passe</p>
+                            <hr>
+                            <!--Boutton de validation du formulaire-->
+                            <input type="submit" name="submitPassModify" value="Soumettre la modification de mot de passe" id="passMailRescue" />
+                            <p class="red"><?=(isset($errorList['submitPassModify'])) ? $errorList['submitPassModify'] : ''?></p>
+                            <p class="green"><?=(isset($success['submitPassModify'])) ? $success['submitPassModify'] : ''?></p>
                         </form>
                     </section>
                 <?php } ?>
+                
             </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

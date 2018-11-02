@@ -36,11 +36,13 @@ include_once'controllers/connectCtrl.php';
     <body>
         <div class="container-fluid">
             <div class="row">
-                <?php include_once "header.php";
+                <?php
+                include_once "header.php";
                 if (!isset($_GET['form'])) {
                     header('location:index.php');
                 }
-                if (isset($_GET['form']) && ($_GET['form'] == 'public')) { ?>
+                if (isset($_GET['form']) && ($_GET['form'] == 'public')) {
+                    ?>
                     <section id="section" class="col-12 text-center">
                         <form id="form-data" class="<?= (isset($_POST['submit']) && count($errorList) == 0) ? 'invisible' : 'form' ?> offset-xl-2 offset-lg-2 offset-md-2 col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12 form-group text-center" action="#" method="POST">                
                             <h1>Inscription Abonné</h1>
@@ -121,12 +123,13 @@ include_once'controllers/connectCtrl.php';
                                     <div class="col-6">
                                         <label for="city">Ville: </label>
                                         <select name="city" id="citySelect" class="form-control">
-                                            <option name="0" value="0" selected disabled>Votre code postal</option>
+                                            <option name="0" value="0" selected disabled>Renseignez votre code postal</option>
                                         </select>
                                         <p class="red"><?= (isset($errorList['city'])) ? $errorList['city'] : ' ' ?></p>
                                     </div>
                                 </div>
                             </div>
+                            <!--Boutton de validation-->
                             <div class="submit">
                                 <input type="submit" name="submit" value="Je valide mon inscription !" />
                                 <p class="red"><?= (isset($samePseudo)) ? $samePseudo : ' ' ?></p>
@@ -138,17 +141,15 @@ include_once'controllers/connectCtrl.php';
                             <p>Vous pouvez dores et déjà vous connecter via le menu ci-dessus !</p>
                         </div>
                     </section>
-                    <?php
-                }
-                if (isset($_GET['form']) && ($_GET['form'] == 'pro')) {
-                    ?>
+                    <?php }
+                if (isset($_GET['form']) && ($_GET['form'] == 'pro')) { ?>
                     <section id="section" class="col-12 text-center">
                         <form id="form-data" class="<?= (isset($_POST['submit']) && count($errorList) == 0) ? 'invisible' : 'form' ?> offset-xl-2 offset-lg-2 offset-md-2 col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12 form-group text-center" action="#" method="POST">                
                             <h1>Inscription Abonné</h1>
                             <div id="firstBlock">
                                 <h2>Vos informations de compte</h2>
-                                <!--Champs pseudo-->
                                 <div class="row">
+                                    <!--Champs pseudo-->
                                     <div class="col-6">
                                         <label for="pseudo">Pseudo: </label>
                                         <input type="text" id="pseudo" name="pseudo" class="form-control text-center" maxlength="20" <?= (isset($addUser->pseudo)) ? 'value="' . $addUser->pseudo . '"' : ' '; ?> />                            
@@ -258,8 +259,8 @@ include_once'controllers/connectCtrl.php';
                             <h1>Inscription Abonné</h1>
                             <div id="firstBlock">
                                 <h2>Vos informations de compte</h2>
-                                <!--Champs pseudo-->
                                 <div class="row">
+                                    <!--Champs pseudo-->
                                     <div class="col-6">
                                         <label for="pseudo">Pseudo: </label>
                                         <input type="text" id="pseudo" name="pseudo" class="form-control text-center" maxlength="20" <?= (isset($addUser->pseudo)) ? 'value="' . $addUser->pseudo . '"' : ' '; ?> />                            
