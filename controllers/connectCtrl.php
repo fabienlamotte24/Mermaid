@@ -46,6 +46,7 @@ if (isset($_POST['connexion']) && count($errorConnectList) == 0) {
             $_SESSION['city'] = $user->city;
             $_SESSION['postalCode'] = $user->postalCode;
             $_SESSION['password'] = $user->password;
+            $_SESSION['profilPicture'] = $user->profilPicture;
             $connected = TRUE;
             header('location:../secondPage/userPages/profile.php');
         } else {

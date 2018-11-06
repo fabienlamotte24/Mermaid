@@ -18,6 +18,7 @@ class users extends database {
     public $presentation;
     public $idType;
     public $idCities;
+    public $profilPicture;
 
     /**
      * Création de la méthode magique constructeur
@@ -32,7 +33,7 @@ class users extends database {
      */
     public function userConnexion() {
         $state = FALSE;
-        $query = 'SELECT `us`.`id`, `us`.`pseudo`, `us`.`password`, `us`.`mail`, `us`.`lastname`, `us`.`firstname`, `us`.`phoneNumber`, DATE_FORMAT(`us`.`birthDate`, \'%m-%d-%Y\') AS `birthDate`, `us`.`address`, `us`.`presentation`, `us`.`id_15968k4_type`, `us`.`id_15968k4_cities`, `ci`.city, `ci`.`postalCode` '
+        $query = 'SELECT `us`.`id`, `us`.`pseudo`, `us`.`password`, `us`.`mail`, `us`.`lastname`, `us`.`firstname`, `us`.`phoneNumber`, DATE_FORMAT(`us`.`birthDate`, \'%m-%d-%Y\') AS `birthDate`, `us`.`address`, `us`.`presentation`, `us`.`id_15968k4_type`, `us`.`id_15968k4_cities`, `us`.`profilPicture`, `ci`.city, `ci`.`postalCode` '
                 . 'FROM `15968k4_users` AS `us` '
                 . 'LEFT JOIN `15968k4_cities` AS `ci` '
                 . 'ON `us`.`id_15968k4_cities` = `ci`.`id` '
@@ -57,6 +58,7 @@ class users extends database {
                 $this->idCities = $selectResult->id_15968k4_cities;
                 $this->city = $selectResult->city;
                 $this->postalCode = $selectResult->postalCode;
+                $this->profilPicture = $selectResult->profilPicture;
                 $state = true;
             }
         }
@@ -68,8 +70,8 @@ class users extends database {
      */
     public function addUser() {
         //Mise en forme de la requête
-        $query = 'INSERT INTO `15968k4_users`(`pseudo`, `password`, `mail`, `lastname`, `firstname`, `phoneNumber`, `birthDate`, `address`, `presentation`, `id_15968k4_Type`, `id_15968k4_Cities`) '
-                . 'VALUES(:pseudo, :password, :mail, :lastname, :firstname, :phoneNumber, :birthDate, :address, :presentation, :id_15968k4_Type, :id_15968k4_Cities)';
+        $query = 'INSERT INTO `15968k4_users`(`pseudo`, `password`, `mail`, `lastname`, `firstname`, `phoneNumber`, `birthDate`, `address`, `presentation`, `id_15968k4_Type`, `id_15968k4_Cities`, `profilPicture`) '
+                . 'VALUES(:pseudo, :password, :mail, :lastname, :firstname, :phoneNumber, :birthDate, :address, :presentation, :id_15968k4_Type, :id_15968k4_Cities, " ")';
         //Préparation de la requête
         $addUser = $this->db->prepare($query);
         //Listing des marqueurs nominatifs pour récupérer les valeurs
@@ -196,7 +198,7 @@ class users extends database {
      * Méthode servant à afficher les informations de l'utilisateur
      */
     public function showCompleteUserContent() {
-        $query = 'SELECT `us`.`id`, `us`.`pseudo`, `us`.`password`, `us`.`mail`, `us`.`lastname`, `us`.`firstname`, `us`.`phoneNumber`, DATE_FORMAT(`us`.`birthDate`, \'%m-%d-%Y\') AS `birthDate`, `us`.`address`, `us`.`presentation`, `us`.`id_15968k4_type`, `us`.`id_15968k4_cities`, `ci`.city, `ci`.`postalCode` '
+        $query = 'SELECT `us`.`id`, `us`.`pseudo`, `us`.`password`, `us`.`mail`, `us`.`lastname`, `us`.`firstname`, `us`.`phoneNumber`, DATE_FORMAT(`us`.`birthDate`, \'%m-%d-%Y\') AS `birthDate`, `us`.`address`, `us`.`presentation`, `us`.`id_15968k4_type`, `us`.`id_15968k4_cities`,`us`.`profilPicture`, `ci`.city, `ci`.`postalCode` '
                 . 'FROM `15968k4_users` AS `us` '
                 . 'LEFT JOIN `15968k4_cities` AS `ci` '
                 . 'ON `us`.`id_15968k4_cities` = `ci`.`id` '
@@ -235,12 +237,23 @@ class users extends database {
         return $isObjectResult;
     }
     /**
+     * Méthode servant à l'ajout d'une photo de profil
+     */
+    public function newProfilePicture(){
+        $query = 'UPDATE `15968k4_users` '
+                . 'SET `profilPicture` = :profilPicture '
+                . 'WHERE `id` = :id';
+        $newProfilePicture = $this->db->prepare($query);
+        $newProfilePicture->bindValue(':profilPicture', $this->profilPicture, PDO::PARAM_STR);
+        $newProfilePicture->bindValue(':id', $this->id, PDO::PARAM_INT);
+        return $newProfilePicture->execute();
+    }
+    /**
      * Création de la méthode magique destructeur
      */
     public function __destruct() {
         ;
     }
-
 }
-
 ?>
+

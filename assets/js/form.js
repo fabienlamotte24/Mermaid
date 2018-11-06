@@ -42,7 +42,7 @@ $(document).ready(function () {
 //Le même code que le premier servant cette fois-ci au remplissage du changement de l'adresse postale
 $(function () {
     $('#newPostalCode').bind('input', function () {
-        $.post('../../controllers/publicCtrl.php', {
+        $.post('../../controllers/optionsCtrl.php', {
             newPostalSearch: $('#newPostalCode').val()
         }, function (cities) {
             if (cities !== '') {

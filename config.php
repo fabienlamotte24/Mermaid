@@ -10,3 +10,8 @@ include 'models/users.php';
 include 'models/cities.php';
 include 'models/type.php';
 include 'models/band.php';
+include 'models/bandPhotos.php';
+include 'models/members.php';
+include 'models/userPhotos.php';
+include 'models/notifications.php';
+include 'models/establishment.php';

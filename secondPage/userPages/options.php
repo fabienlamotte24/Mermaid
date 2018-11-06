@@ -35,6 +35,8 @@ include'../../controllers/connectCtrl.php';
                             <span class="green"><?= (isset($success['newPhoneNumber'])) ? $success['newPhoneNumber'] : '' ?></span>
                             <span class="red"><?= (isset($errorPassList['submitPass'])) ? $errorPassList['submitPass'] : '' ?></span>
                             <span class="green"><?= (isset($success['submitPass'])) ? $success['submitPass'] : '' ?></span>
+                            <span class="red"><?= (isset($errorList['submitFile'])) ? $errorList['submitFile'] : ' ' ?></span>
+                            <span class="green"><?= (isset($success['submitFile'])) ? $success['submitFile'] : ' ' ?></span>
                         </div>
                     </div>
                     <div class="row firstBoard">
@@ -74,10 +76,33 @@ include'../../controllers/connectCtrl.php';
                             </form>
                         </div>
                     </div>
-                    <div class="row secondBoard">
+                    <hr>
+                    <div class="row secondBoard p-0 m-0">
+                        <div class="col-12 text-center p-0 m-0">
+                            <h2>Votre photo de profil</h2>
+                            <form action="#" method="POST" class="form-group col-12 text-center p-0 m-0" enctype="multipart/form-data">
+                                <div class="row p-0 m-0">
+                                    <div class="col-12 text-center p-0 m-0">
+                                        <?php if ($showAllContent->profilPicture == '') { ?>
+                                            <img src="../../assets/img/userPictures/icoUser.png" class="rounded-circle icoUser" width="70" height="70" />
+                                        <?php } else { ?>
+                                            <img src="../../assets/img/userPictures/avatars/<?= $showAllContent->profilPicture ?>" class="rounded-circle" width="70" height="70" />
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                                <div class="row p-0 m-0">
+                                    <div class="col-12 text-center p-0 m-0">
+                                        <input type="file" name="newFile" class="p-0 m-0" /><br />
+                                        <input type="submit" name="submitFile" class="p-0 m-0" value="J'envoie mon image" />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row thirdBoard">
                         <div class="col-12 text-center p-0 m-0">
                             <h2>Modifiez vos informations générales</h2>
-                            <hr>
                             <ul class="text-center p-0 m-0">
                                 <li>
                                     <!--Block de changement d'adresse de messagerie-->
@@ -87,7 +112,7 @@ include'../../controllers/connectCtrl.php';
                                         <label for="newEmail">Votre nouvelle adresse mail: <span class="red">*</span></label>
                                         <input type="text" id="newEmail" name="newEmail" class="form-control text-center" />
                                         <p><span class="red">*</span>Vous devrez attendre 2 semaines avant de pouvoir changer votre adresse mail à nouveau !<br />
-                                        <span class="red">*</span>Vous ne pouvez pas changer votre adresse mail en ayant au moins un contrat en cours !</p>
+                                            <span class="red">*</span>Vous ne pouvez pas changer votre adresse mail en ayant au moins un contrat en cours !</p>
                                         <!--Boutton de validation-->
                                         <input type="submit" name="validateNewEmail" value="soumettre" />
                                     </form>
@@ -135,8 +160,8 @@ include'../../controllers/connectCtrl.php';
                                                 </div>
                                                 <div class="modal-body">
                                                     <form action="#" method="POST">
-                                                        <button type="submit"  name="removeUser" class="btn btn-danger btn-lg" name="cancelRemove">Supprimer</button>
-                                                        <button type="submit"  name="cancelRemove" class="btn btn-primary btn-lg" name="cancelRemove">Annuler</button>
+                                                        <button type="submit"  name="removeUser" class="btn btn-danger btn-lg">Supprimer</button>
+                                                        <button type="submit"  name="cancelRemove" class="btn btn-primary btn-lg">Annuler</button>
                                                     </form>
                                                 </div>
                                             </div>

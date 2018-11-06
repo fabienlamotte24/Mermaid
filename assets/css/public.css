@@ -89,15 +89,16 @@ li{
 .red{
     color:red;
 }
+.icoUser{
+    margin:0;
+    padding:0;
+    border:1px solid grey;
+}
 .green{
     color:green;
 }
 .showPresentation{
     display:none;
-}
-.secondBoard{
-    margin-bottom:33px;
-    margin-top:33px;
 }
 .eMailOptionTitle, .addressOptionTitle, .phoneNumberOptionTitle, .removeUserOptionTitle{
     font-weight:bold;
@@ -113,24 +114,102 @@ li{
     text-decoration:none;
 }
 hr{
-    width:75%;
+    width:80%;
 }
 #eMailOptionForm, #addressOptionForm, #phoneNumberOptionForm{
     display:none;
 }
-.bandBlock{
+.bandBlock, .companyBlock{
     background-color:white;
-    border:2px solid black;
+    border:3px solid black;
     border-radius:15px;
     margin-top:30px;
     padding:15px;
+    box-shadow:1px 1px 3px white;
 }
 .bandRemove{
     font-weight: bold;
     font-size:1.2rem;
+    color:black;
 }
 .bandRemove:hover{
     font-weight: bold;
     font-size:1.2rem;
+    color:red;
+    text-decoration:none;
+}
+.addPhotoLink{
+    font-size:1.2rem;
+    font-weight:bold;
+    color:black;
+}
+.addPhotoLink:hover{
+    font-size:1.2rem;
+    font-weight:bold;
+    color:green;
+    cursor:pointer;
+}
+#formPhoto{
+    display:none;
+}
+.blog .carousel-indicators {
+    left: 0;
+    top: auto;
+    bottom: -40px;
+}
+/* The colour of the indicators */
+.blog .carousel-indicators li {
+    background: #a3a3a3;
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+}
+.blog .carousel-indicators .active {
+    background: #707070;
+}
+.removePhotos{
+    border:none;
+    color:blue;
+    cursor:pointer;
+}
+.changePhoto{
+    color:black;
+    font-size:1.2rem;
+    font-weight:bold;
+}
+.changePhoto:hover{
     color:grey;
+    text-decoration:none;
+    font-size:1.2rem;
+    font-weight:bold;
+}
+.formPhoto{
+    display:none;
+}
+#modalProParametersLink{
+    font-weight:bold;
+    font-size:1.2rem;
+    color:black;
+}
+#modalProParametersLink:hover{
+    font-weight:bold;
+    font-size:1.2rem;
+    color:grey;
+    cursor:pointer;
+    text-decoration:none;
+}
+.linkProParameters1, .linkProParameters2, .linkProParameters3{
+    font-weight:bold;
+    font-size:1.2rem;
+    color:black;
+}
+.linkProParameters1:hover, .linkProParameters2:hover, .linkProParameters3:hover{
+    font-weight:bold;
+    font-size:1.2rem;
+    color:grey;
+    cursor:pointer;
+    text-decoration:none;
+}
+#changePhotoForm, #changeNameForm{
+    display:none;
 }
