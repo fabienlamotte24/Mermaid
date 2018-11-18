@@ -1,0 +1,161 @@
+@font-face {
+    font-family: 'painter';
+    src: url('../font/cool.ttf');
+}
+.profilBlock{
+    background-image: linear-gradient(to bottom right, #B11614, #4C070C);
+    background-color:white;
+    border:1px solid black;
+    box-shadow:1px 1px 2px black;
+    padding:29.6px;
+    border-radius:15px;
+}
+.profilBlockContent{
+    background-color:white;
+    border-radius:15px;
+}
+.establishmentBlock, .bandBlock{
+    background-image: linear-gradient(to bottom right, #B11614, #4C070C);
+    border:1px solid black;
+    box-shadow:1px 1px 2px black;
+    padding:29.6px;
+}
+.establishmentContent, .bandContent{
+    background-color:white;
+    border-radius:15px;
+    border:1px solid black;
+    box-shadow:1px 1px 2px black;
+    padding:29.6px;
+}
+.red{
+    color:red;
+}
+.green{
+    color:green;
+}
+.blue{
+    color:blue;
+    cursor:pointer;
+}
+h1{
+    font-size:1.5rem;
+}
+h2{
+    font-size:1rem;
+}
+p{
+    font-size:0.8rem;
+    color:black;
+}
+.blog .carousel-indicators {
+    left: 0;
+    top: auto;
+    bottom: -40px;
+}
+/* The colour of the indicators */
+.blog .carousel-indicators li {
+    background: #a3a3a3;
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+}
+.blog .carousel-indicators .active {
+    background: #707070;
+}
+.removePhotos{
+    border:none;
+    color:blue;
+    cursor:pointer;
+}
+.changePhoto{
+    color:black;
+    font-size:1.2rem;
+    font-weight:bold;
+}
+.changePhoto:hover{
+    color:grey;
+    text-decoration:none;
+    font-size:1.2rem;
+    font-weight:bold;
+}
+.photoBlock{
+    background-image: linear-gradient(to right, rgb(109,109,109,0.9), rgb(82,82,82,0.9), rgb(109,109,109,0.9));
+    border-bottom:2px solid black;
+    box-shadow:1px 1px 2px black;
+}
+.remove{
+    cursor:pointer;
+    color:#c6c6c6;
+/*    display:none;*/
+    float:right;
+    margin-left:80%;
+    text-shadow:1px 1px black;
+}
+#photo:hover ~ .remove{
+    display:block;
+}
+#addPhoto:hover{
+    text-decoration:none;
+}
+.addCompany, .addBand{
+    color:#AD1F1D;
+}
+.addCompanyLink:hover, .addBandLink:hover{
+    color:#AD1F1D;
+    text-decoration:none;
+}
+.backRed{
+    background-color:#900b0f;
+    border-radius:15px;
+}
+.backGreen{
+    background-color:#35b410;
+    border-radius:15px;
+}
+.sentenceStatus{
+    color:white;
+    font-family: 'painter';
+    font-size:1rem;
+}
+.Titleband{
+    font-size:1.8rem;
+    color:black;
+}
+.Titleband:hover{
+    font-size:1.8rem;
+    text-decoration:none;
+    color:grey;
+}
+.changeInstrument{
+    display:none;
+}
+.researchOption:hover, .musicianInResearch:hover{
+    text-decoration:none;
+    color:white;
+}
+.publications, .myConcert{
+    background-color:white;
+    border:1px solid black;
+    box-shadow:1px 1px 2px black;
+    padding:29.6px;
+    border-radius:15px;
+}
+.linkOptions{
+    color:black;
+    font-weight:bold;
+}
+.linkOptions:hover{
+    text-decoration:none;
+    color:grey;
+}
+.profilePseudo{
+    font-size:1.5rem;
+    font-weight:bold;
+}
+.TitleEstablishment{
+    color:black;
+}
+.TitleEstablishment:hover{
+    text-decoration:none;
+    color:grey;
+}

@@ -50,8 +50,7 @@ class userPhotos extends database {
      */
     public function showPhotos() {
         $query = 'SELECT `userPhotos`, `id` FROM `15968k4_userPhotos` '
-                . 'WHERE `id_15968k4_users` = :id_15968k4_users '
-                . 'LIMIT 4';
+                . 'WHERE `id_15968k4_users` = :id_15968k4_users ';
         $showPhotos = $this->db->prepare($query);
         $showPhotos->bindValue(':id_15968k4_users', $this->id_15968k4_users, PDO::PARAM_INT);
         if ($showPhotos->execute()) {
@@ -61,11 +60,25 @@ class userPhotos extends database {
         }
         return $object;
     }
+    /**
+     * Compte du nombre de photo
+     */
+    public function countPhotos(){
+        $query = 'SELECT COUNT(`userPhotos`) AS `count` FROM `15968k4_userPhotos`'
+                . 'WHERE `id_15968k4_users` = :id_15968k4_users ';
+        $result = $this->db->prepare($query);
+        $result->bindValue(':id_15968k4_users', $this->id_15968k4_users, PDO::PARAM_INT);
+        if ($result->execute()) {
+            $check = $result->fetch(PDO::FETCH_OBJ);
+            $bool = $check->count;
+        }
+        return $bool;
+    }
 
     /**
      * Méthode servant à la suppression d'une photo
      */
-    public function removePhotos(){
+    public function removePhoto(){
         $query= 'DELETE FROM `15968k4_userPhotos`'
                 . 'WHERE `id` = :id';
         $remove = $this->db->prepare($query);

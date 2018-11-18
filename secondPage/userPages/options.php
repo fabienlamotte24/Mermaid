@@ -8,10 +8,11 @@ include'../../controllers/connectCtrl.php';
 <html lang="fr" dir="ltr">
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />   
+        <link href="https://fonts.googleapis.com/css?family=Rationale" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
         <link rel="stylesheet" href="../../assets/css/navOnline.css" />
-        <link rel="stylesheet" href="../../assets/css/public.css" />
+        <link rel="stylesheet" href="../../assets/css/options.css" />
         <title>Mermaid</title>
     </head>
     <body>
@@ -20,156 +21,89 @@ include'../../controllers/connectCtrl.php';
                 <?php include'../navOnline.php' ?>
             </header>
             <section class="row">
-                <div class="profil col-12">
-                    <h1 class="text-center">VOS OPTIONS DE COMPTE</h1>
-                </div>
-                <div  id="optionBoard" class="offset-xl-2 offset-lg-2 offset-md-2 offset-sm-2 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                    <div class="row">
-                        <div class="col-12 text-center pt-2">
-                            <!--Liste des messages d'erreur ou de validation à afficher en haut de page-->
-                            <span class="red"><?= (isset($errorList['newEmail'])) ? $errorList['newEmail'] : '' ?></span>
-                            <span class="green"><?= (isset($success['newEmail'])) ? $success['newEmail'] : '' ?></span>
-                            <span class="red"><?= (isset($errorList['validateNewAdress'])) ? $errorList['validateNewAdress'] : '' ?></span>
-                            <span class="green"><?= (isset($success['validateNewAdress'])) ? $success['validateNewAdress'] : '' ?></span>
-                            <span class="red"><?= (isset($errorList['newPhoneNumber'])) ? $errorList['newPhoneNumber'] : '' ?></span>
-                            <span class="green"><?= (isset($success['newPhoneNumber'])) ? $success['newPhoneNumber'] : '' ?></span>
-                            <span class="red"><?= (isset($errorPassList['submitPass'])) ? $errorPassList['submitPass'] : '' ?></span>
-                            <span class="green"><?= (isset($success['submitPass'])) ? $success['submitPass'] : '' ?></span>
-                            <span class="red"><?= (isset($errorList['submitFile'])) ? $errorList['submitFile'] : ' ' ?></span>
-                            <span class="green"><?= (isset($success['submitFile'])) ? $success['submitFile'] : ' ' ?></span>
-                        </div>
-                    </div>
-                    <div class="row firstBoard">
-                        <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-12 text-center" id="showDetails">
-                            <h2>Vos informations de compte</h2>
-                            <ul class="p-0 m-0">
-                                <!--Liste des informations générales du compte-->
-                                <li><span class="bold">Nom:</span> <?= $showAllContent->lastname ?></li>
-                                <li><span class="bold">Prénom:</span> <?= $showAllContent->firstname ?></li>
-                                <li><span class="bold">Identifiant:</span> <?= $showAllContent->pseudo ?></li>
-                                <li><span class="bold">Numéro de téléphone:</span> <?= $showAllContent->phoneNumber ?></li>
-                                <li><span class="bold">Date de naissance:</span> <?= $showAllContent->birthDate ?></li>
-                                <li><span class="bold">Votre adresse postale:</span> <?= $showAllContent->address . ', ' . $showAllContent->city . ' (' . $showAllContent->postalCode . ')' ?></li>
-                                <li><span class="bold">Votre adresse de messagerie:</span> <?= $showAllContent->mail ?></li>
-                            </ul>
-                        </div>
-                        <div class="offset-xl-1 offset-lg-1 offset-md-1 offset-sm-1 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center" id="passChanging">
-                            <h2>Mot de passe</h2>
-                            <p>Désirez-vous changer votre mot de passe ?</p>
-                            <form class="form-group" action="#" method="POST">
-                                <!--champs de mot de passe actuel
-                                vérifié dans publicCtrl.php-->
-                                <label for="actualPass">Votre mot de passe actuel: </label>
-                                <input type="password" class="form-control passwords text-center" id="actualPass" name="actualPass" />
-                                <span class="red"><?= (isset($errorList['actualPass'])) ? $errorList['actualPass'] : '' ?></span> 
-                                <!--Champs du nouveau mot de passe à garder-->
-                                <label for="newPass1">Votre nouveau mot de passe: </label>
-                                <input type="password" class="form-control passwords text-center" id="newPass1" name="newPass1" />
-                                <span class="red"><?= (isset($errorList['newPass1'])) ? $errorList['newPass1'] : '' ?></span> 
-                                <!--Champs de répétition du nouveau mot de passe
-                                Sert à s'assurer que l'utilisateur a bien rentré le mot de passe qu'il souhaitait-->
-                                <label for="newPass2">Réécrivez le nouveau mot de passe: </label>
-                                <input type="password" class="form-control passwords text-center" id="newPass2" name="newPass2" />
-                                <span class="red"><?= (isset($errorList['newPass2'])) ? $errorList['newPass2'] : '' ?></span> 
-                                <!--Boutton de validation-->
-                                <input type="submit" class="form-control" name="submitPass" id="submitPass" value="Je change mon mot de passe" />
-                            </form>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row secondBoard p-0 m-0">
-                        <div class="col-12 text-center p-0 m-0">
-                            <h2>Votre photo de profil</h2>
-                            <form action="#" method="POST" class="form-group col-12 text-center p-0 m-0" enctype="multipart/form-data">
-                                <div class="row p-0 m-0">
-                                    <div class="col-12 text-center p-0 m-0">
-                                        <?php if ($showAllContent->profilPicture == '') { ?>
-                                            <img src="../../assets/img/userPictures/icoUser.png" class="rounded-circle icoUser" width="70" height="70" />
-                                        <?php } else { ?>
-                                            <img src="../../assets/img/userPictures/avatars/<?= $showAllContent->profilPicture ?>" class="rounded-circle" width="70" height="70" />
-                                        <?php } ?>
-                                    </div>
-                                </div>
-                                <div class="row p-0 m-0">
-                                    <div class="col-12 text-center p-0 m-0">
-                                        <input type="file" name="newFile" class="p-0 m-0" /><br />
-                                        <input type="submit" name="submitFile" class="p-0 m-0" value="J'envoie mon image" />
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row thirdBoard">
-                        <div class="col-12 text-center p-0 m-0">
-                            <h2>Modifiez vos informations générales</h2>
-                            <ul class="text-center p-0 m-0">
-                                <li>
-                                    <!--Block de changement d'adresse de messagerie-->
-                                    <span class="eMailOptionTitle">Changer l'adresse de messagerie</span>
-                                    <form id="eMailOptionForm" action="#" method="POST" class="form-group">
-                                        <!--Champs de nouvelle adresse de messagerie-->
-                                        <label for="newEmail">Votre nouvelle adresse mail: <span class="red">*</span></label>
-                                        <input type="text" id="newEmail" name="newEmail" class="form-control text-center" />
-                                        <p><span class="red">*</span>Vous devrez attendre 2 semaines avant de pouvoir changer votre adresse mail à nouveau !<br />
-                                            <span class="red">*</span>Vous ne pouvez pas changer votre adresse mail en ayant au moins un contrat en cours !</p>
-                                        <!--Boutton de validation-->
-                                        <input type="submit" name="validateNewEmail" value="soumettre" />
-                                    </form>
-                                </li>
-                                <li>
-                                    <!--Block de changement d'adresse postale-->
-                                    <span class="addressOptionTitle">Changer l'adresse Postale</span>
-                                    <form id="addressOptionForm" action="#" method="POST" class="form-group">
-                                        <!--Champs de nouvelle adresse postale-->
-                                        <label for="newAddress">Votre nouvelle adresse postale: </label>
-                                        <input type="text" id="newAddress" name="newAddress" class="form-control text-center" />
-                                        <!--Champs de nouveau code postal-->
-                                        <label for="newPostalCode">Votre nouveau code postal: </label>
-                                        <input type="text" id="newPostalCode" name="newPostalCode" maxlength="10" class="form-control text-center" />
-                                        <!--Champs de nouvelle ville-->
-                                        <label for="newCitySelect">Votre nouvelle ville: </label>
-                                        <select name="newCitySelect" id="newCitySelect" class="form-control">
-                                            <option name="0" value="0" selected disabled>Renseignez votre code postal</option>
-                                        </select>
-                                        <!--Boutton de validation-->
-                                        <input type="submit" name="validateNewAddress" value="soumettre" />
-                                    </form>
-                                </li>
-                                <li>
-                                    <!--block de changement de numéro de téléphone-->
-                                    <span class="phoneNumberOptionTitle">Changer de numéro de téléphone</span>
-                                    <form id="phoneNumberOptionForm" action="#" method="POST" class="form-group">
-                                        <!--Champs de nouveau numéro de téléphone-->
-                                        <label for="newPhoneNumber">Votre nouveau numéro de téléphone: </label>
-                                        <input type="text" id="newPhoneNumber" name="newPhoneNumber" maxlength="10" class="form-control text-center" />
-                                        <!--Boutton de validation-->
-                                        <input type="submit" name="validateNewPhoneNumber" value="soumettre" />
-                                    </form>
-                                </li>
-                                <li>
-                                    <!--block de suppression de compte-->
-                                    <a href="#" class="removeUserOptionTitle" data-toggle="modal" data-target="#myModal">
-                                        Supprimer mon compte
-                                    </a>
-                                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h2>Voulez-vous vraiment supprimer votre compte ?</h2>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form action="#" method="POST">
-                                                        <button type="submit"  name="removeUser" class="btn btn-danger btn-lg">Supprimer</button>
-                                                        <button type="submit"  name="cancelRemove" class="btn btn-primary btn-lg">Annuler</button>
-                                                    </form>
-                                                </div>
-                                            </div>
+                <div class="offset-1 col-10 board mt-5 p-0">
+                    <h1 class="text-center m-2 titleBoard">Vos options de compte</h1>
+                    <div class="row contentBoard">
+                        <div class="col-12 m-0 p-0">
+                            <!--Block de photo de profil-->
+                            <div class="row profilePhoto">
+                                <div class="col-12 text-center">
+                                    <h2><?= $showAllContent->pseudo ?></h2>
+                                    <p>(<?= $showAllContent->lastname . ' ' . $showAllContent->firstname ?>)</p>
+                                    <img src="../../assets/img/userPictures/avatars/<?= $showAllContent->profilPicture ?>" class="rounded-circle" width="70" height="70" />
+                                    <!--Formulaire de changement de photo de profil-->
+                                    <form action="#" method="POST" enctype="multipart/form-data" class="form-group offset-xl-3 offset-lg-3 offset-md-2 offset-sm-2 col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-12 ">
+                                        <div class="custom-file">
+                                            <!--Champs de photo de profil-->
+                                            <label for="newFile" class="custom-file-label">Sélectionner votre photo</label>
+                                            <input type="file" name="newFile" id="newFile" class="custom-file-input form-control p-0 m-0" />
                                         </div>
-                                    </div>
-
-                                </li>
-                            </ul>
+                                        <input type="submit" name="submitFile" class="form-control" value="changer ma photo de profil" /> 
+                                    </form>
+                                </div>
+                            </div>
+                            <!--Block d'informations personnelles-->
+                            <div class="row personnalInformation">
+                                <div class="offset-xl-1 offset-lg-1 offset-md-1 offset-sm-1 col-xl-5 col-lg-5 col-md-5 col-sm-10 col-xs-12 text-center">
+                                    <h2>Vos informations personnelles</h2>
+                                    <p class="red"><?= (isset($errorList['changeUserInformations'])) ? $errorList['changeUserInformations'] : '' ?></p>
+                                    <p class="green"><?= (isset($success['changeUserInformations'])) ? $success['changeUserInformations'] : '' ?></p>
+                                    <!--Formulaire de changement d'information-->
+                                    <form action="#" method="POST" class="form-group">
+                                        <!--Champs d'adresse de messagerie-->
+                                        <label for="mail">Adresse de messagerie: </label>
+                                        <input type="mail" name="mail" id="mail" class="form-control text-center" value="<?= $showAllContent->mail ?>" />
+                                        <p class="red"><?= (isset($errorList['mail'])) ? $errorList['mail'] : '' ?></p>
+                                        <!--Champs de numéro de téléphone-->
+                                        <label for="phoneNumber">Numéro de téléphone: </label>
+                                        <input type="text" name="phoneNumber" id="phoneNumber" class="form-control text-center" value="<?= $showAllContent->phoneNumber ?>" />
+                                        <p class="red"><?= (isset($errorList['phoneNumber'])) ? $errorList['phoneNumber'] : '' ?></p>
+                                        <!--Champs de addresse-->
+                                        <label for="address">Addresse postale: </label>
+                                        <input type="text" name="address" id="address" class="form-control text-center" value="<?= $showAllContent->address ?>" />
+                                        <p class="red"><?= (isset($errorList['address'])) ? $errorList['address'] : '' ?></p>
+                                        <div class="row">
+                                            <!--Champs de code postal-->
+                                            <div class="col-6">
+                                                <label for="newPostalCode">Code postale: </label>
+                                                <input type="text" name="newPostalCode" id="newPostalCode" class="form-control text-center" value="<?= $showAllContent->postalCode ?>" />
+                                                <p class="red"><?= (isset($errorList['newPostalCode'])) ? $errorList['newPostalCode'] : '' ?></p>
+                                            </div>
+                                            <!--Champs de ville-->
+                                            <div class="col-6">
+                                                <label for="newCitySelect">Ville: </label>
+                                                <select name="newCitySelect" id="newCitySelect" class="form-control">
+                                                    <option name="<?= $showAllContent->id_15968k4_cities ?>" value="<?= $showAllContent->id_15968k4_cities ?>" selected><?= $showAllContent->city ?></option>
+                                                </select>
+                                            </div>
+                                            <p class="red"><?= (isset($errorList['newCitySelect'])) ? $errorList['newCitySelect'] : '' ?></p>
+                                        </div>
+                                        <!--Boutton de validation-->
+                                        <input type="submit" name="changeUserInformations" class="form-control" value="Changer mes informations" />
+                                    </form>
+                                </div>
+                                <div class="offset-xl-1 offset-lg-1 offset-md-1 offset-sm-1 col-xl-5 col-lg-5 col-md-5 col-sm-10 col-xs-12 text-center">
+                                    <h2>Changement de votre mot de passe</h2>
+                                    <p class="red"><?= (isset($errorList['changePass'])) ? $errorList['changePass'] : '' ?></p>
+                                    <p class="green"><?= (isset($success['changePass'])) ? $success['changePass'] : '' ?></p>
+                                    <form action="#" method="POST" class="form-group pt-2">
+                                        <!--Champs de mot de passe actuel-->
+                                        <label for="actualPass">Votre mot de passe actuel: </label>
+                                        <input type="password" name="actualPass" id="actualPass" class="form-control" />
+                                        <p class="red"><?= (isset($errorList['actualPass'])) ? $errorList['actualPass'] : '' ?></p>
+                                        <!--Champs de mot de nouveau mot de passe-->
+                                        <label for="pass1">Nouveau de passe: </label>
+                                        <input type="password" name="pass1" id="pass1" class="form-control" />
+                                        <p class="red"><?= (isset($errorList['pass1'])) ? $errorList['pass1'] : '' ?></p>
+                                        <!--Champs de mot de réécriture du nouveau mot de passe-->
+                                        <label for="pass2">Réécrivez votre mot de passe: </label>
+                                        <input type="password" name="pass2" id="pass2" class="form-control" />
+                                        <p class="red"><?= (isset($errorList['pass2'])) ? $errorList['pass2'] : '' ?></p>
+                                        <!--Boutton de validation-->
+                                        <input type="submit" name="changePass" class="form-control" value="changer mon mot de passe" />
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -179,6 +113,6 @@ include'../../controllers/connectCtrl.php';
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>        
         <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-        <script src="../../assets/js/form.js"></script>
+        <script src="../../assets/js/options.js"></script>
     </body>
 </html>

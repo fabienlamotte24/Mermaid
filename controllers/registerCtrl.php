@@ -2,13 +2,14 @@
 
 //Liste des regex
 $regPseudo = '/^[A-Za-z0-9\-\_.ôîûêéèçà\']+$/';
-$regName = '/^[A-Z]?[a-zçôîûêéèçà\-\']+$/';
+$regName = '/^[A-Za-zçôîûêéèçà\-\']+$/';
 $regPhone = '/^(06|07){1}[0-9]{8}$/';
 $regBirth = '/^(([0]{1}[1-9]{1})|([1-2]{1}[0-9]{1})|([3]{1}[0-2]{1}))|\/(([0]{1}[1-9]{1})|([1]{1}[0-2]{1}))\/([1]{1}[9]{1}[\d]{1}[\d]{1})|([2]{1}[0]{1}[0|1]{1}[\d]{1})$/';
 $regAddress = '/^[A-Za-z0-9\-\_.ôîûêéèçà\' ]+$/';
 $regPass = '/^[A-Za-z0-9çôîûêéèçà\-\'#@&!%$*]+$/';
 $regCity = '/^[0-9]+$/';
 $regPostalCode = '/^[0-9]+$/';
+
 //Initialisation des variables
 $pseudo = '';
 $password = '';
@@ -19,9 +20,11 @@ $phoneNumber = '';
 $birthDate = '';
 $address = '';
 $presentation = '';
+
 //$idType et $idCities sont des clés étrangères de type "integer", je les initialise donc avec la valeur 0
 $idType = 0;
 $idCities = 0;
+
 //Création d'un tableau pour le moment VIDE, pour ensuite gérer les erreurs de formulaire et les afficher dans la vue
 $errorList = array();
 
@@ -54,10 +57,10 @@ if (isset($_POST['submit'])) {
         $check = $verify->notSamePseudo();
         //Si le résultat est différent de 0, c'est qu'il existe déjà une ligne avec le pseudo en question
         if ($check !== '0') {
-        //Il n'est donc pas disponible
+            //Il n'est donc pas disponible
             $errorList['pseudo'] = 'Ce pseudo est déjà pris';
         } else {
-        //S'il n'appartient à personne, j'autorise l'entrée de la valeur du champs dans la variable $pseudo
+            //S'il n'appartient à personne, j'autorise l'entrée de la valeur du champs dans la variable $pseudo
             if (preg_match($regPseudo, $_POST['pseudo'])) {
                 $pseudo = htmlspecialchars($_POST['pseudo']);
             }
@@ -193,6 +196,7 @@ if (isset($_POST['submit'])) {
         $errorList['city'] = "Vos champs ville et code postal sont vides ou mal remplis !";
         $errorList['postalCode'] = "Vos champs ville et code postal sont vides ou mal remplis !";
     }
+    
     /**
      * Comme ce controller sert à vérifier la validité des valeurs rentrée dans les champs des trois formulaire
      * je demande la vérification de la valeur du paramètre url form
@@ -204,6 +208,7 @@ if (isset($_POST['submit'])) {
         $addUser = NEW users();
 //J'attribue aux attributs de mon objet les valeurs stockées dans mes variables après leur vérification
         $addUser->idType = 1;
+        $addUser->profilPicture = ' ';
         $addUser->pseudo = $pseudo;
         $addUser->password = $password;
         $addUser->mail = $mail;
@@ -223,6 +228,7 @@ if (isset($_POST['submit'])) {
         $addUser = NEW users();
 //J'attribue aux attributs de mon objet les valeurs stockées dans mes variables après leur vérification
         $addUser->idType = 2;
+        $addUser->profilPicture = ' ';
         $addUser->pseudo = $pseudo;
         $addUser->password = $password;
         $addUser->mail = $mail;
@@ -242,6 +248,7 @@ if (isset($_POST['submit'])) {
         $addUser = NEW users();
 //J'attribue aux attributs de mon objet les valeurs stockées dans mes variables après leur vérification
         $addUser->idType = 3;
+        $addUser->profilPicture = ' ';
         $addUser->pseudo = $pseudo;
         $addUser->password = $password;
         $addUser->mail = $mail;

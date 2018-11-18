@@ -1,11 +1,6 @@
 @font-face {
     font-family: 'painter';
     src: url('../font/cool.ttf');}
-body{
-    background-image:url('../img/qsd.jpg');
-    background-size:cover;
-    background-repeat: no-repeat;
-}
 .row{
     margin:0;
     padding:0;
@@ -149,9 +144,6 @@ hr{
     color:green;
     cursor:pointer;
 }
-#formPhoto{
-    display:none;
-}
 .blog .carousel-indicators {
     left: 0;
     top: auto;
@@ -186,30 +178,93 @@ hr{
 .formPhoto{
     display:none;
 }
-#modalProParametersLink{
+#modalProParametersLink, #bandParameters, #linkAddPhotos{
     font-weight:bold;
     font-size:1.2rem;
     color:black;
 }
-#modalProParametersLink:hover{
+#modalProParametersLink:hover, #bandParameters:hover, #linkAddPhotos:hover{
     font-weight:bold;
     font-size:1.2rem;
     color:grey;
     cursor:pointer;
     text-decoration:none;
 }
-.linkProParameters1, .linkProParameters2, .linkProParameters3{
+.linkProParameters1, .linkProParameters2, .linkProParameters3, .linkBandModalParameters1, .linkBandModalParameters2, .linkBandModalParameters3, .linkBandModalParameters4{
     font-weight:bold;
     font-size:1.2rem;
     color:black;
 }
-.linkProParameters1:hover, .linkProParameters2:hover, .linkProParameters3:hover{
+.linkProParameters1:hover, .linkProParameters2:hover, .linkProParameters3:hover, .linkBandModalParameters1:hover, .linkBandModalParameters2:hover, .linkBandModalParameters3:hover, .linkBandModalParameters4:hover{
     font-weight:bold;
     font-size:1.2rem;
     color:grey;
     cursor:pointer;
     text-decoration:none;
 }
-#changePhotoForm, #changeNameForm{
+#changePhotoForm, #changeNameForm, #removeCompany, #removeBandParameters, #changePhotoBandParameters, #changeNameBandParameters, #changePresentationBandParameters, #formAddPhotos{
     display:none;
+}
+#submitRemovePhoto{
+    border:none;
+    cursor:pointer;
+    color:blue;
+}
+#submitRemovePhoto:hover{
+    border:none;
+    cursor:pointer;
+    color:red;
+}
+.blockResearch{
+    background-color:white;
+    border:2px solid black;
+    border-radius: 15px;
+}
+.placeCompany, .placeMusician, .placeBand{
+    font-size:1.0rem;
+}
+.titleResearch{
+    background-color:white;
+    border:1px solid black;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.linkResearch{
+    color:black;
+}
+.linkResearch:hover{
+    color:grey;
+    text-decoration:none;
+}
+.musicianResearchTitle{
+    font-size:1.2rem;
+}
+.deleteOptionTitle{
+    font-weight:bold;
+    font-size:1.1rem;
+    cursor:pointer;
+    color:black;
+}
+.deleteOptionTitle:hover{
+    font-weight:bold;
+    font-size:1.1rem;
+    cursor:pointer;
+    color:grey;
+    text-decoration:none;
+}
+.photoBlock{
+}
+.remove{
+    cursor:pointer;
+    color:#c6c6c6;
+    display:none;
+    float:right;
+    margin-left:80%;
+    text-shadow:1px 1px black;
+}
+#photo:hover ~ .remove{
+    display:block;
+}
+#addPhoto:hover{
+    text-decoration:none;
 }

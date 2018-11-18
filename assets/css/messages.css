@@ -1,0 +1,43 @@
+body{
+    background-image:url('../img/messages.jpg');
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+.borderBlock{
+    background-image: linear-gradient(to right bottom, #0e12a4, #fafafa);
+    border:1px solid black;
+    border-radius:15px;
+}
+.messageBlockSelect{
+    background-color: white;
+    border-radius:15px;
+}
+.listMessageSelect{
+    list-style-type: none;
+}
+h1{
+    font-size:1.9rem;
+}
+li{
+    background-color: white;
+    font-size:0.8rem;
+}
+p{
+    font-size:0.7rem;
+}
+li:hover{
+    background-color: #595cff;
+    cursor:pointer;
+    color:white;
+}
+#messageBlockOptions{
+    max-height:180px;
+}
+h2{
+    font-size:1rem;
+    font-weight:bold;
+}
+.messages{
+    overflow:auto;
+    max-height: 170px;
+}

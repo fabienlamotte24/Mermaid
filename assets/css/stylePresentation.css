@@ -1,23 +1,35 @@
+@font-face {
+    font-family: 'painter';
+    src: url('../font/painter.ttf');
+}
 /*=====================================================Présentation pour le public===============================================*/
 body{
-    background-color:rgb(155,155,155);
-    background-image: linear-gradient(to left, rgb(204,204,204), rgb(255,255,255), rgb(204,204,204));
+    background-image: url("../img/musicianForm.jpeg");
+    background-size:cover;
+    background-repeat:no-repeat;
 }
-#publicPresent, #musicianPresent{
-    width:100%;
-    margin-top:50px;
-    padding:20px;
-    height:200px;
+#publicPresent, #musicianPresent, #proPresent{
+    margin:2%;
 }
 p{
-    font-size:0.8em;
+    font-size:0.8rem;
     text-align:center;
 }
 h1{
-    font-size:2.5em;
+    font-size:2.5rem;
     text-align:center;
+    font-family: 'painter';
 }
 .aboard{
     font-style:italic;
     font-size:1.5em;
+}
+#presentSection{
+    background-image: linear-gradient(to left, rgb(204,204,204), rgb(255,255,255), rgb(204,204,204));
+}
+section{
+    height:100%;
+}
+hr{
+    margin:5%;
 }

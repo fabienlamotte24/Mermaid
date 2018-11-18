@@ -19,7 +19,7 @@
     color:white;
     text-decoration:none;
     font-size:2rem;
-    font-family: 'jam';
+    font-family: 'Rationale', sans-serif;
 }
 body, .container-fluid, .row, nav{
     margin:0;

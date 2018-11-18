@@ -3,18 +3,27 @@
     font-family: 'painter';
     src: url('../font/painter.ttf');
 }
+  @font-face {
+    font-family: 'cool';
+    src: url('../font/cool.ttf');
+}
+
+  @font-face {
+    font-family: 'titrenavburg';
+    src: url('../font/titrenavburg.ttf');
+}
 /*paramétrage du container*/
 .container-fluid{
     padding:0;
     margin:0;
 }
 .row{
-    
     padding:0;
     margin:0;
 }
 body{
-    background-color:rgb(189,190,191,0.6);
+    background-image: url("../img/public.jpeg");
+    background-size:cover;
     margin:0;
     padding:0;
 }
@@ -46,4 +55,116 @@ body{
     width:200px;
     height:200px;
     text-align:center;
+}
+#connectHome{
+    text-decoration:none;
+    color:white;
+    font-family: 'titrenavburg';
+    border:1px solid black;
+}
+#connectHome:hover{
+    text-decoration:none;
+    color:black;
+    font-family: 'titrenavburg';
+    border:1px solid black;
+    box-shadow: 1px 2px 2px black inset;
+}
+#signHome{
+    text-decoration:none;
+    color:white;
+    font-family: 'titrenavburg';
+    border:1px solid black;
+}
+#signHome:hover{
+    text-decoration:none;
+    color:black;
+    font-family: 'titrenavburg';
+    box-shadow: 1px 2px 2px black inset;
+}
+.titleWelcome{
+    font-size:1.0rem;
+}
+.homeTitle{
+    font-family: 'Rationale', sans-serif;
+    color:white;
+    font-size:3.5rem;
+}
+.homeBlock{
+    background-image:linear-gradient(to bottom, #8181F7, #08088A);
+}
+/*Paramètres des champs de login et de mot de passe*/
+#icoUser, #icoPass{
+    width:25px;
+    height:25px;
+    background-color:white;
+    padding-top:2px;
+}
+#user, #Pass{
+    background-color:white;
+    padding-left:15px;
+    padding-right:15px;
+    border-radius:25px;
+    height:30px;
+    margin:5px;
+}
+.signIn{
+    color:#FF8000;
+    text-decoration:none;
+    font-weight:bold;
+}
+.signIn:hover{
+    text-decoration:none;
+    color:#FF8000;
+    cursor:pointer;
+}
+.forgot{
+    font-size:11px;
+}
+.red{
+    color:red;
+}
+.white{
+    color:white;
+}
+.carousel{
+    border:2px solid white;
+}
+.signBlock, .connectBlock{
+    display:none;
+    border-bottom:1px solid white;
+    background-color:rgb(0,0,0,0.9);
+}
+#logo{
+    color:white;
+}
+#logo:hover{
+    color:white;
+    text-decoration: none;
+}
+.welcome{
+    background-image: linear-gradient(to right, rgb(51,52,52), rgb(144,143,143), rgb(51,52,52))
+}
+.linkHome{
+    background-color:white;
+    color:black;
+    text-decoration:none;
+    border-radius:15px;
+}
+h2{
+    color:white;
+    font-size:1.2rem;
+}
+.icoLink:hover{
+    text-decoration:none;
+}
+.iAm{
+    color:white;
+}
+.sentence{
+    color:white;
+    font-size:0.7rem;
+}
+.backHome{
+    color:orange;
+    cursor:pointer;
 }

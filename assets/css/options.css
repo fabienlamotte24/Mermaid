@@ -1,0 +1,29 @@
+@font-face {
+    font-family: 'milk';
+    src: url('../font/milk.otf');
+}
+body{
+    background-image:url('../../assets/img/options.jpg');
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+.board{
+    background-image:linear-gradient(to right, #3131ff, #00003f);
+    border:2px solid black;
+    box-shadow: 1px 1px 5px white;
+    color:white;
+    border-radius:15px;
+}
+.contentBoard{
+    background-color:white;
+    color:black;
+}
+.titleBoard{
+    font-family: 'milk';
+}
+.red{
+    color:red;
+}
+.green{
+    color:green;
+}

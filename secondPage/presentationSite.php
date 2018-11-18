@@ -1,4 +1,8 @@
-<?php include '../controller/emailValidating.php'; ?>
+<?php 
+session_start();
+include_once'../config.php';
+include_once'../controllers/connectCtrl.php';
+?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
   <head>
@@ -7,15 +11,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
     <link rel="stylesheet" href="../assets/css/header.css" />
-    <link rel="stylesheet" href="../assets/css/footer.css" />
     <link rel="stylesheet" href="../assets/css/stylePresentation.css" />
   </head>
   <body>
     <div class="container-fluid">
       <div class="row">
           <!--Incorporation de l'En-tête grâce à header.php-->
-          <?php include '../includeFilesPhp/header.php'; ?>
-          <section class="offset-xl-1 offset-lg-1 offset-md-1 col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12">
+          <?php include_once'../header.php'; ?>
+          <section id="presentSection" class="offset-xl-3 offset-lg-3 offset-md-3 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div id="publicPresent" class="col-12 d-flex justify-content-center">
                 <div class="textPresent col-12">
                     <h1>Mermaid, le site phare des amoureux de la musique !</h1>
@@ -32,9 +35,15 @@
                     C'est l'un des objectifs premiers de notre projet. Animez votre public, partagez votre contenu, trouvez des dates et organisez vos tournées !</p>
                 </div>
             </div>
+              <hr>
+            <div id="proPresent" class="col-12 d-flex justify-content-center">
+                <div class="textPresent col-12">
+                    <h1>Vous aider à trouver des personnes pour animer vos soirées !</h1>
+                    <p>Vous êtes patron de bar, organisateurs de festival ?<br />
+                    Créez votre compte et proposez à des musiciens un contrat pour animer l'une de vos soirées !</p>
+                </div>
+            </div>
           </section>
-          <!--Incorporation du footer, contenant les liens d'aide à la compréhension du site-->
-          <?php include '../includeFilesPhp/footer.php'; ?>
       </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

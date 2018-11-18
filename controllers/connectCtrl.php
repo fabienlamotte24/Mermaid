@@ -30,7 +30,9 @@ if (isset($_POST['connexion']) && count($errorConnectList) == 0) {
     $user->pseudo = $pseudoConnect;
     if ($user->userConnexion()) {
         if (password_verify($passwordConnect, $user->password)) {
+            //On initialise la session
             session_start();
+            //On attribue les valeurs des hydratations aux variables de sessions
             $_SESSION['id'] = $user->id;
             $_SESSION['pseudo'] = $user->pseudo;
             $_SESSION['mail'] = $user->mail;
@@ -39,21 +41,18 @@ if (isset($_POST['connexion']) && count($errorConnectList) == 0) {
             $_SESSION['phoneNumber'] = $user->phoneNumber;
             $_SESSION['birthDate'] = $user->birthDate;
             $_SESSION['address'] = $user->address;
-            $_SESSION['presentation'] = $user->presentation;
             $_SESSION['idType'] = $user->idType;
             $_SESSION['idCities'] = $user->idCities;
             $_SESSION['address'] = $user->address;
-            $_SESSION['city'] = $user->city;
-            $_SESSION['postalCode'] = $user->postalCode;
             $_SESSION['password'] = $user->password;
             $_SESSION['profilPicture'] = $user->profilPicture;
             $connected = TRUE;
             header('location:../secondPage/userPages/profile.php');
         } else {
-            $message = 'Erreur de connexion';
+            $errorList['connexion'] = 'Erreur de connexion';
         }
     } else {
-        $message = 'Ce compte n\'existe pas';
+        $errorList['connexion'] = 'Ce compte n\'existe pas';
         $connected = FALSE;
     }
 }

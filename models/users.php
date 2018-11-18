@@ -33,7 +33,7 @@ class users extends database {
      */
     public function userConnexion() {
         $state = FALSE;
-        $query = 'SELECT `us`.`id`, `us`.`pseudo`, `us`.`password`, `us`.`mail`, `us`.`lastname`, `us`.`firstname`, `us`.`phoneNumber`, DATE_FORMAT(`us`.`birthDate`, \'%m-%d-%Y\') AS `birthDate`, `us`.`address`, `us`.`presentation`, `us`.`id_15968k4_type`, `us`.`id_15968k4_cities`, `us`.`profilPicture`, `ci`.city, `ci`.`postalCode` '
+        $query = 'SELECT `us`.`id`, `us`.`pseudo`, `us`.`password`, `us`.`mail`, `us`.`lastname`, `us`.`firstname`, `us`.`phoneNumber`, DATE_FORMAT(`us`.`birthDate`, \'%m-%d-%Y\') AS `birthDate`, `us`.`address`, `us`.`id_15968k4_type`, `us`.`id_15968k4_cities`, `us`.`profilPicture`, `ci`.city, `ci`.`postalCode` '
                 . 'FROM `15968k4_users` AS `us` '
                 . 'LEFT JOIN `15968k4_cities` AS `ci` '
                 . 'ON `us`.`id_15968k4_cities` = `ci`.`id` '
@@ -53,7 +53,6 @@ class users extends database {
                 $this->phoneNumber = $selectResult->phoneNumber;
                 $this->birthDate = $selectResult->birthDate;
                 $this->address = $selectResult->address;
-                $this->presentation = $selectResult->presentation;
                 $this->idType = $selectResult->id_15968k4_type;
                 $this->idCities = $selectResult->id_15968k4_cities;
                 $this->city = $selectResult->city;
@@ -70,8 +69,8 @@ class users extends database {
      */
     public function addUser() {
         //Mise en forme de la requête
-        $query = 'INSERT INTO `15968k4_users`(`pseudo`, `password`, `mail`, `lastname`, `firstname`, `phoneNumber`, `birthDate`, `address`, `presentation`, `id_15968k4_Type`, `id_15968k4_Cities`, `profilPicture`) '
-                . 'VALUES(:pseudo, :password, :mail, :lastname, :firstname, :phoneNumber, :birthDate, :address, :presentation, :id_15968k4_Type, :id_15968k4_Cities, " ")';
+        $query = 'INSERT INTO `15968k4_users`(`pseudo`, `password`, `mail`, `lastname`, `firstname`, `phoneNumber`, `birthDate`, `address`, `id_15968k4_Type`, `id_15968k4_Cities`, `profilPicture`) '
+                . 'VALUES(:pseudo, :password, :mail, :lastname, :firstname, :phoneNumber, :birthDate, :address, :id_15968k4_Type, :id_15968k4_Cities, :profilPicture)';
         //Préparation de la requête
         $addUser = $this->db->prepare($query);
         //Listing des marqueurs nominatifs pour récupérer les valeurs
@@ -83,9 +82,9 @@ class users extends database {
         $addUser->bindValue(':phoneNumber', $this->phoneNumber, PDO::PARAM_STR);
         $addUser->bindValue(':birthDate', $this->birthDate, PDO::PARAM_STR);
         $addUser->bindValue(':address', $this->address, PDO::PARAM_STR);
-        $addUser->bindValue(':presentation', $this->presentation, PDO::PARAM_STR);
         $addUser->bindValue(':id_15968k4_Type', $this->idType, PDO::PARAM_INT);
         $addUser->bindValue(':id_15968k4_Cities', $this->idCities, PDO::PARAM_INT);
+        $addUser->bindValue(':profilPicture', $this->profilPicture, PDO::PARAM_STR);
         //Lancement de la requête préparée
         return $addUser->execute();
     }
@@ -113,7 +112,8 @@ class users extends database {
      */
     public function notSameEmail() {
         //Mise en forme de la requête
-        $query = 'SELECT COUNT(`mail`) AS `count` FROM `15968k4_users` WHERE `mail` = :mail';
+        $query = 'SELECT COUNT(`mail`) AS `count` FROM `15968k4_users` '
+                . 'WHERE `mail` = :mail';
         //Intégration de la requête dans une préparation 
         $check = $this->db->prepare($query);
         //On prépare un marqueur nominatif qui capturera l'entrée du champ
@@ -139,66 +139,30 @@ class users extends database {
         $result->bindValue(':id', $this->id, PDO::PARAM_INT);
         return $result->execute();
     }
-
     /**
-     * Méthode servant à la modification de la présentation de l'utilisateur
+     * Méthode servant au changement des informations du compte
      */
-    public function changePresentation() {
+    public function changeContentsOfAccount(){
         $query = 'UPDATE `15968k4_users` '
-                . 'SET `presentation` = :presentation '
-                . 'WHERE `id` = :id';
-        $result = $this->db->prepare($query);
-        $result->bindValue(':presentation', $this->presentation, PDO::PARAM_STR);
-        $result->bindValue(':id', $this->id, PDO::PARAM_INT);
-        return $result->execute();
-    }
-
-    /**
-     * Méthode servant à la modification de l'adresse de messagerie
-     */
-    public function changeEmail() {
-        $query = 'UPDATE `15968k4_users` '
-                . 'SET `mail` = :mail '
+                . 'SET `mail` = :mail, '
+                . '`phoneNumber` = :phoneNumber, '
+                . '`address` = :address, '
+                . '`id_15968k4_Cities` = :id_15968k4_Cities '
                 . 'WHERE `id` = :id';
         $result = $this->db->prepare($query);
         $result->bindValue(':mail', $this->mail, PDO::PARAM_STR);
-        $result->bindValue(':id', $this->id, PDO::PARAM_INT);
-        return $result->execute();
-    }
-
-    /**
-     * Méthode servant à la modification de l'adresse postale
-     */
-    public function changeAddress() {
-        $query = 'UPDATE `15968k4_users` '
-                . 'SET `address` = :address, '
-                . '`id_15968k4_cities` = :idCities '
-                . 'WHERE `id` = :id';
-        $result = $this->db->prepare($query);
+        $result->bindValue(':phoneNumber', $this->phoneNumber, PDO::PARAM_STR);
         $result->bindValue(':address', $this->address, PDO::PARAM_STR);
-        $result->bindValue(':idCities', $this->idCities, PDO::PARAM_INT);
+        $result->bindValue(':id_15968k4_Cities', $this->id_15968k4_Cities, PDO::PARAM_INT);
         $result->bindValue(':id', $this->id, PDO::PARAM_INT);
         return $result->execute();
-    }
-
-    /**
-     * Méthode servant de changement du numéro de téléphone
-     */
-    public function changeNumberPhone() {
-        $query = 'UPDATE `15968k4_users` '
-                . 'SET `phoneNumber` = :phoneNumber '
-                . 'WHERE `id` = :id';
-        $newPhoneNumber = $this->db->prepare($query);
-        $newPhoneNumber->bindValue(':phoneNumber', $this->phoneNumber, PDO::PARAM_STR);
-        $newPhoneNumber->bindValue(':id', $this->id, PDO::PARAM_INT);
-        return $newPhoneNumber->execute();
     }
 
     /**
      * Méthode servant à afficher les informations de l'utilisateur
      */
     public function showCompleteUserContent() {
-        $query = 'SELECT `us`.`id`, `us`.`pseudo`, `us`.`password`, `us`.`mail`, `us`.`lastname`, `us`.`firstname`, `us`.`phoneNumber`, DATE_FORMAT(`us`.`birthDate`, \'%m-%d-%Y\') AS `birthDate`, `us`.`address`, `us`.`presentation`, `us`.`id_15968k4_type`, `us`.`id_15968k4_cities`,`us`.`profilPicture`, `ci`.city, `ci`.`postalCode` '
+        $query = 'SELECT `us`.`id`, `us`.`pseudo`, `us`.`password`, `us`.`mail`, `us`.`lastname`, `us`.`firstname`, `us`.`phoneNumber`, DATE_FORMAT(`us`.`birthDate`, \'%m-%d-%Y\') AS `birthDate`, `us`.`address`, `us`.`id_15968k4_type`, `us`.`id_15968k4_cities`,`us`.`profilPicture`, `ci`.city, `ci`.`postalCode` '
                 . 'FROM `15968k4_users` AS `us` '
                 . 'LEFT JOIN `15968k4_cities` AS `ci` '
                 . 'ON `us`.`id_15968k4_cities` = `ci`.`id` '
@@ -211,6 +175,23 @@ class users extends database {
             }
         }
         return $result;
+    }
+    /**
+     * Méthode servant à lister toutes les entreprises
+     */
+    public function showAllMusicians() {
+        $query = "SELECT `us`.`id`, `us`.`pseudo`, `us`.`presentation`, `us`.`profilPicture`, `us`.`address`, `ci`.`postalCode`, `ci`.`city` "
+                . "FROM `15968k4_users` AS `us` "
+                . "INNER JOIN `15968k4_cities` AS `ci`"
+                . "ON `us`.`id_15968k4_cities` = `ci`.`id`"
+                . "WHERE `us`.`id_15968k4_Type` = 3";
+        $showAll = $this->db->query($query);
+        if ($showAll->execute()) {
+            if (is_object($showAll)) {
+                $isObject = $showAll->fetchAll(PDO::FETCH_OBJ);
+            }
+        }
+        return $isObject;
     }
     /**
      * Méthode servant à la suppression de compte
@@ -249,11 +230,26 @@ class users extends database {
         return $newProfilePicture->execute();
     }
     /**
+     * Vérification du mot de passe
+     */
+    public function isCorrectPass(){
+        $query = 'SELECT `password` FROM `15968k4_users` '
+                . 'WHERE `id` = :id';
+        $result = $this->db->prepare($query);
+        $result->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $result->execute();
+        if(is_object($result)){
+            $isObjectResult = $result->fetch(PDO::FETCH_OBJ);
+        }
+        return $isObjectResult;
+    }
+    /**
      * Création de la méthode magique destructeur
      */
     public function __destruct() {
         ;
     }
+    
 }
 ?>
 
