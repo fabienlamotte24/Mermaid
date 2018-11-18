@@ -63,23 +63,24 @@ include_once'controllers/connectCtrl.php';
                     </div>
                 </div>
                 <!--Cette ligne apparaîtra si la connexion a échoué, elle gère les erreurs-->
-                    <div class="row">
-                        <div class="col-12 text-center p-0 m-0">
-                            <p class="red">
-                    <p><?= (isset($errorConnectList['pseudoConnect'])) ? $errorConnectList['pseudoConnect'] : ' ' ?></p>
-                    <p><?= (isset($errorConnectList['passConnect'])) ? $errorConnectList['passConnect'] : ' ' ?></p>
-                            <p><?= (isset($errorList['connexion'])) ? $errorList['connexion'] : ' ' ?></p>
+                <?php if (isset($errorConnectList['pseudoConnect']) || isset($errorConnectList['passConnect']) || isset($errorConnectList['connexion'])) { ?>
+                    <div class="row errorConnect">
+                        <div class="col-12 text-center">
+                            <p><?= (isset($errorConnectList['pseudoConnect']))? $errorConnectList['pseudoConnect'] : ' ' ?></p>
+                            <p><?= (isset($errorConnectList['passConnect']))? $errorConnectList['passConnect'] : ' ' ?></p>
+                            <p><?= (isset($errorConnectList['connexion']))? $errorConnectList['connexion'] : ' '?></p>
                         </div>
                     </div>
+                <?php } ?>
                 <!--Section signBlock, qui affiche les trois types de formulaire possible pour chaque type d'utilisateur-->
                 <div class="signBlock">
-                    <div class="row">
+                    <div class="row p-0 m-0">
                         <div class="col-12 text-center">
                             <h1 class="iAm">Je suis...</h1>
                         </div>
                     </div>
                     <div class="row">
-                    <!--Ligne de choix "festivalier(Public)"-->
+                        <!--Ligne de choix "festivalier(Public)"-->
                         <div class="col-4 text-center mt-2">
                             <a href="publicRegister.php" class="icoLink">
                                 <img src="assets/img/public.png" title="Je suis un festivalier" alt="Je suis un festivalier" width="70" height="70" class="rounded-circle" />
@@ -87,7 +88,7 @@ include_once'controllers/connectCtrl.php';
                                 <p class="sentence font-italic">-- Je recherche un concert pour passer -- <br />-- une bonne soirée--</p>
                             </a>
                         </div>
-                    <!--Ligne de choix "chef d'établissement(Pro)"-->
+                        <!--Ligne de choix "chef d'établissement(Pro)"-->
                         <div class="col-4 text-center mt-2">
                             <a href="proRegister.php" class="icoLink">
                                 <img src="assets/img/bar.png" title="Je suis un chef d'établissement" alt="Je suis un chef d'établissement" width="70" height="70" class="rounded-circle" />
@@ -95,7 +96,7 @@ include_once'controllers/connectCtrl.php';
                                 <p class="sentence font-italic">-- Je recherche un groupe de musique --</p>
                             </a>
                         </div>
-                    <!--Ligne de choix "Musicien(Musician)"-->
+                        <!--Ligne de choix "Musicien(Musician)"-->
                         <div class="col-4 text-center mt-2" >
                             <a href="musicianRegister.php" class="icoLink">
                                 <img src="assets/img/guitare.png" title="Je suis un musicien" alt="Je suis un musicien" width="70" height="70" class="rounded-circle" />

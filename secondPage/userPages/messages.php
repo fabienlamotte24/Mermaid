@@ -9,6 +9,7 @@ include'../../controllers/connectCtrl.php';
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <link href="https://fonts.googleapis.com/css?family=Rationale" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
         <link rel="stylesheet" href="../../assets/css/navOnline.css" />
         <link rel="stylesheet" href="../../assets/css/messages.css" />
@@ -19,44 +20,64 @@ include'../../controllers/connectCtrl.php';
             <header class="row">
                 <?php include'../navOnline.php' ?>
             </header>
-            <section class="row">
-                <div id="messageBlockOptions" class="borderBlock mt-3 offset-xl-1 offset-lg-1 offset-md-1 offset-sm-1 col-xl-3 col-lg-3 col-md-3 col-sm-10 col-xs-12">
-                    <div id="selectButtons" class="messageBlockSelect mt-3 mb-3 pt-3 pb-1">
-                        <h1 class="text-center">Messagerie</h1>
-                        <ul class="listMessageSelect pl-3 pr-3">
-                            <li class="pl-2" id="reception">Boite de réception (<?= $numberOfMessages ?>)</li>
-                            <li class="pl-2" id="messageSend">Messages envoyés</li>
-                            <li class="pl-2" id="newMessage">Nouveau message</li>
-                        </ul>
+            <section>
+                <div class="row">
+                    <div id="messageBlockOptions" class="borderBlock mt-3 offset-xl-1 offset-lg-1 offset-md-1 offset-sm-1 col-xl-3 col-lg-3 col-md-3 col-sm-10 col-xs-12">
+                        <div id="selectButtons" class="messageBlockSelect mt-3 mb-3 pt-3 pb-1">
+                            <h1 class="text-center">Messagerie</h1>
+                            <ul class="listMessageSelect pl-3 pr-3">
+                                <li class="pl-2" id="reception">Boite de réception (<?= $numberOfMessages ?>)</li>
+                                <li class="pl-2" id="messageSend">Messages envoyés</li>
+                                <li class="pl-2" id="newMessage">Nouveau message</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div id="messageBlockSelect" class="borderBlock mt-3 offset-xl-1 offset-lg-1 offset-md-1 offset-sm-1 col-xl-6 col-lg-6 col-md-6 col-sm-10 col-xs-12">
-                    <div id="selectButtons" class="messageBlockSelect mt-3 mb-3 pt-3 pb-1">
-                        <h1 class="text-center">Boite de réception</h1>
-                        <div class="row messages">
-                            <div class="col-12">
-                                <?php if ($numberOfMessages == 0) { ?>
-                                    <p>Vous n'avez pas encore reçus de message</p>
-                                <?php
-                                } else { ?>
-                                    <?php foreach ($myMessages as $messages) { ?>
-                                        <div class="col-12 border">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <h2>Message de <?=$messages->pseudo?></h2>
+                    <div id="messageBlockSelect" class="borderBlock mt-3 offset-xl-1 offset-lg-1 offset-md-1 offset-sm-1 col-xl-6 col-lg-6 col-md-6 col-sm-10 col-xs-12">
+                        <div id="selectButtons" class="messageBlockSelect mt-3 mb-3 pt-3 pb-1">
+                            <h1 class="text-center">Boite de réception</h1>
+                            <div class="row messages">
+                                <div class="col-12">
+                                    <?php if ($numberOfMessages == 0) { ?>
+                                        <p>Vous n'avez pas encore reçus de message</p>
+                                    <?php } else { ?>
+                                        <?php foreach ($myMessages as $messages) { ?>
+                                            <div class="col-12 border">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <h2><?= $messages->pseudo ?></h2>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <p>Le <?= $messages->date ?> à <?= $messages->hour ?> ~ <?= $messages->title ?></p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <p>Le <?=$messages->date?> à <?=$messages->hour?> ~ <?=$messages->title?></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <?php } } ?>
+                                        <?php
+                                        }
+                                    }
+                                    ?>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+<?php if (isset($_GET['idMessage'])) { ?>
+                    <div class="row">
+                        <div id="messagesDisplay" class="borderBlock offset-xl-1 offset-lg-1 offset-md-1 offset-sm-1 col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-12 mt-5">
+                            <div class="messageBlockSelect mt-3 mb-3 pt-3 pb-1">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h2><?=$message->pseudo?></h2>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+<?php } ?>
             </section>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

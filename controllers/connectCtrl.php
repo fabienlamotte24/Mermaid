@@ -1,5 +1,4 @@
 <?php
-
 //Initialisation de plusieurs variable au chargement de la page
 $pseudoConnect = '';
 $passwordConnect = '';
@@ -49,10 +48,10 @@ if (isset($_POST['connexion']) && count($errorConnectList) == 0) {
             $connected = TRUE;
             header('location:../secondPage/userPages/profile.php');
         } else {
-            $errorList['connexion'] = 'Erreur de connexion';
+            $errorConnectList['connexion'] = 'Erreur de connexion';
         }
     } else {
-        $errorList['connexion'] = 'Ce compte n\'existe pas';
+        $errorConnectList['connexion'] = 'Ce compte n\'existe pas';
         $connected = FALSE;
     }
 }

@@ -26,25 +26,25 @@ include_once'controllers/musicianRegisterCtrl.php';
                         <div class="row">
                             <!--Champs pseudo-->
                             <div class="col-6">
-                                <label for="pseudo">Pseudo<span class="red">*</span>: </label>
+                                <label for="pseudo">Pseudo: <span class="red">*</span> </label>
                                 <input type="text" id="pseudo" name="pseudo" class="form-control text-center" maxlength="20" <?= (isset($pseudo)) ? 'value="' . $pseudo . '"' : ' '; ?> />                            
                                 <p class="red"><?= (isset($errorList['pseudo'])) ? $errorList['pseudo'] : ' ' ?></p>
                             </div>
                             <!--Champs adresse de messagerie-->
                             <div class="col-6">
-                                <label for="mail">Email<span class="red">*</span>: </label>
+                                <label for="mail">Email: <span class="red">*</span> </label>
                                 <input type="mail" id="mail" name="mail" class="form-control text-center" maxlength="30" <?= (isset($mail)) ? 'value="' . $mail . '"' : ' '; ?> />
                                 <p class="red"><?= (isset($errorList['mail'])) ? $errorList['mail'] : ' ' ?></p>
                             </div>
                             <!--Champs mot de passe-->
                             <div class="col-6">
-                                <label for="pass">Mot de passe<span class="red">*</span>: </label>
+                                <label for="pass">Mot de passe: <span class="red">*</span> </label>
                                 <input type="password" id="pass" name="pass" placeholder="Ecrivez un mot de passe" class="form-control text-center" maxlength="20" <?= (isset($pass1)) ? 'value="' . $pass1 . '"' : ' '; ?> />                            
                                 <p class="red"><?= (isset($errorList['pass'])) ? $errorList['pass'] : ' ' ?></p>
                             </div>
                             <!--Champs répétition du mot de passe-->
                             <div class="col-6">
-                                <label for="passRepeat">Mot de passe<span class="red">*</span>: </label>
+                                <label for="passRepeat">Mot de passe: <span class="red">*</span> </label>
                                 <input type="password" id="passRepeat" name="passRepeat" placeholder="Réécrivez le mot de passe" class="form-control text-center" maxlength="20" <?= (isset($pass2)) ? 'value="' . $pass2 . '"' : ' '; ?> />                            
                                 <p class="red"><?= (isset($errorList['passRepeat'])) ? $errorList['passRepeat'] : ' ' ?></p>
                             </div>
@@ -55,25 +55,25 @@ include_once'controllers/musicianRegisterCtrl.php';
                         <div class="row">
                             <!--Champs nom de famille-->
                             <div class="col-6">
-                                <label for="lastname">Nom<span class="red">*</span>: </label>
+                                <label for="lastname">Nom: <span class="red">*</span> </label>
                                 <input type="text" id="lastname" name="lastname" class="form-control text-center" maxlength="15" <?= (isset($lastname)) ? 'value="' . $lastname . '"' : ' '; ?> />                            
                                 <p class="red"><?= (isset($errorList['lastname'])) ? $errorList['lastname'] : ' ' ?></p>
                             </div>
                             <!--Champs prénom-->
                             <div class="col-6">
-                                <label for="firstname">Prénom<span class="red">*</span>: </label>
+                                <label for="firstname">Prénom: <span class="red">*</span> </label>
                                 <input type="text" id="firstname" name="firstname" class="form-control text-center" maxlength="15" <?= (isset($firstname)) ? 'value="' . $firstname . '"' : ' '; ?> />                           
                                 <p class="red"><?= (isset($errorList['firstname'])) ? $errorList['firstname'] : ' ' ?></p>
                             </div>
                             <!--Champs date de naissance-->
                             <div class="col-6">
-                                <label for="birthDate">Date de <span class="red">*</span>:</label>
+                                <label for="birthDate">Date de naissance: <span class="red">*</span></label>
                                 <input type="date" id="birthDate" name="birthDate" class="form-control text-center" <?= (isset($birthDate)) ? 'value="' . $birthDate . '"' : ' '; ?> />                           
                                 <p class="red"><?= (isset($errorList['birthDate'])) ? $errorList['birthDate'] : ' ' ?></p>
                             </div>
                             <!--Champs numéro de téléphoneNumber-->
                             <div class="col-6">
-                                <label for="phoneNumber">Numéro de téléphone<span class="red">*</span></label>
+                                <label for="phoneNumber">Numéro de téléphone: <span class="red">*</span></label>
                                 <input type="text" id="phoneNumber" name="phoneNumber" class="form-control text-center" maxlength="10" <?= (isset($phoneNumberNumber)) ? 'value="' . $phoneNumberNumber . '"' : ' '; ?> />                                                        
                                 <p class="red"><?= (isset($errorList['phoneNumber'])) ? $errorList['phoneNumber'] : ' ' ?></p>
                             </div>
@@ -84,19 +84,19 @@ include_once'controllers/musicianRegisterCtrl.php';
                         <div class="row">
                             <!--Champs adresse-->
                             <div class="col-12">
-                                <label for="address">Adresse<span class="red">*</span>: </label>
+                                <label for="address">Adresse: <span class="red">*</span> </label>
                                 <input type="text" id="adress" name="address" class="form-control text-center" maxlength="100" <?= (isset($address)) ? 'value="' . $address . '"' : ' '; ?> />
                                 <p class="red"><?= (isset($errorList['address'])) ? $errorList['address'] : ' ' ?></p>
                             </div>
                             <!--Champs code postal-->
                             <div class="col-6">
-                                <label for="postalCode">Code postal<span class="red">*</span>: </label>
+                                <label for="postalCode">Code postal: <span class="red">*</span> </label>
                                 <input type="text" name="postalCode" id="postalCode" class="form-control" />
                                 <p class="red"><?= (isset($errorList['postalCode'])) ? $errorList['postalCode'] : ' ' ?></p>
                             </div>
                             <!--Champs Ville-->
                             <div class="col-6">
-                                <label for="city">Ville<span class="red">*</span>: </label>
+                                <label for="city">Ville: <span class="red">*</span> </label>
                                 <select name="city" id="citySelect" class="form-control">
                                     <option name="0" value="0">Votre code postal</option>
                                 </select>

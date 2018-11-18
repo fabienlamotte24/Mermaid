@@ -8,16 +8,12 @@ $(document).ready(function(){
        $('.connectBlock').hide();
        $('.welcome').hide();
        $('.signBlock').show();
+       $('.errorConnect').hide();
    });
    $('.backHome').click(function(){
         location.reload();
    });
    $('#connectHome').outclick(function(){
-       $('.connectBlock').hide();
-       $('.welcome').show();
-       $('.signBlock').hide();
-   });
-   $('#signHome').outclick(function(){
        $('.connectBlock').hide();
        $('.welcome').show();
        $('.signBlock').hide();

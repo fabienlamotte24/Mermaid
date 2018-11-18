@@ -3,11 +3,15 @@
 if (isset($_SESSION['id'])) {
 //==================================================================Affichage des messages dont l'utilisateur est le destinataire==================================================
     $showMyMessages = NEW messages();
-    $showMyMessages->idReceiver = intval($_SESSION['id']);
+    $showMyMessages->id_15968k4_users = intval($_SESSION['id']);
     $myMessages = $showMyMessages->messageReceived();
+//=====================================================================Affichage du message selon l'idMessage de l'url==================================================
+    $showMessageSelected = NEW messages();
+    $showMessageSelected->id = intval($_GET['id']);
+    $message = $showMessageSelected->showMessageSelected();
 //================================================================Compte du nombre de message dont l'utilisateur est le destinataire==================================================
     $countOfMessages = NEW messages();
-    $countOfMessages->idReceiver = intval($_SESSION['id']);
+    $countOfMessages->id_15968k4_users = intval($_SESSION['id']);
     $numberOfMessages = $countOfMessages->countMessages();
 //==============================================================================Compte du nombre de notification==================================================
 //instanciation de l'object notifications, avec pour méthode le compte du nombre de notifications
