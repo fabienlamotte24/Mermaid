@@ -2,6 +2,7 @@
 session_start();
 include_once'../../config.php';
 include_once'../../controllers/connectCtrl.php';
+include'../../controllers/navCtrl.php';
 include_once'../../controllers/registerEstablishmentCtrl.php';
 ?>
 <!DOCTYPE html>
@@ -69,7 +70,7 @@ include_once'../../controllers/registerEstablishmentCtrl.php';
                             </select>
                             <p class="red"><?= (isset($errorList['citySelect'])) ? $errorList['citySelect'] : '' ?></p>
                             <!--Boutton de validation-->
-                            <input type="submit" name="submitCompany" value="Je crée mon compte entreprise" />
+                            <input type="submit" name="submitCompany" class="btn btn-success" value="J'inscris mon établissement" />
                             <p class="red"><?= (isset($errorList['submitCompany'])) ? $errorList['submitCompany'] : '' ?></p>
                         </form>
                     </div>
@@ -105,5 +106,6 @@ include_once'../../controllers/registerEstablishmentCtrl.php';
                 });
             });
         </script>
+        <script src="../../assets/js/nav.js"></script>
     </body>
 </html>

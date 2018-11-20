@@ -171,3 +171,30 @@ h2{
     color:orange;
     cursor:pointer;
 }
+#userForgetForm, #passForgetForm, #selectForget{
+    background-color:white;
+    border:5px solid black;
+    box-shadow: 3px 3px 5px white;
+    margin-top:100px;
+    margin-bottom:100px;
+    border-radius:30px;
+    text-align:center;
+    padding:15px;
+}
+#email{
+    margin:10px;
+    text-align:center;
+}
+.divloginForget{
+    border-right:1px solid black;
+    text-align:center;
+}
+.linkForget{
+    height:50px;
+    color:black;
+    font-size:2vw;
+}
+.linkForget:hover{
+    text-decoration:none;
+    color:blue;
+}

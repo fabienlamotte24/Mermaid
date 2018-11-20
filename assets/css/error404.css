@@ -1,0 +1,10 @@
+body{
+    background-image:url('../img/guitarecassee.png');
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+h1{
+    color:white;
+    text-shadow: 4px 4px black;
+    font-size:4rem;
+}

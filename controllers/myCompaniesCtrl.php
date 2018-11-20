@@ -31,7 +31,7 @@ if (isset($_GET['id'])) {
         }
     }
 } else {
-    header('location:../../index.php');
+    header('location:error404.php');
 }
 //======================================================================Ajax==========================================================================
 if (isset($_POST['postalSearch'])) {
@@ -46,7 +46,7 @@ if (isset($_POST['postalSearch'])) {
     //Je conserve les résultats en les affichant en JSON pour mon AJAX
     echo json_encode($postalResearch);
 }
-//=========================================================Changement du formulaire d'information de l'établissement=====================================
+//=========================================================Changement des informations de l'établissement=====================================
 //A la validation du formulaire
 if (isset($_POST['changeEstablishmentContent'])) {
     /**
@@ -146,6 +146,16 @@ if (isset($_POST['changeEstablishmentContent'])) {
         $errorList['changeEstablishmentContent'] = 'Vous avez des erreurs dans votre formulaire !';
     }
 }
+//==========================================================================Suppression de l'établissement==================================================
+if(isset($_POST['removeEstablishment'])){
+    $removeEstablishment = NEW establishment();
+    $removeEstablishment->id = htmlspecialchars(intval($_GET['id']));
+    if($removeEstablishment->removeCompany()){
+        header('location:profile.php');
+    } else {
+        $errorList['removeEstablishment'] = 'Erreur dans la suppression de l\'établissement';
+    }
+}
 //==========================================================================Changement de l'annonce==================================================
 if (isset($_POST['changeEstablishmentAnnounce'])) {
     if (!empty($_POST['changeAnnounce'])) {
@@ -216,10 +226,6 @@ if (isset($_SESSION['id'])) {
     $showEstablishment = NEW establishment();
     $showEstablishment->id = intval($id);
     $establishment = $showEstablishment->showEstablishmentByUrl();
-//==========================================================================Compte du nombre de notification==================================================
-    $notif = NEW notifications();
-    $notif->id_15968k4_users = intval($_SESSION['id']);
-    $checkNotif = $notif->countNotification();
 //======================================================================Vérification s'il y a une annonce de créée==================================================
     $status = NEW establishmentInResearch();
     $status->id_15968k4_establishment = intval($_GET['id']);

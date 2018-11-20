@@ -81,7 +81,7 @@ $(document).ready(function () {
 });
 //Carousel pour photo
 $(document).ready(function () {
-    $('.owl-carousel').owlCarousel({
+    $('#carousel').owlCarousel({
         stagePadding: 50,
         autoplay:true,
         loop: false,
@@ -97,6 +97,44 @@ $(document).ready(function () {
             },
             1000: {
                 items: 10
+            }
+        }
+    });
+    $('#blockBand').owlCarousel({
+        stagePadding: 5,
+        autoplay:false,
+        loop: false,
+        margin: 1,
+        nav: true,
+        dots:true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            600: {
+                items: 3
+            },
+            1000: {
+                items: 2
+            }
+        }
+    });
+    $('.blockEstablishement').owlCarousel({
+        stagePadding: 5,
+        autoplay:false,
+        loop: false,
+        margin: 1,
+        nav: true,
+        dots:true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            600: {
+                items: 3
+            },
+            1000: {
+                items: 2
             }
         }
     });

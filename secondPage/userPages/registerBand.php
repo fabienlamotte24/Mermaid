@@ -2,6 +2,7 @@
 session_start();
 include_once'../../config.php';
 include_once'../../controllers/connectCtrl.php';
+include'../../controllers/navCtrl.php';
 include_once'../../controllers/registerBandCtrl.php';
 ?>
 <!DOCTYPE html>
@@ -50,7 +51,7 @@ include_once'../../controllers/registerBandCtrl.php';
                             <p class="red"><?= (isset($errorList['bandPicture'])) ? $errorList['bandPicture'] : '' ?></p>
                             <hr>
                             <!--Boutton de validation-->
-                            <input type="submit" name="submitBand" value="Je crée mon groupe de musique" />
+                            <input type="submit" name="submitBand" class="btn btn-success" value="Je crée mon groupe de musique" />
                             <p class="red"><?= (isset($errorList['submitBand'])) ? $errorList['submitBand'] : '' ?></p>
                         </form>
                     </div>
@@ -63,5 +64,6 @@ include_once'../../controllers/registerBandCtrl.php';
         <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
         <script src="../../assets/js/owl.carousel.js"></script>
         <script src="../../assets/js/profile.js"></script>
+        <script src="../../assets/js/nav.js"></script>
     </body>
 </html>

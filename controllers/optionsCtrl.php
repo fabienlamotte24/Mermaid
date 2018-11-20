@@ -232,10 +232,18 @@ if (isset($_POST['newPostalSearch'])) {
 //On appel la méthode pour afficher les valeurs
     $showAllContent = $stockAllContent->showCompleteUserContent();
 }
-//=========================================================================Compte du nombre de notification==================================================
-if (isset($_SESSION['id'])) {
-    $notif = NEW notifications();
-    $notif->id_15968k4_users = $_SESSION['id'];
-    $checkNotif = $notif->countNotification();
+//=========================================================================Suppression du compte==================================================
+if(isset($_POST['confirmRemove'])){
+    $removeUser = NEW users();
+    $removeUser->id = intval($_SESSION['id']);
+    if($removeUser->removeUser()){
+        //On vide les valeurs des variables de session
+        session_unset();
+        //destruction de la session
+        session_destroy();
+        //On redirige vers l'index.php
+        header('location:../../index.php');
+    } else {
+        $errorList['confirmRemove'] = 'Erreur dans la suppression de votre compte';
+    }
 }
-

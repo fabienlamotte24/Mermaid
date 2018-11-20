@@ -244,6 +244,51 @@ class users extends database {
         return $isObjectResult;
     }
     /**
+     * Méthode servant à comparer les pseudo et la valeur rentrée
+     */
+    public function confirmPseudo(){
+        $bool = FALSE;
+        $query = 'SELECT COUNT(`pseudo`) AS `count` FROM `15968k4_users` '
+                . 'WHERE `pseudo` = :pseudo';
+        $check = $this->db->prepare($query);
+        $check->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
+        if ($check->execute()) {
+            $result = $check->fetch(PDO::FETCH_OBJ);
+            $bool = $result->count;
+        } else {
+            $bool = FALSE;
+        }
+        return $bool;
+    }
+    /**
+     * Méthode servant à retrouver l'id de l'utilisateur via son pseudo
+     */
+    public function getIdPseudo(){
+        $query = 'SELECT `id` FROM `15968k4_users` '
+                . 'WHERE `pseudo` = :pseudo';
+        $result = $this->db->prepare($query);
+        $result->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
+        $result->execute();
+        if(is_object($result)){
+            $isObjectResult = $result->fetch(PDO::FETCH_OBJ);
+        }
+        return $isObjectResult;
+    }
+    /**
+     * Méthode pour avoir le pseudo par l'id
+     */
+    public function getPseudoId(){
+        $query = 'SELECT `pseudo` FROM `15968k4_users` '
+                . 'WHERE `id` = :id';
+        $result = $this->db->prepare($query);
+        $result->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $result->execute();
+        if(is_object($result)){
+            $isObjectResult = $result->fetch(PDO::FETCH_OBJ);
+        }
+        return $isObjectResult;
+    }
+    /**
      * Création de la méthode magique destructeur
      */
     public function __destruct() {

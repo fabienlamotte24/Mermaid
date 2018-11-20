@@ -22,4 +22,5 @@ include 'models/contract.php';
 include 'models/establishmentInResearch.php';
 include 'models/musicianInResearch.php';
 include 'models/bandInResearch.php';
-include 'models/messages.php';
+include 'models/messagesReceived.php';
+include 'models/messagesTransmitted.php';

@@ -4,13 +4,14 @@ body{
     background-repeat: no-repeat;
 }
 .borderBlock{
-    background-image: linear-gradient(to right bottom, #0e12a4, #fafafa);
+    background-color:#474646;
     border:1px solid black;
-    border-radius:15px;
+    margin-bottom:50px;
+    color:white;
 }
 .messageBlockSelect{
-    background-color: white;
-    border-radius:15px;
+    background-image: linear-gradient(to right, #1e1e1e, #3b3b3b ,#1e1e1e);
+    border:1px solid black;
 }
 .listMessageSelect{
     list-style-type: none;
@@ -19,19 +20,20 @@ h1{
     font-size:1.9rem;
 }
 li{
-    background-color: white;
+    background-color: #666666;
     font-size:0.8rem;
+    color:white;
 }
 p{
     font-size:0.7rem;
 }
+.pValidation{
+    font-size:1.5rem;
+}
 li:hover{
-    background-color: #595cff;
+    background-image: linear-gradient(to right, #232323, #666666);
     cursor:pointer;
     color:white;
-}
-#messageBlockOptions{
-    max-height:180px;
 }
 h2{
     font-size:1rem;
@@ -40,4 +42,41 @@ h2{
 .messages{
     overflow:auto;
     max-height: 170px;
+}
+.red{
+    color:red;
+}
+.black{
+    color:black;
+}
+.green{
+    color:green;
+}
+.linkMessages, .messageReading{
+    color:black;
+}
+.linkMessages:hover, .messageReading:hover{
+    color:black;
+    text-decoration:none;
+}
+#messagesSentBox, #messageAnswer{
+    display:none;
+}
+#reSendButton{
+    border: 1px solid white;
+    color: #0082b0;
+    cursor:pointer;
+}
+#answerMessage{
+    border: 1px solid white;
+    color: #0082b0;
+    cursor:pointer;
+}
+#removeMessage{
+    border: 1px solid white;
+    color: #0082b0;
+    cursor:pointer;
+}
+.bold{
+    font-weight:bold;
 }

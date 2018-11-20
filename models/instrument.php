@@ -41,7 +41,7 @@ class instrument extends database {
     public function isPlayInstrument(){
         $bool = FALSE;
         $query = 'SELECT COUNT(`id`) AS `count` FROM `15968k4_instrument` '
-                . 'WHERE id_15968k4_users = id_15968k4_users';
+                . 'WHERE id_15968k4_users = :id_15968k4_users';
         $result = $this->db->prepare($query);
         $result->bindValue(':id_15968k4_users', $this->id_15968k4_users, PDO::PARAM_INT);
         if($result->execute()){

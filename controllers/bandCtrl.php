@@ -15,8 +15,6 @@ $showMyBands = $idBandOfUser->listBandId();
 $ifIdBands = '';
 //On vérifie l'existence du paramètre de l'url "id=$"
 if (isset($_GET['id'])) {
-    $errorUrl = array();
-    $successUrl = array();
     /**
      * Boucle foreach pour créer une succession de condition
      * visant à vérifier que la valeur de l'url correspond à l'id d'un groupe dont l'utilisateur est propriétaire
@@ -30,9 +28,10 @@ if (isset($_GET['id'])) {
             $errorUrl['url'] = false;
         }
     }
-} else {
-    header('location:../../index.php');
-}
+    if(count($successUrl) == 0 ){
+        header('location:error404.php');
+    }
+} 
 //==================================================================== Changement des informations du groupe ==================================================
 if (isset($_POST['changeBandContent'])) {
     /**
@@ -63,7 +62,7 @@ if (isset($_POST['changeBandContent'])) {
             $extension_upload = $informationsFile['extension'];
             //On teste son extension
             if (in_array($extension_upload, $enabled_extensions)) {
-                $name = $_FILES['photo']['name'];
+                $name = $_GET['id'] . '.' . $extension_upload;
                 $link = '../../assets/img/bandPictures/avatars/' . $name;
                 //On vérifie qu'il a bien été téléchargé
                 if (move_uploaded_file($_FILES['photo']['tmp_name'], $link)) {
@@ -97,10 +96,10 @@ if (isset($_POST['changeBandContent'])) {
         //On instancie l'objet band, avec pour méthode le changement des informations du groupe de musique
         $changeBandInformations = NEW band();
         //On donne aux attributs de l'objet les valeurs des variables protégées
-        $changeBandInformations->$bandName = $bandNameConfirmed;
-        $changeBandInformations->$bandDescription = $newBandDescription;
-        $changeBandInformations->$idCreator = intval($_SESSION['id']);
-        $changeBandInformations->$bandPicture = $photoNameConfirmed;
+        $changeBandInformations->bandName = $bandNameConfirmed;
+        $changeBandInformations->bandDescription = $newBandDescription;
+        $changeBandInformations->id = htmlspecialchars(intval($_GET['id']));
+        $changeBandInformations->bandPicture = $photoNameConfirmed;
         //On test la requête
         if ($changeBandInformations->changeAllDetailsBand()) {
             //On affiche un message de réussite si elle est correctement passée

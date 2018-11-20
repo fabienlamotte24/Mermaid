@@ -2,6 +2,7 @@
 session_start();
 include'../../config.php';
 include'../../controllers/optionsCtrl.php';
+include'../../controllers/navCtrl.php';
 include'../../controllers/connectCtrl.php';
 ?>
 <!DOCTYPE html>
@@ -30,16 +31,40 @@ include'../../controllers/connectCtrl.php';
                                 <div class="col-12 text-center">
                                     <h2><?= $showAllContent->pseudo ?></h2>
                                     <p>(<?= $showAllContent->lastname . ' ' . $showAllContent->firstname ?>)</p>
-                                    <img src="../../assets/img/userPictures/avatars/<?= $showAllContent->profilPicture ?>" class="rounded-circle" width="70" height="70" />
+                                    <img src="../../assets/img/userPictures/avatars/<?= (isset($showAllContent->profilPicture) && $showAllContent->profilPicture != 0) ? $showAllContent->profilPicture : 'icoUser.png' ?>" class="rounded-circle" width="70" height="70" />
                                     <!--Formulaire de changement de photo de profil-->
-                                    <form action="#" method="POST" enctype="multipart/form-data" class="form-group offset-xl-3 offset-lg-3 offset-md-2 offset-sm-2 col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-12 ">
-                                        <div class="custom-file">
-                                            <!--Champs de photo de profil-->
-                                            <label for="newFile" class="custom-file-label">Sélectionner votre photo</label>
-                                            <input type="file" name="newFile" id="newFile" class="custom-file-input form-control p-0 m-0" />
+                                    <div class="form-group offset-xl-3 offset-lg-3 offset-md-2 offset-sm-2 col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-12">
+                                        <form action="#" method="POST" enctype="multipart/form-data">
+                                            <div class="custom-file">
+                                                <!--Champs de photo de profil-->
+                                                <label for="newFile" class="custom-file-label">Sélectionner votre photo</label>
+                                                <input type="file" name="newFile" id="newFile" class="custom-file-input form-control p-0 m-0" />
+                                            </div>
+                                            <input type="submit" name="submitFile" class="form-control btn btn-primary" value="changer ma photo de profil" /> 
+                                        </form>
+                                        <a href="#" data-toggle="modal" data-target="#removeAccountModal">
+                                            <button type="submit" name="removeAccount" class="form-control btn btn-danger">Supprimer mon compte</button> 
+                                        </a>
+                                    </div>
+                                    <!--Fenêtre modale de suppression de compte-->
+                                    <div class="modal fade" id="removeAccountModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1>Voulez-vous vraiment supprimer votre compte ?</h1>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <h2>Votre annonce</h2>
+                                                    <p class="text-center"><span class="red">*</span>Vous ne pouvez pas supprimer un compte tant que l'un de vos vous, un de vos groupes ou établissements ont au moins 1 contrat en cours !</p>
+                                                    <!--Formulaire d'annonce pour la suppression du compte de l'utilisateur-->
+                                                    <form action="#" method="POST" class="form-group">
+                                                        <button type="submit"  name="confirmRemove" class="btn btn-danger btn-lg">Supprimer</button>
+                                                        <button type="submit"  name="cancelRemove" class="btn btn-primary btn-lg">Annuler</button>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <input type="submit" name="submitFile" class="form-control" value="changer ma photo de profil" /> 
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                             <!--Block d'informations personnelles-->
@@ -79,10 +104,10 @@ include'../../controllers/connectCtrl.php';
                                             <p class="red"><?= (isset($errorList['newCitySelect'])) ? $errorList['newCitySelect'] : '' ?></p>
                                         </div>
                                         <!--Boutton de validation-->
-                                        <input type="submit" name="changeUserInformations" class="form-control" value="Changer mes informations" />
+                                        <input type="submit" name="changeUserInformations" class="form-control btn btn-primary" value="Changer mes informations" />
                                     </form>
                                 </div>
-                                <div class="offset-xl-1 offset-lg-1 offset-md-1 offset-sm-1 col-xl-5 col-lg-5 col-md-5 col-sm-10 col-xs-12 text-center">
+                                <div class="offset-xl-1 offset-lg-1 offset-md-1 offset-sm-1 col-xl-4 col-lg-4 col-md-4 col-sm-10 col-xs-12 text-center">
                                     <h2>Changement de votre mot de passe</h2>
                                     <p class="red"><?= (isset($errorList['changePass'])) ? $errorList['changePass'] : '' ?></p>
                                     <p class="green"><?= (isset($success['changePass'])) ? $success['changePass'] : '' ?></p>
@@ -100,7 +125,7 @@ include'../../controllers/connectCtrl.php';
                                         <input type="password" name="pass2" id="pass2" class="form-control" />
                                         <p class="red"><?= (isset($errorList['pass2'])) ? $errorList['pass2'] : '' ?></p>
                                         <!--Boutton de validation-->
-                                        <input type="submit" name="changePass" class="form-control" value="changer mon mot de passe" />
+                                        <input type="submit" name="changePass" class="form-control btn btn-primary" value="changer mon mot de passe" />
                                     </form>
                                 </div>
                             </div>
@@ -114,5 +139,6 @@ include'../../controllers/connectCtrl.php';
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>        
         <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
         <script src="../../assets/js/options.js"></script>
+        <script src="../../assets/js/nav.js"></script>
     </body>
 </html>

@@ -2,8 +2,8 @@
 session_start();
 include_once'../../config.php';
 include_once'../../controllers/connectCtrl.php';
+include'../../controllers/navCtrl.php';
 include_once'../../controllers/myCompaniesCtrl.php';
-if (isset($successUrl['url'])) {
     ?>
     <!DOCTYPE html>
     <html lang="fr" dir="ltr">
@@ -80,8 +80,26 @@ if (isset($successUrl['url'])) {
                                     <p class="red"><?= (isset($errorList['city'])) ? $errorList['city'] : ' ' ?></p>
 
                                     <!--Boutton de validation-->
-                                    <input type="submit" name="changeEstablishmentContent" class="form-control" value="Modifier" />
-
+                                    <input type="submit" name="changeEstablishmentContent" class="form-control btn btn-primary" value="Modifier" />
+                                    <a href="#" data-toggle="modal" class="buttonRemove" data-target="#removeEstablishment">
+                                        <input type="submit" class="form-control btn btn-danger" value="Supprimer mon établissement" />
+                                    </a>
+                                    <div class="modal fade" id="removeEstablishment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header text-center">
+                                                    <h2>Vous demandez la suppression de établissement</h2>
+                                                </div>
+                                                <div class="modal-body text-center">
+                                                    <p>Confirmer ?</p>
+                                                    <form action="#" method="POST">
+                                                        <button type="submit" name="removeEstablishment" class="btn btn-danger btn-lg">Supprimer</button>
+                                                        <button type="submit" name="cancelRemove" class="btn btn-primary btn-lg">Annuler</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                             <hr>
@@ -98,12 +116,31 @@ if (isset($successUrl['url'])) {
                                         <p class="red"><?= (isset($errorList['changeAnnounce'])) ? $errorList['changeAnnounce'] : ' ' ?></p>
 
                                         <!--Boutton de validation-->
-                                        <input type="submit" name="changeEstablishmentAnnounce" class="form-control" value="Modifier" />
+                                        <input type="submit" name="changeEstablishmentAnnounce" class="form-control btn btn-primary" value="Modifier" />
 
                                         <!--Boutton de suppression-->
-                                        <input type="submit" name="removeAnnounce" class="form-control" value="Supprimer" />
-
+                                        <a href="#" data-toggle="modal" class="buttonRemove" data-target="#removeAnnounce">
+                                            <input type="submit" class="form-control btn btn-danger" value="Supprimer mon annonce" />
+                                        </a>
                                     </form>
+                                </div>
+                                <!--Fenêtre de suppression de l'annonce-->
+                                <div class="modal fade" id="removeAnnounce" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header text-center">
+                                                <h2>Vous demandez la suppression de votre annonce</h2>
+                                            </div>
+                                            <div class="modal-body text-center">
+                                                <p>Confirmer ?</p>
+                                                <form action="#" method="POST">
+                                                    <!--Boutton de validation de formulaire pour supprimer ou non l'anonce-->
+                                                    <button type="submit" name="removeAnnounce" class="btn btn-danger btn-lg">Supprimer</button>
+                                                    <button type="submit" name="cancelRemove" class="btn btn-primary btn-lg">Annuler</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             <?php } else { ?>
                                 <div class="col-12 text-center">
@@ -119,7 +156,7 @@ if (isset($successUrl['url'])) {
                                         <p class="red"><?= (isset($errorList['newAnnounce'])) ? $errorList['newAnnounce'] : ' ' ?></p>
 
                                         <!--Boutton de validation-->
-                                        <input type="submit" name="addAnnounce" class="form-control" value="modifier" />
+                                        <input type="submit" name="addAnnounce" class="form-control btn btn-primary" value="Créer mon annonce" />
 
                                     </form>
                                 </div>
@@ -133,10 +170,6 @@ if (isset($successUrl['url'])) {
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>        
             <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
             <script src="../../assets/js/myCompanies.js"></script>
+        <script src="../../assets/js/nav.js"></script>
         </body>
     </html>
-    <?php
-} else {
-    header('location:../../index.php');
-}
-?>

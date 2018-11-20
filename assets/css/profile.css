@@ -7,25 +7,22 @@
     background-color:white;
     border:1px solid black;
     box-shadow:1px 1px 2px black;
-    padding:29.6px;
-    border-radius:15px;
+    padding:5px;
 }
 .profilBlockContent{
     background-color:white;
-    border-radius:15px;
+    
 }
 .establishmentBlock, .bandBlock{
     background-image: linear-gradient(to bottom right, #B11614, #4C070C);
     border:1px solid black;
     box-shadow:1px 1px 2px black;
-    padding:29.6px;
+    padding:5px;
 }
 .establishmentContent, .bandContent{
     background-color:white;
-    border-radius:15px;
     border:1px solid black;
     box-shadow:1px 1px 2px black;
-    padding:29.6px;
 }
 .red{
     color:red;
@@ -38,7 +35,8 @@
     cursor:pointer;
 }
 h1{
-    font-size:1.5rem;
+    font-size:1.2em;
+    font-weight: bold;
 }
 h2{
     font-size:1rem;
@@ -55,7 +53,7 @@ p{
 /* The colour of the indicators */
 .blog .carousel-indicators li {
     background: #a3a3a3;
-    border-radius: 50%;
+    
     width: 8px;
     height: 8px;
 }
@@ -106,11 +104,11 @@ p{
 }
 .backRed{
     background-color:#900b0f;
-    border-radius:15px;
+    
 }
 .backGreen{
     background-color:#35b410;
-    border-radius:15px;
+    
 }
 .sentenceStatus{
     color:white;
@@ -138,7 +136,7 @@ p{
     border:1px solid black;
     box-shadow:1px 1px 2px black;
     padding:29.6px;
-    border-radius:15px;
+    
 }
 .linkOptions{
     color:black;
@@ -158,4 +156,19 @@ p{
 .TitleEstablishment:hover{
     text-decoration:none;
     color:grey;
+}
+.borderPicture1{
+    border:2px solid #b50000;
+    background-color:#900000;
+}
+.borderPicture2{
+    border:2px dashed white;
+    padding:2px;
+    margin:2px;
+}
+.borderPicture3{
+    border:2px solid #b50000;
+}
+.bandName{
+    font-size:1rem;
 }

@@ -106,9 +106,9 @@ class establishment extends database {
      */
     public function removeCompany() {
         $query = 'DELETE FROM `15968k4_establishment` '
-                . 'WHERE `id_15968k4_users` = :id_15968k4_users';
+                . 'WHERE `id` = :id';
         $RemoveCompany = $this->db->prepare($query);
-        $RemoveCompany->bindValue(':id_15968k4_users', $this->id_15968k4_users, PDO::PARAM_INT);
+        $RemoveCompany->bindValue(':id', $this->id, PDO::PARAM_INT);
         return $RemoveCompany->execute();
     }
 

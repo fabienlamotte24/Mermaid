@@ -83,10 +83,3 @@ if (isset($_POST['submitBand'])) {
         }
     }
 }
-//==============================================================================Compte du nombre de notification==================================================
-//instanciation de l'object notifications, avec pour méthode le compte du nombre de notifications
-if (isset($_SESSION['id'])) {
-    $notif = NEW notifications();
-    $notif->id_15968k4_users = $_SESSION['id'];
-    $checkNotif = $notif->countNotification();
-}

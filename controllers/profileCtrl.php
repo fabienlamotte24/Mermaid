@@ -71,6 +71,8 @@ if (isset($_POST['submitInstrumentChoice'])) {
                 } else {
                     $errorList['instrument'] = 'L\'enregistrement de l\'instrument a échoué !';
                 }
+            } else {
+                $errorList['instrument'] = 'Vous devez choisir un instrument !';
             }
         } else {
             $errorList['instrument'] = 'Erreur dans le choix de l\'instrument !';
@@ -366,10 +368,6 @@ $countContract = $contract->contractCount();
 $countPhotos = NEW userPhotos();
 $countPhotos->id_15968k4_users = intval($_SESSION['id']);
 $numberOfPhotos = $countPhotos->countPhotos();
-//==========================================================================Compte du nombre de notification==================================================
-$notif = NEW notifications();
-$notif->id_15968k4_users = intval($_SESSION['id']);
-$checkNotif = $notif->countNotification();
 //==============================================================================Affichage des photos==================================================
 $showGalery = NEW userPhotos();
 $showGalery->id_15968k4_users = intval($_SESSION['id']);
@@ -378,9 +376,6 @@ $displayPhotos = $showGalery->showPhotos();
 $establishment = NEW establishment();
 $establishment->id_15968k4_users = intval($_SESSION['id']);
 $showEstablishments = $establishment->showMyCompany();
-//============================================================================Affichage des instruments=====================================================
-$instrument = NEW typeInstrument();
-$showInstrument = $instrument->showListOfInstruments();
 //================================================================Condition pour Afficher son role=====================================================
 $showIsRole = NEW instrument();
 $showIsRole->id_15968k4_users = intval($_SESSION['id']);
@@ -409,3 +404,6 @@ $checkBandAnnounce = $countAnnounce->countAnnounce();
 $haveBand = NEW band();
 $haveBand->idCreator = intval($_SESSION['id']);
 $checkBand = $haveBand->haveGroup();
+//============================================================================Affichage des instruments=====================================================
+$instrument = NEW typeInstrument();
+$showInstrument = $instrument->showListOfInstruments();
