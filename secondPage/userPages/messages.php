@@ -53,12 +53,12 @@ include'../../controllers/navCtrl.php';
                                                 <?php } else { ?>
                                                     <!--Si c'est le cas, on utilise foreach pour afficher tout les messages-->
                                                     <?php foreach ($messagesSent as $messagesISent) { ?>
-                                                        <div class="col-12 border">
+                                                        <div class="col-12 border mt-3">
                                                             <div class="row">
                                                                 <div class="col-1 pt-3">
                                                                     <input name="removeMessage[]" type="checkbox" value="<?= $messagesISent->id ?>">
                                                                 </div>
-                                                                <a href="messages.php?idSent=<?= $messagesISent->id ?>" class="col-10 linkMessages">
+                                                                <a href="messages.php?idSent=<?= $messagesISent->id ?>" class="col-10 linkMessages mt-3">
                                                                     <h2>Envoyé à <?= $messagesISent->pseudo ?></h2>
                                                                     <div class="row">
                                                                         <div class="col-12">
@@ -89,7 +89,10 @@ include'../../controllers/navCtrl.php';
                                     <form action="" method="POST" enctype="multipart/form-data">
                                         <button type="submit" name="deleteAllReceived" class="btn btn-secondary">Tout supprimer</button>
                                         <button type="submit" name="deleteSelectionReceived" class="btn btn-secondary">Supprimer la sélection</button>
-                                        <p><?= (isset($success['submitRemoveMessageReceived'])) ? $success['submitRemoveMessageReceived'] : ' ' ?></p>
+                                        <?= (isset($errorList['deleteAllReceived'])) ? '<p class="validateRemove red">' . $errorList['deleteAllReceived'] . '</p>' : ' ' ?>
+                                        <?= (isset($errorList['deleteSelectionReceived'])) ? '<p class="validateRemove red">' . $errorList['deleteSelectionReceived'] . '</p>' : ' ' ?>
+                                        <?= (isset($success['deleteSelectionReceived'])) ? '<p class="validateRemove green">' . $success['deleteSelectionReceived'] . '</p>' : ' ' ?>
+                                        <?= (isset($success['deleteAllReceived'])) ? '<p class="validateRemove green">' . $success['deleteAllReceived'] . '</p>' : ' ' ?>
                                         <div class="row messages">
                                             <div class="col-12">
                                                 <!--Condition pour connaître si l'utilisateur a reçu des messages de la part d'autres utilisateur-->
@@ -98,7 +101,7 @@ include'../../controllers/navCtrl.php';
                                                 <?php } else { ?>
                                                     <!--Si c'est le cas, on les affiche tous avec un foreach-->
                                                     <?php foreach ($myMessages as $messages) { ?>
-                                                        <div class="row <?= ($messages->readen == 0) ? 'border border-danger' : 'border' ?>">
+                                                        <div class="row <?= ($messages->readen == 0) ? 'border border-danger' : 'border' ?> mt-3">
                                                             <div class="col-1 mt-4">
                                                                 <input name="removeMessageReceived[]" type="checkbox" value="<?= $messages->id ?>">
                                                             </div>

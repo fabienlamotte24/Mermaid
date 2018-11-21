@@ -100,44 +100,6 @@ $(document).ready(function () {
             }
         }
     });
-    $('#blockBand').owlCarousel({
-        stagePadding: 5,
-        autoplay:false,
-        loop: false,
-        margin: 1,
-        nav: true,
-        dots:true,
-        responsive: {
-            0: {
-                items: 1
-            },
-            600: {
-                items: 3
-            },
-            1000: {
-                items: 2
-            }
-        }
-    });
-    $('.blockEstablishement').owlCarousel({
-        stagePadding: 5,
-        autoplay:false,
-        loop: false,
-        margin: 1,
-        nav: true,
-        dots:true,
-        responsive: {
-            0: {
-                items: 1
-            },
-            600: {
-                items: 3
-            },
-            1000: {
-                items: 2
-            }
-        }
-    });
 //Gestion de la suppression des photos pour l'utilisateur
    $('.remove').click(function(){
      var a = $(this);

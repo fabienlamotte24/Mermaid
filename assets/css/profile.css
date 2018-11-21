@@ -2,6 +2,22 @@
     font-family: 'painter';
     src: url('../font/cool.ttf');
 }
+#publicBackground{
+    background-image:url('../img/qsd.jpg');
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+#proBackground{
+    background-image:url('../img/barLive.jpg');
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+#musicianBackground{
+
+    background-image:url('../img/musicienCarousel.jpeg');
+    background-size:cover;
+    background-repeat: no-repeat;
+}
 .profilBlock{
     background-image: linear-gradient(to bottom right, #B11614, #4C070C);
     background-color:white;
@@ -11,7 +27,7 @@
 }
 .profilBlockContent{
     background-color:white;
-    
+
 }
 .establishmentBlock, .bandBlock{
     background-image: linear-gradient(to bottom right, #B11614, #4C070C);
@@ -53,7 +69,7 @@ p{
 /* The colour of the indicators */
 .blog .carousel-indicators li {
     background: #a3a3a3;
-    
+
     width: 8px;
     height: 8px;
 }
@@ -84,7 +100,7 @@ p{
 .remove{
     cursor:pointer;
     color:#c6c6c6;
-/*    display:none;*/
+    /*    display:none;*/
     float:right;
     margin-left:80%;
     text-shadow:1px 1px black;
@@ -104,11 +120,11 @@ p{
 }
 .backRed{
     background-color:#900b0f;
-    
+
 }
 .backGreen{
     background-color:#35b410;
-    
+
 }
 .sentenceStatus{
     color:white;
@@ -136,7 +152,7 @@ p{
     border:1px solid black;
     box-shadow:1px 1px 2px black;
     padding:29.6px;
-    
+
 }
 .linkOptions{
     color:black;

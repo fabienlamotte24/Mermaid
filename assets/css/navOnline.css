@@ -70,3 +70,7 @@ body, .container-fluid, .row, nav{
     font-size:1.8rem;
     font-weight:bold;
 }
+#zeroNotif{
+    background-color:green;
+    color:white;
+}

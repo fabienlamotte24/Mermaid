@@ -33,11 +33,18 @@
                     <h1 id="titleNavModal">Voici la liste de vos notifications</h1>
                 </div>
                 <div class="modal-body text-center">
-                    <?php foreach ($myNotifs as $notif) { ?>
-                    <div id="backgroundNotif" id="notifLink" class="removeNotif" idNotif="<?=$notif->id?>" idMessage="<?=$notif->idMessages?>">
-                            <p><?= $notif->notifDescription ?></p>
-                        </div>
-                    <?php } ?>
+                    <?php
+                    foreach ($myNotifs as $notif) {
+                        if ($checkNotif == 0) { ?>
+                            <div id="zeroNotif">
+                                <p>Aucune notification</p>
+                            </div>
+                        <?php } else { ?>
+                            <div id="backgroundNotif" id="notifLink" class="removeNotif" idNotif="<?= $notif->id ?>" idMessage="<?= $notif->idMessages ?>">
+                                <p><?= $notif->notifDescription ?></p>
+                            </div>
+                        <?php }
+                    } ?>
                 </div>
             </div>
         </div>

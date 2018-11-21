@@ -120,24 +120,19 @@ include_once'controllers/connectCtrl.php';
                         <li data-target="#carousel" data-slide-to="0" class="active"></li>
                         <li data-target="#carousel" data-slide-to="1" class="active"></li>
                         <li data-target="#carousel" data-slide-to="2" class="active"></li>
-                        <li data-target="#carousel" data-slide-to="3" class="active"></li>
                     </ol>
                     <div class="carousel-inner">
-                        <!--Slide proposant un lien de l'application sans avoir besoin de s'inscrire, disponible à tous, première slide par défaut-->
-                        <div class="carousel-item"><img class="d-block w-100" src="assets/img/mapCarousel.png" alt="first slide" width="100%" height="300" />
-                            <div id="textmap" class="carousel-caption"><p class="carouselText">Envie d'un concert ?<br /><a href="#" id="atextmap">Je consulte la carte !</a></p></div>
-                        </div>
                         <!--Slide proposant aux internautes recherchant une inscription pour suivre leur groupe préféré une inscription-->
                         <div class="carousel-item active"><img class="d-block w-100" src="assets/img/proCarousel.jpg" alt="second slide" width="100%" height="300" />
-                            <div id="textpro" class="carousel-caption"><p class="carouselText">Vous recherchez des musiciens pour assurer vos soirées ?<br /><a href="register.php?form=pro" id="atextpro">inscrivez-vous et trouvez le groupe idéal !</a></p></div>
+                            <div id="textpro" class="carousel-caption"><p class="carouselText">Vous recherchez des musiciens pour assurer vos soirées ?<br /><a href="proRegister.php" id="atextpro">inscrivez-vous et trouvez le groupe idéal !</a></p></div>
                         </div>
                         <!--Slide proposant aux groupes de musiques ou artistes en solo de s'inscrire pour trouver des dates plus facilement-->
                         <div class="carousel-item" ><img class="d-block w-100" src="assets/img/musicienCarousel.jpeg" alt="third slide" width="100%" height="300" />
-                            <div id="textmusicien" class="carousel-caption"><p class="carouselText">Faites-vous connaître et trouvez des dates de concerts<br /><a href="register.php?form=musician" id="atextmusicien">Commencez votre tournée !</a></p></div>
+                            <div id="textmusicien" class="carousel-caption"><p class="carouselText">Faites-vous connaître et trouvez des dates de concerts<br /><a href="musicianRegister.php" id="atextmusicien">Commencez votre tournée !</a></p></div>
                         </div>
                         <!--Slide proposant aux gérants de bars, organisateurs de festival ou autre de rechercher des musiciens pour leur soirée-->
                         <div class="carousel-item"><img class="d-block w-100" src="assets/img/publicCarousel.jpg" alt="fourth slide" width="100%" height="300" />
-                            <div id="textpublic" class="carousel-caption"><p class="carouselText">Vous pouvez suivre vos groupes préférés dans leurs représentations<br /><a href="register.php?form=public" id="atextpublic">Il suffit de vous inscrire !</a></p></div>
+                            <div id="textpublic" class="carousel-caption"><p class="carouselText">Vous pouvez suivre vos groupes préférés dans leurs représentations<br /><a href="publicRegister.php" id="atextpublic">Il suffit de vous inscrire !</a></p></div>
                         </div>
                     </div>
                     <!--Section pour les flêches permettant de passer d'une slide à une autre-->

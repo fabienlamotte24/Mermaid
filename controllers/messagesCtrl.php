@@ -263,7 +263,7 @@ if (isset($_SESSION['id'])) {
             $removeNotif = NEW notifications();
             $removeNotif->id_15968k4_users = intval($_SESSION['id']);
             if ($removeNotif->removeAllNotifications()) {
-                $success['DeleteSelectionSent'] = 'Sélection supprimée avec succès !';
+                $success['DeleteSelectionSent'] = 'Tous les messages ont été supprimés avec succès !';
             } else {
                 $errorList['DeleteSelectionSent'] = 'Erreur dans la suppression des notifications !';
             }
@@ -282,9 +282,9 @@ if (isset($_SESSION['id'])) {
                     $removeNotif = NEW notifications();
                     $removeNotif->idMessages = intval($rm);
                     if ($removeNotif->removeNotifAfterRemoveMessage()) {
-                        $success['DeleteSelectionSent'] = 'Sélection supprimée avec succès !';
+                        $success['deleteSelectionReceived'] = 'Sélection supprimée avec succès !';
                     } else {
-                        $errorList['DeleteSelectionSent'] = 'Erreur dans la suppression de la notification !';
+                        $errorList['DeleteSelectionReceived'] = 'Erreur dans la suppression de la notification !';
                     }
                 } else {
                     $errorList['deleteSelectionReceived'] = 'Erreur dans la suppression des messages !';
@@ -302,12 +302,12 @@ if (isset($_SESSION['id'])) {
             $removeNotif = NEW notifications();
             $removeNotif->id_15968k4_users = intval($_SESSION['id']);
             if ($removeNotif->removeAllNotifications()) {
-                $success['DeleteSelectionSent'] = 'Sélection supprimée avec succès !';
+                $success['DeleteSelectionReceived'] = 'Tout les messages ont été supprimés avec succès !';
             } else {
-                $errorList['DeleteSelectionSent'] = 'Erreur dans la suppression des notifications !';
+                $errorList['DeleteSelectionReceived'] = 'Erreur dans la suppression des notifications !';
             }
         } else {
-            $errorList['deleteAllReceived'] = 'Erreur dans la suppression des messages !';
+            $errorList['DeleteSelectionReceived'] = 'Erreur dans la suppression des messages !';
         }
     }
 //==================================================================Compte du nombre de messages dont l'utilisateur est l'émetteur ==================================================

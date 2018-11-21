@@ -207,7 +207,7 @@ class users extends database {
      * Méthode servant à retrouver l'identifiant de l'utilisateur à partir de son email
      */
     public function findUserByEmail(){
-        $query = 'SELECT `id`, `pseudo` FROM `15968k4_users` '
+        $query = 'SELECT `id`, `pseudo`, `mail` FROM `15968k4_users` '
                 . 'WHERE `mail` = :mail';
         $findUser = $this->db->prepare($query);
         $findUser->bindValue(':mail', $this->mail, PDO::PARAM_STR);
@@ -287,6 +287,23 @@ class users extends database {
             $isObjectResult = $result->fetch(PDO::FETCH_OBJ);
         }
         return $isObjectResult;
+    }
+    /**
+     * Méthode servant à savoir si l'id et le mail correspondent à la même ligne sql pour gérer l'url de changement de mot de passe
+     */
+    public function passMailVerify(){
+        $bool = FALSE;
+        $query = 'SELECT COUNT(`id`) AS `count` FROM `15968k4_users` '
+                . 'WHERE `mail` = :mail '
+                . 'AND `id` = :id';
+        $check = $this->db->prepare($query);
+        $check->bindValue(':mail', $this->maild, PDO::PARAM_STR);
+        $check->bindValue(':id', $this->id, PDO::PARAM_INT);
+        if($check->execute()){
+            $result = $check->fetch(PDO::FETCH_OBJ);
+            $bool = $result->count;
+        }
+        return $bool;
     }
     /**
      * Création de la méthode magique destructeur
