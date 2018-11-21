@@ -34,7 +34,7 @@
                 </div>
                 <div class="modal-body text-center">
                     <?php foreach ($myNotifs as $notif) { ?>
-                        <div class="backgroundNotif <?= $notif->id ?>">
+                    <div id="backgroundNotif" id="notifLink" class="removeNotif" idNotif="<?=$notif->id?>" idMessage="<?=$notif->idMessages?>">
                             <p><?= $notif->notifDescription ?></p>
                         </div>
                     <?php } ?>

@@ -121,6 +121,15 @@ class messagesTransmitted extends database{
         $result->bindValue(':id', $this->id, PDO::PARAM_INT);
         return $result->execute();
     }
-    
+    /**
+     * Méthode servant à la suppression de tout les messages
+     */
+    public function deleteAllMessages(){
+        $query = 'DELETE FROM `15968k4_messagesTransmitted` '
+                . 'WHERE `idTransmitter` = :idTransmitter';
+        $result = $this->db->prepare($query);
+        $result->bindValue('idTransmitter', $this->idTransmitter, PDO::PARAM_INT);
+        return $result->execute();
+    }
 }
 

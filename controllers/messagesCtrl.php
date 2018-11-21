@@ -136,18 +136,7 @@ if (isset($_SESSION['id'])) {
                     $pseudoSearch->id = intval($_SESSION['id']);
                     //On test la requete
                     if ($pseudoSearch->getPseudoId()) {
-                        $nameOfTransmitter = $pseudoSearch->getPseudoId();
-                        //On instancie l'objet notification, avec pour méthode l'ajout de notification
-                        $addNotif = NEW notifications();
-                        $addNotif->notifDescription = '<a href="messages.php" class="linkNotif">Nouveau message de ' . $nameOfTransmitter->pseudo . ' ! </a>';
-                        $addNotif->id_15968k4_users = $rightIdReceiver;
-                        //On teste la requête
-                        if ($addNotif->addNotification()) {
-                            //Puis si elle passe, on affiche un message de réussite
-                            $success['sendMessageSubmit'] = 'Message envoyé avec succès !';
-                        } else {
-                            $errorList['sendMessageSubmit'] = 'Une erreur est surevenue dans l\'envoi du message !';
-                        }
+                        $success['sendMessageSubmit'] = 'Message envoyé avec succès !';
                     } else {
                         $errorList['sendMessageSubmit'] = 'Une erreur est surevenue dans l\'envoi du message !';
                     }
@@ -241,6 +230,84 @@ if (isset($_SESSION['id'])) {
             if ($removeSent->removeMessage()) {
                 $success['submitRemoveMessageSent'] = 'Message supprimé avec succès !';
             }
+        }
+    }
+//===============================================================================Suppression de plusieurs messages envoyés==================================================
+    if (isset($_POST['DeleteSelectionSent'])) {
+        if (!empty($_POST['removeMessage']) && isset($_POST['removeMessage'])) {
+            $removeMessage = $_POST['removeMessage'];
+            foreach ($removeMessage as $rm) {
+                $removeSelectedMessages = NEW messagesTransmitted();
+                $removeSelectedMessages->id = intval($rm);
+                if ($removeSelectedMessages->removeMessage()) {
+                    $removeNotif = NEW notifications();
+                    $removeNotif->idMessages = intval($rm);
+                    if ($removeNotif->removeNotifAfterRemoveMessage()) {
+                        $success['DeleteSelectionSent'] = 'Sélection supprimée avec succès !';
+                    } else {
+                        $errorList['DeleteSelectionSent'] = 'Erreur dans la suppression de la notification !';
+                    }
+                } else {
+                    $errorList['DeleteSelectionSent'] = 'Erreur dans la suppression des messages !';
+                }
+            }
+        } else {
+            $errorList['DeleteSelectionSent'] = 'Vous devez séléctionner au moins un message !';
+        }
+    }
+//========================================================================Suppression de tout les message envoyés==================================================
+    if (isset($_POST['deleteAllSent'])) {
+        $removeSent = NEW messagesTransmitted();
+        $removeSent->idTransmitter = intval($_SESSION['id']);
+        if ($removeSent->deleteAllMessages()) {
+            $removeNotif = NEW notifications();
+            $removeNotif->id_15968k4_users = intval($_SESSION['id']);
+            if ($removeNotif->removeAllNotifications()) {
+                $success['DeleteSelectionSent'] = 'Sélection supprimée avec succès !';
+            } else {
+                $errorList['DeleteSelectionSent'] = 'Erreur dans la suppression des notifications !';
+            }
+        } else {
+            $errorList['deleteAllSent'] = 'Erreur dans la suppression des messages !';
+        }
+    }
+//===============================================================================Suppression de plusieurs messages reçus==================================================
+    if (isset($_POST['deleteSelectionReceived'])) {
+        if (!empty($_POST['removeMessageReceived']) && isset($_POST['removeMessageReceived'])) {
+            $removeMessage = $_POST['removeMessageReceived'];
+            foreach ($removeMessage as $rm) {
+                $removeSelectedMessages = NEW messagesReceived();
+                $removeSelectedMessages->id = intval($rm);
+                if ($removeSelectedMessages->removeMessage()) {
+                    $removeNotif = NEW notifications();
+                    $removeNotif->idMessages = intval($rm);
+                    if ($removeNotif->removeNotifAfterRemoveMessage()) {
+                        $success['DeleteSelectionSent'] = 'Sélection supprimée avec succès !';
+                    } else {
+                        $errorList['DeleteSelectionSent'] = 'Erreur dans la suppression de la notification !';
+                    }
+                } else {
+                    $errorList['deleteSelectionReceived'] = 'Erreur dans la suppression des messages !';
+                }
+            }
+        } else {
+            $errorList['deleteSelectionReceived'] = 'Vous devez séléctionner au moins un message !';
+        }
+    }
+//========================================================================Suppression de tout les message reçus==================================================
+    if (isset($_POST['deleteAllReceived'])) {
+        $removeSent = NEW messagesReceived();
+        $removeSent->idReceiver = intval($_SESSION['id']);
+        if ($removeSent->deleteAllMessages()) {
+            $removeNotif = NEW notifications();
+            $removeNotif->id_15968k4_users = intval($_SESSION['id']);
+            if ($removeNotif->removeAllNotifications()) {
+                $success['DeleteSelectionSent'] = 'Sélection supprimée avec succès !';
+            } else {
+                $errorList['DeleteSelectionSent'] = 'Erreur dans la suppression des notifications !';
+            }
+        } else {
+            $errorList['deleteAllReceived'] = 'Erreur dans la suppression des messages !';
         }
     }
 //==================================================================Compte du nombre de messages dont l'utilisateur est l'émetteur ==================================================

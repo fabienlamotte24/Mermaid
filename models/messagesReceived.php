@@ -64,6 +64,25 @@ class messagesReceived extends database{
         return $isObject;
     }
     /**
+     * Méthode permettant d'afficher les messages non lus
+     */
+    public function showUnreadenMessageReceived(){
+        $query = 'SELECT `mess`.`id`, `mess`.`title`, `mess`.`readen`, `mess`.`idReceiver`, DATE_FORMAT(`mess`.`dateHour`, \'%d/%m/%Y\') AS `date`, DATE_FORMAT(`mess`.`dateHour`,  \'%Hh%i\') AS `hour`, `mess`.`content`, `us`.`pseudo` '
+                . 'FROM `15968k4_messagesReceived` AS `mess` '
+                . 'LEFT JOIN `15968k4_users` AS `us` '
+                . 'ON `mess`.`id_15968k4_users` = `us`.`id` '
+                . 'WHERE `mess`.`idReceiver` = :idReceiver '
+                . 'AND `readen` = 0 ';
+        $result = $this->db->prepare($query);
+        $result->bindValue(':idReceiver', $this->idReceiver, PDO::PARAM_INT);
+        if($result->execute()){
+            if(is_object($result)){
+                $isObject = $result->fetchAll(PDO::FETCH_OBJ);
+            }
+        }
+        return $isObject;
+    }
+    /**
      * Méthode servant à afficher les messages dont l'utilisateur est le destinataire
      */
     public function showMessageSelected(){
@@ -97,24 +116,6 @@ class messagesReceived extends database{
         return $result->execute();
     }
     /**
-     * Méthode servant à lister les messages envoyés
-     */
-    public function showMessagesSent(){
-        $query = 'SELECT `mess`.`id`, `mess`.`title`, `mess`.`idReceiver`, `mess`.`readen`, DATE_FORMAT(`mess`.`dateHour`, \'%d/%m/%Y\') AS `date`, DATE_FORMAT(`mess`.`dateHour`,  \'%Hh%i\') AS `hour`, `mess`.`content`, `us`.`pseudo` '
-                . 'FROM `15968k4_messagesReceived` AS `mess` '
-                . 'LEFT JOIN `15968k4_users` AS `us` '
-                . 'ON `mess`.`id_15968k4_users` = `us`.`id` '
-                . 'WHERE `mess`.`id_15968k4_users` = :id_15968k4_users';
-        $result = $this->db->prepare($query);
-        $result->bindValue(':id_15968k4_users', $this->id_15968k4_users, PDO::PARAM_INT);
-        if($result->execute()){
-            if(is_object($result)){
-                $isObject = $result->fetchAll(PDO::FETCH_OBJ);
-            }
-        }
-        return $isObject;
-    }
-    /**
      * Méthode de listing des id appartenant à l'utilisateur, afin de protéger l'url, quand il est le destinataire
      */
     public function listIdReceivedMessagesUrl(){
@@ -137,6 +138,16 @@ class messagesReceived extends database{
                 . 'WHERE `id` = :id';
         $result = $this->db->prepare($query);
         $result->bindValue(':id', $this->id, PDO::PARAM_INT);
+        return $result->execute();
+    }
+    /**
+     * Méthode servant la suppression de tout les messages
+     */
+    public function deleteAllMessages(){
+        $query = 'DELETE FROM `15968k4_messagesReceived` '
+                . 'WHERE `idReceiver` = :idReceiver';
+        $result = $this->db->prepare($query);
+        $result->bindValue('idReceiver', $this->idReceiver, PDO::PARAM_INT);
         return $result->execute();
     }
     /**

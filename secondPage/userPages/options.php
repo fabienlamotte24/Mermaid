@@ -28,9 +28,11 @@ include'../../controllers/connectCtrl.php';
                         <div class="col-12 m-0 p-0">
                             <!--Block de photo de profil-->
                             <div class="row profilePhoto">
-                                <div class="col-12 text-center">
+                                <div class="col-12 text-center">                               
                                     <h2><?= $showAllContent->pseudo ?></h2>
-                                    <p>(<?= $showAllContent->lastname . ' ' . $showAllContent->firstname ?>)</p>
+                                    <?php if ($_SESSION['idType'] != 1) { ?>
+                                        <p>(<?= $showAllContent->lastname . ' ' . $showAllContent->firstname ?>)</p>
+                                    <?php } ?>
                                     <img src="../../assets/img/userPictures/avatars/<?= (isset($showAllContent->profilPicture) && $showAllContent->profilPicture != 0) ? $showAllContent->profilPicture : 'icoUser.png' ?>" class="rounded-circle" width="70" height="70" />
                                     <!--Formulaire de changement de photo de profil-->
                                     <div class="form-group offset-xl-3 offset-lg-3 offset-md-2 offset-sm-2 col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-12">

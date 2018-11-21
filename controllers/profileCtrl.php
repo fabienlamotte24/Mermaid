@@ -360,10 +360,6 @@ if (isset($_POST['changeBandResearch'])) {
 $isGetCompany = NEW establishment();
 $isGetCompany->id_15968k4_users = intval($_SESSION['id']);
 $company = $isGetCompany->isGetCompany();
-//============================================================================Compte de contrat======================================================
-$contract = NEW contract();
-$contract->id = $_SESSION['id'];
-$countContract = $contract->contractCount();
 //============================================================================Compte du nombre de photos=================================================
 $countPhotos = NEW userPhotos();
 $countPhotos->id_15968k4_users = intval($_SESSION['id']);

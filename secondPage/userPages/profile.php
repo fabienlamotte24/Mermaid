@@ -474,15 +474,12 @@ include_once'../../controllers/profileCtrl.php';
                         <div class="row profilBlockContent">
                             <div class="col-12 text-center">
                                 <h1>Vos contrats en cours</h1>
-                                <?php if ($countContract == 0) { ?>
-                                    <p>Vous n'avez aucun contrat en cours</p>
-                                <?php } else { ?>
-                                    <div class="col-4">
-                                        <div class="row">
-                                            <div class="col-12"></div>
-                                        </div>
+                                <p>Cette fonctionnalité est prévue dans la prochaine version de Mermaid !</p>
+                                <div class="col-4">
+                                    <div class="row">
+                                        <div class="col-12"></div>
                                     </div>
-                                <?php } ?>
+                                </div>
                             </div>
                         </div>
                     </div>

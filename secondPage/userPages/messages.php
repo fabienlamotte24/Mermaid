@@ -2,8 +2,8 @@
 session_start();
 include'../../config.php';
 include'../../controllers/connectCtrl.php';
-include'../../controllers/navCtrl.php';
 include'../../controllers/messagesCtrl.php';
+include'../../controllers/navCtrl.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
@@ -38,29 +38,35 @@ include'../../controllers/messagesCtrl.php';
                                 <!--Section messages envoyés-->
                                 <div id="messagesSentBox" class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12 p-0 m-0 ml-xl-5 m-1">
                                     <h1 class="text-center">Messages envoyés</h1>
-                                    <div class="row messages">
-                                        <div class="col-12">
-                                            <!--Condition pour gérer si l'utilisateur a envoyé ou non des messages à d'autres utilisateurs-->
-                                            <?php if ($countSent == 0) { ?>
-                                                <p>Vous n'avez pas encore envoyés de message</p>
-                                            <?php } else { ?>
-                                                <!--Si c'est le cas, on utilise foreach pour afficher tout les messages-->
-                                                <?php foreach ($messagesSent as $messagesISent) { ?>
-                                                    <a href="messages.php?idSent=<?= $messagesISent->id ?>" class="linkMessages">
-                                                        <div class="col-12 border"><div class="row">
-                                                                <div class="col-11 pt-3 mt-1 ">
-                                                                    <div class="row">
-                                                                        <div class="col-12">
-                                                                            <h2>Envoyé à <?= $messagesISent->pseudo ?></h2>
-                                                                        </div>
-                                                                    </div>
+                                    <form action="" method="post" enctype="multipart/form-data">
+                                        <button type="submit" name="deleteAllSent" class="btn btn-secondary mb-2">Tout supprimer</button>
+                                        <button type="submit" name="DeleteSelectionSent" class="btn btn-secondary mb-2">Supprimer la sélection</button>
+                                        <?= (isset($errorList['deleteAllSent'])) ? '<p class="validateRemove red">' . $errorList['deleteAllSent'] . '</p>' : ' ' ?>
+                                        <?= (isset($errorList['DeleteSelectionSent'])) ? '<p class="validateRemove red">' . $errorList['DeleteSelectionSent'] . '</p>' : ' ' ?>
+                                        <?= (isset($success['DeleteSelectionSent'])) ? '<p class="validateRemove green">' . $success['DeleteSelectionSent'] . '</p>' : ' ' ?>
+                                        <?= (isset($success['deleteAllSent'])) ? '<p class="validateRemove green">' . $success['deleteAllSent'] . '</p>' : ' ' ?>
+                                        <div class="row messages">
+                                            <div class="col-12">
+                                                <!--Condition pour gérer si l'utilisateur a envoyé ou non des messages à d'autres utilisateurs-->
+                                                <?php if ($countSent == 0) { ?>
+                                                    <p>Votre boit d'envoi est vide !</p>
+                                                <?php } else { ?>
+                                                    <!--Si c'est le cas, on utilise foreach pour afficher tout les messages-->
+                                                    <?php foreach ($messagesSent as $messagesISent) { ?>
+                                                        <div class="col-12 border">
+                                                            <div class="row">
+                                                                <div class="col-1 pt-3">
+                                                                    <input name="removeMessage[]" type="checkbox" value="<?= $messagesISent->id ?>">
+                                                                </div>
+                                                                <a href="messages.php?idSent=<?= $messagesISent->id ?>" class="col-10 linkMessages">
+                                                                    <h2>Envoyé à <?= $messagesISent->pseudo ?></h2>
                                                                     <div class="row">
                                                                         <div class="col-12">
                                                                             <p>Le <?= $messagesISent->date ?> à <?= $messagesISent->hour ?> ~ <?= $messagesISent->title ?></p>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="col-1 text-center">
+                                                                </a>
+                                                                <div class="col-1 text-center mb-3">
                                                                     <form action="#" method="POST">
                                                                         <!--On récupère en hidden l'id du message à supprimer-->
                                                                         <input type="hidden" name="idToRemove" value="<?= $messagesISent->id ?>" />
@@ -70,58 +76,56 @@ include'../../controllers/messagesCtrl.php';
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </a>
-                                                    <?php
+                                                        <?php
+                                                    }
                                                 }
-                                            }
-                                            ?>
+                                                ?>
+                                            </div>
                                         </div>
-                                    </div>
                                 </div>
                                 <!--Boit de réception-->
                                 <div id="receptionBox" class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12 p-0 m-0 ml-xl-5 m-1">
                                     <h1 class="text-center">Boite de réception</h1>
-                                    <p><?= (isset($success['submitRemoveMessageReceived'])) ? $success['submitRemoveMessageReceived'] : ' ' ?></p>
-                                    <div class="row messages">
-                                        <div class="col-12">
-                                            <!--Condition pour connaître si l'utilisateur a reçu des messages de la part d'autres utilisateur-->
-                                            <?php if ($numberOfMessages == 0) { ?>
-                                                <p>Vous n'avez pas encore reçus de message</p>
-                                            <?php } else { ?>
-                                                <!--Si c'est le cas, on les affiche tous avec un foreach-->
-                                                <?php foreach ($myMessages as $messages) { ?>
-                                                    <a href="messages.php?idReceived=<?= $messages->id ?>" class="messageReading" idMessage="<?= $messages->id ?>">
-                                                        <div class="col-12 pt-3 mt-1 <?= ($messages->readen == 0) ? 'border border-danger' : 'border' ?>">
-                                                            <div class="row">
-                                                                <div class="col-11">
-                                                                    <div class="row">
-                                                                        <div class="col-12">
-                                                                            <h2><?= $messages->pseudo ?></h2>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-12">
-                                                                            <p>Le <?= $messages->date ?> à <?= $messages->hour ?> ~ <?= $messages->title ?></p>
-                                                                        </div>
+                                    <form action="" method="POST" enctype="multipart/form-data">
+                                        <button type="submit" name="deleteAllReceived" class="btn btn-secondary">Tout supprimer</button>
+                                        <button type="submit" name="deleteSelectionReceived" class="btn btn-secondary">Supprimer la sélection</button>
+                                        <p><?= (isset($success['submitRemoveMessageReceived'])) ? $success['submitRemoveMessageReceived'] : ' ' ?></p>
+                                        <div class="row messages">
+                                            <div class="col-12">
+                                                <!--Condition pour connaître si l'utilisateur a reçu des messages de la part d'autres utilisateur-->
+                                                <?php if ($numberOfMessages == 0) { ?>
+                                                    <p>Votre boite de réception est vide</p>
+                                                <?php } else { ?>
+                                                    <!--Si c'est le cas, on les affiche tous avec un foreach-->
+                                                    <?php foreach ($myMessages as $messages) { ?>
+                                                        <div class="row <?= ($messages->readen == 0) ? 'border border-danger' : 'border' ?>">
+                                                            <div class="col-1 mt-4">
+                                                                <input name="removeMessageReceived[]" type="checkbox" value="<?= $messages->id ?>">
+                                                            </div>
+                                                            <a href="messages.php?idReceived=<?= $messages->id ?>" class="messageReading col-9 pt-3 mt-1" idMessage="<?= $messages->id ?>">
+                                                                <h2><?= $messages->pseudo ?></h2>
+                                                                <div class="row">
+                                                                    <div class="col-12">
+                                                                        <p>Le <?= $messages->date ?> à <?= $messages->hour ?> ~ <?= $messages->title ?></p>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-1">
-                                                                    <form action="messages.php" method="POST">
-                                                                        <!--On récupère en hidden l'id du message à supprimer-->
-                                                                        <input type="hidden" name="idToRemove" value="<?= $messages->id ?>" />
-                                                                        <!--Boutton de validation qui supprime le message-->
-                                                                        <button type="submit" name="submitRemoveMessageReceived" title="Supprimer" class="mb-2" id="removeMessage"><i class="fas fa-times fa-2x"></i></button>
-                                                                    </form>
-                                                                </div>
+                                                            </a>
+                                                            <div class="col-2 mt-3 pl-5">
+                                                                <form action="messages.php" method="POST">
+                                                                    <!--On récupère en hidden l'id du message à supprimer-->
+                                                                    <input type="hidden" name="idToRemove" value="<?= $messages->id ?>" />
+                                                                    <!--Boutton de validation qui supprime le message-->
+                                                                    <button type="submit" name="submitRemoveMessageReceived" title="Supprimer" class="mb-2" id="removeMessage"><i class="fas fa-times fa-2x"></i></button>
+                                                                </form>
                                                             </div>
                                                         </div>
-                                                    </a>
-                                                    <?php
+                                                        <?php
+                                                    }
                                                 }
-                                            }
-                                            ?>
+                                                ?>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -150,7 +154,7 @@ include'../../controllers/messagesCtrl.php';
                                                     <button type="submit" name="submitRemoveMessageSent" title="Supprimer" class="mb-2" id="removeMessage"><i class="fas fa-times fa-2x"></i></button>
                                                 </form>
                                             </div>
-                                        <?php
+                                            <?php
                                         }
                                         if (isset($_GET['idReceived'])) {
                                             ?>
@@ -204,7 +208,8 @@ include'../../controllers/messagesCtrl.php';
                                         </form>
                                     </div>
                                 </div>
-                            <?php }
+                                <?php
+                            }
                         } else {
                             ?>
                             <!--Block de nouveau message-->
@@ -235,7 +240,7 @@ include'../../controllers/messagesCtrl.php';
                                     </div>
                                 </form>
                             </div>
-<?php } ?>
+                        <?php } ?>
                     </div>
             </section>
         </div>

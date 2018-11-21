@@ -62,21 +62,21 @@ h2{
 #messagesSentBox, #messageAnswer{
     display:none;
 }
-#reSendButton{
+#removeMessage, #answerMessage, #reSendButton{
     border: 1px solid white;
     color: #0082b0;
     cursor:pointer;
+    background-color:#232323;
 }
-#answerMessage{
+#removeMessage:hover, #answerMessage:hover, #reSendButton:hover{
     border: 1px solid white;
     color: #0082b0;
     cursor:pointer;
-}
-#removeMessage{
-    border: 1px solid white;
-    color: #0082b0;
-    cursor:pointer;
+    background-color:#545252;
 }
 .bold{
     font-weight:bold;
+}
+.validateRemove{
+    font-size:1rem;
 }

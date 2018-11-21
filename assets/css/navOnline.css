@@ -54,14 +54,14 @@ body, .container-fluid, .row, nav{
 .navLg, .navXs{
     width:100%;
 }
-.backgroundNotif{
+#backgroundNotif{
     background-color:red;
 } 
-.linkNotif{
+#linkNotif{
     color:white;
     font-size:1.3rem;
 }
-.linkNotif:hover{
+#linkNotif:hover{
     color:grey;
     font-size:1.3rem;
     text-decoration:none;
