@@ -10,10 +10,11 @@ include_once'../../controllers/profileCtrl.php';
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">      
         <link href="https://fonts.googleapis.com/css?family=Rationale" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">        
+        <link rel="stylesheet" href="../../assets/css/owl.carousel.css">
+        <link rel="stylesheet" href="../../assets/css/owl.theme.default.min.css">
         <link rel="stylesheet" href="../../assets/css/profile.css" />
         <link rel="stylesheet" href="../../assets/css/navOnline.css" />
         <title>Mermaid</title>
@@ -28,31 +29,29 @@ include_once'../../controllers/profileCtrl.php';
         <!------------------------------------------------------------Profil pour entreprise----------------------------------------------------->
         <?php if (isset($_SESSION['idType']) && $_SESSION['idType'] == 2) { ?>
             <div class="container-fluid">
-                <div class="row">
+                <nav class="row">
                     <?php include'../navOnline.php' ?>
-                </div>
+                </nav>
                 <section>
                     <!--Ligne d'affichage de photo de l'utilisateur-->
                     <div class="row photoBlock">
-                        <div class="col-12">
-                            <div class="col-12 mt-3 mb-2 carousel slide owl-carousel owl-theme" id="carousel" data-ride="carousel">
-                                <!--Première slide du carousel permettant l'affichage de la fenêtre modale
-                                elle sert à l'ajout de photo-->
-                                <div class="text-center mt-1">
-                                    <a href="profile.php" title="Ajouter des photos" id="addPhoto" class="text-center" data-target="#myModal" data-toggle="modal">
-                                        <i class="fas fa-plus-circle fa-3x"></i>
-                                        <p>Ajoutez une photo</p>
-                                    </a>
-                                </div>
-                                <?php foreach ($displayPhotos as $photos) { ?>
-                                    <div class="text-center">
-                                        <a href="../../assets/img/userPictures/<?= $photos->userPhotos ?>" id="photo">
-                                            <img src="../../assets/img/userPictures/<?= $photos->userPhotos ?>" id="photoGalery" class="item" width="50" height="70" idphoto="<?= $photos->id ?>" />                                               
-                                        </a>
-                                        <i class="remove far fa-times-circle fixed-top fa-1x"></i>
-                                    </div>
-                                <?php } ?>
+                        <div class="col-12 mt-3 mb-2 carousel slide owl-carousel owl-theme" id="carousel" data-ride="carousel">
+                            <!--Première slide du carousel permettant l'affichage de la fenêtre modale
+                            elle sert à l'ajout de photo-->
+                            <div class="text-center">
+                                <a href="profile.php" title="Ajouter des photos" id="addPhoto" class="text-center item" data-target="#myModal" data-toggle="modal">
+                                    <i class="fas fa-plus-circle fa-3x"></i>
+                                    <p>Ajoutez une photo</p>
+                                </a>
                             </div>
+                            <?php foreach ($displayPhotos as $photos) { ?>
+                                <div class="text-center">
+                                    <a href="../../assets/img/userPictures/<?= $photos->userPhotos ?>" id="photo">
+                                        <img src="../../assets/img/userPictures/<?= $photos->userPhotos ?>" id="photoGalery" class="item" width="50" height="70" idphoto="<?= $photos->id ?>" />                                               
+                                    </a>
+                                    <i class="remove far fa-times-circle fixed-top fa-1x"></i>
+                                </div>
+                            <?php } ?>
                         </div>
                     </div>
                     <!--Fenêtre modale d'ajout de photo-->
@@ -89,7 +88,7 @@ include_once'../../controllers/profileCtrl.php';
                     <div class="row">
                         <div class="profilBlock offset-xl-1 offset-lg-1 offset-md-1 offset-md-1 offset-sm-1 col-xl-3 col-lg-3 col-lg-3 col-md-10 col-sm-10 col-xs-12 mt-3 h-100">
                             <a href="options.php" class="row linkOptions profilBlockContent p-3">
-                                <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-2 text-center">
+                                <div id="blockPresentationProfile" class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-2 text-center">
                                     <?php if ($_SESSION['profilPicture'] == ' ') { ?>
                                         <img src="../../assets/img/icoUser.png" class="rounded-circle icoUser border p-0 m-0" width="70" height="70" alt="Photo de profil" title="Photo de profil" />
                                     <?php } else { ?>
@@ -124,8 +123,8 @@ include_once'../../controllers/profileCtrl.php';
                                 </a>
                             </div>
                         </div>
-                        <div class="establishmentBlock offset-xl-1 offset-lg-1 offset-md-1 offset-sm-1 col-xl-6 col-lg-10 col-md-10 col-sm-10 col-xs-12 mt-4 p-2 h-100">
-                            <div class="establishmentContent h-100">
+                        <div class="establishmentBlock offset-xl-1 offset-lg-1 offset-md-1 offset-sm-1 col-xl-6 col-lg-10 col-md-10 col-sm-10 col-xs-12 mt-4 p-2">
+                            <div class="establishmentContent h-100 pt-5 text-center">
                                 <p>D'autre fonctionnalités viendront remplir votre profil dans les nouvelles versions de Mermaid</p>
                             </div>
                         </div>
@@ -688,7 +687,8 @@ include_once'../../controllers/profileCtrl.php';
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>        
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>       
+<script src="../../assets/js/owl.carousel.js"></script>
 <script src="../../assets/js/profile.js"></script>
 <script src="../../assets/js/nav.js"></script>
 </body>

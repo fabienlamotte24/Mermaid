@@ -81,19 +81,16 @@ $(document).ready(function () {
 });
 //Carousel pour photo
 $(document).ready(function () {
-    $('#carousel').owlCarousel({
-        stagePadding: 50,
-        autoplay:true,
+    $('.owl-carousel').owlCarousel({
         loop: false,
         margin: 10,
         nav: true,
-        dots:true,
         responsive: {
             0: {
-                items: 2
+                items: 1
             },
             600: {
-                items: 4
+                items: 3
             },
             1000: {
                 items: 10
@@ -101,16 +98,17 @@ $(document).ready(function () {
         }
     });
 //Gestion de la suppression des photos pour l'utilisateur
-   $('.remove').click(function(){
-     var a = $(this);
-     $.post('../../controllers/profileCtrl.php', {
-        photoGalery: $(this).prev().children().attr('idphoto')
-     }, function(){
-         a.parent().remove();
-     });
-   });
-   $('.linkChangeInstrument').click(function(){
-       $('.changeInstrument').show();
-       $('.showRoleOfMusician').hide();
-   });
-});
+    $('.remove').click(function () {
+        var a = $(this);
+        $.post('../../controllers/profileCtrl.php', {
+            photoGalery: $(this).prev().children().attr('idphoto')
+        }, function () {
+            a.parent().remove();
+        });
+    });
+    $('.linkChangeInstrument').click(function () {
+        $('.changeInstrument').show();
+        $('.showRoleOfMusician').hide();
+    });
+}
+);

@@ -13,10 +13,11 @@ $(document).ready(function(){
    $('.backHome').click(function(){
         location.reload();
    });
-   $('#connectHome').outclick(function(){
-       $('.connectBlock').hide();
-       $('.welcome').show();
-       $('.signBlock').hide();
+   $('#passMailRescue').click(function(){
+      $('.load').show(); 
+   });
+   $('#idMailRescue').click(function(){
+      $('.load').show(); 
    });
 });
 

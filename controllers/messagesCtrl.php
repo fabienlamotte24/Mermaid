@@ -1,5 +1,5 @@
 <?php
-
+$dateUrl ="";
 //Création de tableau d'erreur
 $errorList = array();
 $success = array();
@@ -336,13 +336,17 @@ if (isset($_SESSION['id'])) {
         $showMessageSelected->id = intval($_GET['idReceived']);
         $messageUrl = $showMessageSelected->showMessageSelected();
         setlocale(LC_TIME, 'fr_FR.utf8', 'fra');
-        $dateUrl = strftime('%A %d %B %Y', strtotime($messageUrl->date));
+        $dateReceived = NEW DateTime($messageUrl->date);
+        $date1 = $dateReceived->format('l d F Y');
+        $dateUrl = strftime('%A, %e %B %Y', strtotime($date1));
     }
     if (isset($_GET['idSent']) && $messagesSent != 0) {
         $showMessageSelected = NEW messagesTransmitted();
         $showMessageSelected->id = intval($_GET['idSent']);
         $messageUrl = $showMessageSelected->showMessageSelected();
         setlocale(LC_TIME, 'fr_FR.utf8', 'fra');
-        $dateUrl = strftime('%A %d %B %Y', strtotime($messageUrl->date));
+        $dateSent = NEW DateTime($messageUrl->date);
+        $date2 = $dateSent->format('l d F Y');
+        $dateUrl = strftime('%A, %e %B %Y', strtotime($date2));
     }
 }

@@ -9,7 +9,7 @@ if (isset($_POST['photoGalery'])) {
     $remove->id = $photoToRemove;
     $remove->removePhoto();
 }
-//======================================================================Ajout d'une photo de profil===================================================================
+//======================================================================Ajout d'une photo dans la galery===================================================================
 $name = '';
 if (isset($_POST['submitFile'])) {
     //On test si le fichier est bel et bien un fichier
@@ -29,7 +29,7 @@ if (isset($_POST['submitFile'])) {
                     $pictures->userPhotos = $name;
                     $pictures->id_15968k4_users = intval($_SESSION['id']);
                     if ($pictures->addPhotos()) {
-                        header('locate:profile.php');
+                        header('location:profile.php');
                     } else {
                         $errorList['submitFile'] = 'Erreur dans l\'ajout de la photo !';
                     }

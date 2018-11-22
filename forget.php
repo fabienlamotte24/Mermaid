@@ -67,9 +67,9 @@ include_once'controllers/forgetCtrl.php';
                 <?php if (isset($errorConnectList['pseudoConnect']) || isset($errorConnectList['passConnect']) || isset($errorConnectList['connexion'])) { ?>
                     <div class="row errorConnect">
                         <div class="col-12 text-center">
-                            <p><?= (isset($errorConnectList['pseudoConnect']))? $errorConnectList['pseudoConnect'] : ' ' ?></p>
-                            <p><?= (isset($errorConnectList['passConnect']))? $errorConnectList['passConnect'] : ' ' ?></p>
-                            <p><?= (isset($errorConnectList['connexion']))? $errorConnectList['connexion'] : ' '?></p>
+                            <p><?= (isset($errorConnectList['pseudoConnect'])) ? $errorConnectList['pseudoConnect'] : ' ' ?></p>
+                            <p><?= (isset($errorConnectList['passConnect'])) ? $errorConnectList['passConnect'] : ' ' ?></p>
+                            <p><?= (isset($errorConnectList['connexion'])) ? $errorConnectList['connexion'] : ' ' ?></p>
                         </div>
                     </div>
                 <?php } ?>
@@ -148,10 +148,14 @@ include_once'controllers/forgetCtrl.php';
                             <p>Nous vous enverrons votre identifiant au mail correspondant</p>
                             <hr>
                             <!--Boutton permettant d'envoyer le mail à l'utilisateur si l'adresse mail existe-->
-                            <input type="submit" name="submitUserSearch" class="button" value="Envoyer moi mon identifiant !" />
+                            <input type="submit" name="submitUserSearch" class="button" id="idMailRescue" value="Envoyer moi mon identifiant !" />
                             <p class="red"><?= (isset($errorList['submitUserSearch'])) ? $errorList['submitUserSearch'] : '' ?></p>
                             <p class="green"><?= (isset($success['submitUserSearch'])) ? $success['submitUserSearch'] : '' ?></p>
                         </form>
+                        <div class="text-center load">
+                            <div class="loader"></div>
+                            <p>Envoi en cours !</p>
+                        </div>
                     </section>
                     <?php
                 }
@@ -174,35 +178,12 @@ include_once'controllers/forgetCtrl.php';
                             <p class="red"><?= (isset($errorList['submitPassChange'])) ? $errorList['submitPassChange'] : '' ?></p>
                             <p class="green"><?= (isset($success['submitPassChange'])) ? $success['submitPassChange'] : '' ?></p>
                         </form>
+                        <div class="text-center load">
+                            <div class="loader"></div>
+                            <p>Envoi en cours !</p>
+                        </div>
                     </section>
-                    <?php
-                }
-                if (isset($_GET['forget']) && ($_GET['forget'] == 'changePass') && (isset($_GET['id']))) {
-                    ?>
-                    <section id="passForgetForm"class="offset-xl-3 col-xl-6 offset-lg-3 col-lg-6 offset-md-3 col-md-6 offset-sm-1 col-sm-9 offset-xs-1 col-xs-9">
-                        <h1>Changement de votre Mot de passe</h1>
-                        <hr>
-                        <!--Formulaire pour un changement de mot de passe-->
-                        <form method="POST" action="#" class="form-group">
-                            <div class="offset-2 col-8">
-                                <!--Champs de modification de mot de passe-->
-                                <label for="password">Veuillez écrire votre nouveau mot de passe</label>
-                                <input type="password" class="form-control justify-content-center" name="password" id="password" />
-                                <p class="red"><?= (isset($errorList['password'])) ? $errorList['password'] : '' ?></p>
-                                <!--Champs de réécriture de mot de passe-->
-                                <label for="passwordVerify">Réécrivez votre nouveau mot de passe</label>
-                                <input type="password" class="form-control justify-content-center" name="passwordVerify" id="passwordVerify" />
-                                <p class="red"><?= (isset($errorList['passwordVerify'])) ? $errorList['passwordVerify'] : '' ?></p>
-                            </div>
-                            <p>Vous recevrez un mail de modification de mot de passe</p>
-                            <hr>
-                            <!--Boutton de validation du formulaire-->
-                            <input type="submit" name="submitPassModify" value="Soumettre la modification de mot de passe" id="passMailRescue" />
-                            <p class="red"><?= (isset($errorList['submitPassModify'])) ? $errorList['submitPassModify'] : '' ?></p>
-                            <p class="green"><?= (isset($success['submitPassModify'])) ? $success['submitPassModify'] : '' ?></p>
-                        </form>
-                    </section>
-                <?php } ?>
+                    <?php } ?>
         </div>
     </section>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

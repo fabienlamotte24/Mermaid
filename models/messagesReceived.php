@@ -86,7 +86,7 @@ class messagesReceived extends database{
      * Méthode servant à afficher les messages dont l'utilisateur est le destinataire
      */
     public function showMessageSelected(){
-        $query = 'SELECT `mess`.`id`, `mess`.`title`, `mess`.`idReceiver`, `mess`.`readen`, DATE_FORMAT(`mess`.`dateHour`, \'%d/%m/%Y\') AS `date`, DATE_FORMAT(`mess`.`dateHour`,  \'%Hh%i\') AS `hour`, `mess`.`id_15968k4_users`, `mess`.`content`, `us`.`pseudo` '
+        $query = 'SELECT `mess`.`id`, `mess`.`title`, `mess`.`idReceiver`, `mess`.`readen`, DATE_FORMAT(`mess`.`dateHour`, \'%Y-%m-%d\') AS `date`, DATE_FORMAT(`mess`.`dateHour`,  \'%Hh%i\') AS `hour`, `mess`.`id_15968k4_users`, `mess`.`content`, `us`.`pseudo` '
                 . 'FROM `15968k4_messagesReceived` AS `mess` '
                 . 'LEFT JOIN `15968k4_users` AS `us` '
                 . 'ON `mess`.`id_15968k4_users` = `us`.`id` '

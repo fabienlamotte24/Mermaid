@@ -207,7 +207,7 @@ class users extends database {
      * Méthode servant à retrouver l'identifiant de l'utilisateur à partir de son email
      */
     public function findUserByEmail(){
-        $query = 'SELECT `id`, `pseudo`, `mail` FROM `15968k4_users` '
+        $query = 'SELECT `id`, `password` FROM `15968k4_users` '
                 . 'WHERE `mail` = :mail';
         $findUser = $this->db->prepare($query);
         $findUser->bindValue(':mail', $this->mail, PDO::PARAM_STR);

@@ -123,6 +123,9 @@ body{
 .red{
     color:red;
 }
+.green{
+    color:green;
+}
 .white{
     color:white;
 }
@@ -198,3 +201,23 @@ h2{
     text-decoration:none;
     color:blue;
 }
+.load{
+    display:none;
+}
+.loader{
+    border:5px solid;
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    border-color:#404040 transparent transparent;
+    animation:spin 0.7s linear infinite;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    margin:auto;
+  }
+  
+  @keyframes spin{
+    100%{transform:rotate(360deg);filter:hue-rotate(360deg)}
+  }
