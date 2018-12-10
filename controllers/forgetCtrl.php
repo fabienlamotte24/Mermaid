@@ -2,7 +2,7 @@
 //Listing des tableaux destinées aux erreurs et validation de formulaire
 $errorList = array();
 $success = array();
-//===============================================================Gestion lorsque l'on oublie son identifiant===============================
+//=================================================================== Oublie d'identifiant ===========================================================
 //Initialisation de la variable
 $mail = '';
 $subject = '';
@@ -15,22 +15,21 @@ $message_html = '';
 if (isset($_POST['submitUserSearch'])) {
     //Si le champs n'est pas vide
     if (!empty($_POST['email'])) {
-        //...On instancie l'objet user, avec une methode permettant de voir si l'adresse existe dans la base de donnée
+        //On instancie l'objet users, avec pour méthode la vérification de l'existence du mail
         $email = NEW users();
-        //On donne la valeur du champ à une variable $mail
         $mail = $_POST['email'];
-        //...On donne à l'attribut de l'objet user la valeur du champs rentré
         $email->mail = $mail;
-        //On utilise la méthode notSameEmail(), cette fois dans le but de vérifier si l'adresse email existe bien dans la base de donnée
         $check = $email->notSameEmail();
-        //Si l'adresse existe en base de donnée
+        //s'il existe, on passe à l'étape suivante
         if ($check == 1) {
-            //...On instancie l'objet users, avec une methode servant à retrouver l'identifiant de l'utilisateur suivant l'adresse mail qu'il a rentré
+            //On instnancie le même objet, avec pour méthode la récupération d'information de l'utilisateur du propriétaire de l'adresse
             $findUser = NEW users();
-            //On attribue a valeur de la variable $mail à l'attribut de l'objet "mail"
             $findUser->mail = $mail;
-            //Appel de la méthode qui vient chercher l'utilisateur
+            //Si la requête passe
             if ($findUser->findUserByEmail()) {
+                /**
+                 * On récupère ses informations dans l'objet $userFound
+                 */
                 $userFound = $findUser->findUserByEmail();
                 $mailSender = 'mermaid@hotmail.fr';
                 /**
@@ -101,8 +100,13 @@ if (isset($_POST['submitUserSearch'])) {
     }
 }
 
-//============================================================Gestion de l'oubli de mot de passe===========================================
-function Genere_Password($size) {
+//================================================================Gestion de l'oubli de mot de passe====================================================
+/**
+ * La fonction generate_password crée une mot de passe aléatoire avec une longueur de chaine adaptable
+ * @param type $size
+ * @return type
+ */
+function Generate_Password($size) {
     // Initialisation des caractères utilisables
     $password = 0;
     $characters = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z");
@@ -113,7 +117,9 @@ function Genere_Password($size) {
 
     return $password;
 }
-
+/**
+ * Lorsqu'on valide le formulaire
+ */
 if (isset($_POST['submitPassChange'])) {
     if (!empty($_POST['submitPassChange'])) {
         //On instancie l'objet users, avec pour méthode la vérification que l'adresse existe
@@ -131,7 +137,7 @@ if (isset($_POST['submitPassChange'])) {
                 //On crée l'objet $idFound, pour exploiter le tableau créée de cette manière
                 $idFound = $findId->findUserByEmail();
                 //Je crée un mot de passe généré aléatoirement
-                $newPassword = Genere_Password(15);
+                $newPassword = Generate_Password(15);
                 //On instancie maintenant l'objet users, avec pour méthode le changement du mot de passe                
                 $changePass = NEW users();
                 $changePass->id = intval($idFound->id);

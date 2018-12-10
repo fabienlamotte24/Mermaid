@@ -1,127 +1,152 @@
 <?php
+/** ===== Utilisation de fonction spécifiques =====
+ * 
+ * htmlspecialchars annule les caractères spéciaux pouvant intégrer des contenus de type script = Protection contre les hackers
+ * trim annule les espace en début et fin de chaîne = Evite les erreurs de validité avec les regex
+ * 
+ * ====== Utilisation de fonction spécifiques =====
+ */
 //Liste des regex
 $regPass = '/^[A-Za-z0-9çôîûêéèçà\-\'#@&!%$*]+$/';
 $regPseudo = '/^[A-Za-z0-9\-\_.ôîûêéèçà\']+$/';
 $regPhone = '/^(06|07){1}[0-9]{8}$/';
 $regBirth = '/^(([0]{1}[1-9]{1})|([1-2]{1}[0-9]{1})|([3]{1}[0-2]{1}))|\/(([0]{1}[1-9]{1})|([1]{1}[0-2]{1}))\/([1]{1}[9]{1}[\d]{1}[\d]{1})|([2]{1}[0]{1}[0|1]{1}[\d]{1})$/';
-
 //Initialisation des variables
 $pseudo = '';
 $password = '';
 $mail = '';
 $phoneNumber = '';
 $birthDate = '';
-
-//Initialisation de tableau de gestion des erreurs
+//Initialisation de tableau de gestion des erreurs et de validation du formulaire
 $errorList = array();
-
-//Condition de validation de formulaire
+$success = array();
+/**
+ * ================================================================Validation de formulaire========================================================
+ */
 if (isset($_POST['submit'])) {
-//Condition pour vérifier l'entrée pseudo
+    /**
+     * Vérification du pseudo
+     */
     if (!empty($_POST['pseudo'])) {
-        //J'utilise l'objet users
+        $testPseudo = htmlspecialchars(trim($_POST['pseudo']));
+        //On instancie l'objet users, avec pour méthode la vérification de l'existence du pseudo
         $verify = NEW users();
-        //Je capture la valeur du champs dans l'attribut pseudo de ma méthode
-        $verify->pseudo = htmlspecialchars($_POST['pseudo']);
-        //notSamePseudo() vérifie si le pseudo n'appartient pas déjà à un autre compte
+        $verify->pseudo = $testPseudo;
         $check = $verify->notSamePseudo();
-        //Si le résultat est différent de 0, c'est qu'il existe déjà une ligne avec le pseudo en question
-        if ($check !== '0') {
-            //Il n'est donc pas disponible
-            $errorList['pseudo'] = 'Ce pseudo est déjà pris';
-        } else {
-            //S'il n'appartient à personne, j'autorise l'entrée de la valeur du champs dans la variable $pseudo
-            if (preg_match($regPseudo, $_POST['pseudo'])) {
-                $pseudo = htmlspecialchars($_POST['pseudo']);
+        //Si $check vaut 0, alors le pseudo n'est pas déjà pris
+        if ($check == 0) {
+            //...On test donc sa validité
+            if (preg_match($regPseudo, $testPseudo)) {
+                //...Puis on stocke sa valeur dans une variable
+                $pseudo = $testPseudo;
             } else {
                 $errorList['pseudo'] = 'Le pseudo n\'est pas correct';
             }
+        } else {
+            $errorList['pseudo'] = 'Ce pseudo est déjà pris';
         }
     } else {
         $errorList['pseudo'] = 'Veuillez entrer un pseudo';
     }
     /**
-     * Pour le mot de passe, j'ai préparé deux champs 
-     * pour que l'utilisateur sois bien assuré d'entrer le mot de passe qu'il désire
-     * et de réduire les chances d'erreur de connexion par la suite
+     * Vérification du premier champs de mot de passe
      */
-//Vérification du champs du mot de passe principal
     if (!empty($_POST['pass'])) {
-//On limite les caractères utilisables avec une regex
-        if (preg_match($regPass, $_POST['pass'])) {
-//On le protège toujours du code malveillant avec htmlspecialchars
-            $pass1 = htmlspecialchars(trim($_POST['pass']));
+        $testPass = htmlspecialchars(trim($_POST['pass']));
+        if (preg_match($regPass, $testPass)) {
+            $pass1 = $testPass;
         } else {
             $errorList['pass'] = 'Le mot de passe n\'est pas valide !';
         }
     } else {
         $errorList['pass'] = 'Veuillez écrire un mot de passe !';
     }
-//Vérification du champs du mot de passe à répéter
+    /**
+     * Vérification du second champs de mot de passe
+     */
     if (!empty($_POST['passRepeat'])) {
-        if (preg_match($regPass, $_POST['passRepeat'])) {
-            $pass2 = htmlspecialchars(trim($_POST['passRepeat']));
+        $passRepeat = htmlspecialchars(trim($_POST['passRepeat']));
+        if (preg_match($regPass, $passRepeat)) {
+            $pass2 = $passRepeat;
         } else {
             $errorList['passRepeat'] = 'Le mot de passe n\'est pas valide !';
         }
     } else {
         $errorList['passRepeat'] = 'Veuillez écrire un mot de passe !';
     }
+    /**
+     * On vérifie ensuite que les deux mots de passe soient identiques
+     */
     if (isset($pass1) && isset($pass2)) {
         if ($pass1 == $pass2) {
+            //On stocke la valeur hashée de la variable $pass1 dans la variable password
             $password = password_hash($pass1, PASSWORD_DEFAULT);
         } else {
-            $errorList['pass'] = 'Les mots de passe ne sont pas identiques !';
+            $errorList['rightPass'] = 'Les mots de passe ne sont pas identiques !';
         }
     } else {
-        $errorList['pass'] = 'L\'un de vos champs \'mot de passe\' n\'a pas été remplis ';
+        $errorList['rightPass'] = 'L\'un de vos champs \'mot de passe\' n\'a pas été remplis ';
     }
-//Condition pour vérifier l'entrée E-Mail
+/**
+ * Vérification du champs mail
+ */
     if (!empty($_POST['mail'])) {
+        $testMail = htmlspecialchars(trim($_POST['mail']));
+        //On instancie l'objet users, avec pour méthode la vérification de l'existence de l'adresse de messagerie entrée
         $verify = NEW users();
-        $verify->mail = $_POST['mail'];
+        $verify->mail = $testMail;
         $check = $verify->notSameEmail();
-        if ($check !== '0') {
-            $errorList['mail'] = 'Cette adresse de messagerie est déjà prise !';
-        } else {
-            /**
-             * Si ce n'est pas le cas, on entre la valeur rentrée dans le champs dans une variable $mail
-             * Nous vérifions bien la validité de l'e-mail avec filter_validate_email
-             */
-            if (filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
-                $mail = htmlspecialchars($_POST['mail']);
+        //Si l'adresse mail n'est pas déjà inscrite dans la base de donnée, elle est donc disponible
+        if ($check == 0) {
+            //...On teste sa validité
+            if (filter_var($testMail, FILTER_VALIDATE_EMAIL)) {
+                //Puis on stocke sa valeur dans une variable $mail
+                $mail = $testMail;
             } else {
-                $errorList['mail'] = 'Votre adresse de messagerie n\'est pa valide';
+                $errorList['mail'] = 'Votre adresse de messagerie n\'est pas valide';
             }
+        } else {
+            $errorList['mail'] = 'Cette adresse de messagerie est déjà prise !';
         }
     } else {
         $errorList['mail'] = 'Veuillez entrer une adresse de messagerie !';
     }
-//Condition pour vérifier l'entrée du numéro de téléphone
+/**
+ * Vérification du téléphone
+ */
     if (!empty($_POST['phoneNumber'])) {
-        if (preg_match($regPhone, $_POST['phoneNumber'])) {
-            $phoneNumber = htmlspecialchars($_POST['phoneNumber']);
+        $testPhoneNumber = htmlspecialchars(trim($_POST['phoneNumber']));
+        //On teste sa validité
+        if (preg_match($regPhone, $testPhoneNumber)) {
+            //On stock sa valeur dans la variable $phoneNumber
+            $phoneNumber = $testPhoneNumber;
         } else {
             $errorList['phoneNumber'] = 'Le numéro entré n\'est pas valide';
         }
     } else {
         $errorList['phoneNumber'] = 'Veuillez entrer un numéro de téléphone';
     }
-//Condition pour vérifier l'entrée de l'année de naissance
+/**
+ * Vérification de la date de naissance
+ */
     if (!empty($_POST['birthDate'])) {
-        if (preg_match($regBirth, $_POST['birthDate'])) {
-            $birthDate = htmlspecialchars($_POST['birthDate']);
+        $testBirthDate = htmlspecialchars(trim($_POST['birthDate']));
+        //On test la validité
+        if (preg_match($regBirth, $testBirthDate)) {
+            //Puis on stocke sa valeur dans la variable $birthDate
+            $birthDate = $testBirthDate;
         } else {
             $errorList['birthDate'] = 'La date entrée n\'est pas valide';
         }
     } else {
         $errorList['birthDate'] = 'Veuillez entrer une date de naissance';
     }
-//Condition si le formulaire n'a retourné aucune erreur
+    /**
+     * On vérifie que le formulaire ne retourne aucune erreur
+     */
     if (count($errorList) == 0) {
-//On initialise l'objet users
+        //On intancie l'objet users, avec pour méthode l'enregistrement des informations protégées en base de donnée
         $addUser = NEW users();
-//J'attribue aux attributs de mon objet les valeurs stockées dans mes variables après leur vérification
         $addUser->idType = 1;
         $addUser->profilPicture = ' ';
         $addUser->pseudo = $pseudo;
@@ -134,7 +159,11 @@ if (isset($_POST['submit'])) {
         $addUser->address = ' ';
         $addUser->presentation = ' ';
         $addUser->idCities = 1;
-//...Puis utilise la méthode addUser(), qui me permet d'ajouter un utilisateur dans ma base de donnée
-        $addUser->addUser();
+        //On applique la requête
+        if($addUser->addUser()){
+            $success['submit'] = TRUE;
+        } else {
+            $errorList['submit'] = 'Une erreur est survenue pendant l\'enregistrement de votre profil';
+        }
     }
 }

@@ -19,7 +19,7 @@ body{
 h1{
     font-size:1.9rem;
 }
-li{
+.li{
     background-color: #666666;
     font-size:0.8rem;
     color:white;
@@ -30,7 +30,7 @@ p{
 .pValidation{
     font-size:1.5rem;
 }
-li:hover{
+.li:hover{
     background-image: linear-gradient(to right, #232323, #666666);
     cursor:pointer;
     color:white;

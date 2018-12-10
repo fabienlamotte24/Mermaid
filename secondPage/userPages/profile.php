@@ -19,6 +19,7 @@ include_once'../../controllers/profileCtrl.php';
         <link rel="stylesheet" href="../../assets/css/navOnline.css" />
         <title>Mermaid</title>
     </head>
+    <!--Gestion de l'image de fond en fonction du profil de l'utilisateur-->
     <?php if ($_SESSION['idType'] == 1) { ?>
         <body id="publicBackground">
         <?php } else if ($_SESSION['idType'] == 2) { ?>
@@ -59,7 +60,7 @@ include_once'../../controllers/profileCtrl.php';
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header text-center">
-                                    <h2>Ajoutez une photo dans votre galery</h2>
+                                    <h2>Ajoutez une photo dans votre galerie</h2>
                                 </div>
                                 <div class="modal-body p-3">
                                     <form action="profile.php" id="formPhoto" method="POST" enctype="multipart/form-data" class="form-group col-12 text-center border p-3">
@@ -186,9 +187,8 @@ include_once'../../controllers/profileCtrl.php';
                                             </div>
                                             <div class="modal-body text-center">
                                                 <h2>Votre annonce</h2>
-                                                <p class="text-center"><span class="red">*</span>Vous ne pouvez publier qu'une annonce à la fois<br />
-                                                    N'hésitez pas changer votre annonce ou votre rôle selon vos envies !<br />
-                                                    (Une annonce dure exactement 1 semaine)</p>
+                                                <p class="text-center grey"><span class="red">*</span>Vous ne pouvez publier qu'une annonce à la fois<br />
+                                                    N'hésitez pas changer votre annonce ou votre rôle selon vos envies !<br /></p>
                                                 <!--Formulaire d'annonce-->
                                                 <form action="#" method="POST" class="form-group text-center">
                                                     <!--Champs textarea-->
@@ -196,7 +196,6 @@ include_once'../../controllers/profileCtrl.php';
                                                     <textarea name="announceCompany" id="announceCompany" class="form-control">Bonjour, ...</textarea>
                                                     <!--Bouttons de validation ou d'annulation-->
                                                     <button type="submit"  name="addCompanyResearch" value="<?= $companies->id ?>" class="btn btn-primary btn-lg">Publier mon annonce</button>
-                                                    <button type="submit"  name="cancelRemove" class="btn btn-danger btn-lg">Annuler</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -211,7 +210,6 @@ include_once'../../controllers/profileCtrl.php';
                                             </div>
                                             <div class="modal-body text-center">
                                                 <h2 class="text-center">Voulez vous poster une annonce de recherche ?</h2>
-                                                <p><span class="red">*</span> Le temps d'expiration sera reporté à 1 semaine dès que votre annonce sera changée !</p>
                                                 <!--Formulaire d'annonce-->
                                                 <form action="#" method="POST" class="form-group">
                                                     <!--Champs textarea-->
@@ -221,7 +219,6 @@ include_once'../../controllers/profileCtrl.php';
                                                     <!--Bouttons de validation ou d'annulation-->
                                                     <button type="submit"  name="changeCompanyResearch" class="btn btn-primary btn-lg">Changer mon annonce</button>
                                                     <button type="submit"  name="removeCompanyResearch" class="btn btn-danger btn-lg">Supprimer l'annonce</button>
-                                                    <button type="submit"  name="cancel" class="btn btn-secondary btn-lg">Annuler</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -271,7 +268,7 @@ include_once'../../controllers/profileCtrl.php';
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header text-center">
-                            <h2>Ajoutez une photo dans votre galery</h2>
+                            <h2>Ajoutez une photo dans votre galerie</h2>
                         </div>
                         <div class="modal-body p-3">
                             <form action="profile.php" id="formPhoto" method="POST" enctype="multipart/form-data" class="form-group col-12 text-center border p-3">
@@ -408,16 +405,14 @@ include_once'../../controllers/profileCtrl.php';
                                         </div>
                                         <div class="modal-body">
                                             <h2>Votre annonce</h2>
-                                            <p class="text-center"><span class="red">*</span>Vous ne pouvez publier qu'une annonce à la fois<br />
-                                                N'hésitez pas changer votre annonce ou votre rôle selon vos envies !<br />
-                                                (Une annonce dure exactement 1 semaine)</p>
+                                            <p class="text-center grey"><span class="red">*</span>Vous ne pouvez publier qu'une annonce à la fois<br />
+                                                N'hésitez pas changer votre annonce ou votre rôle selon vos envies !<br /></p>
                                             <!--Formulaire d'annonce-->
                                             <form action="#" method="POST" class="form-group">
                                                 <!--Champs textarea-->
                                                 <textarea name="announce" id="announce" class="form-control">Bonjour, ...</textarea>
                                                 <!--Bouttons de validation ou d'annulation-->
                                                 <button type="submit"  name="addResearch" class="btn btn-primary btn-lg">Publier mon annonce</button>
-                                                <button type="submit"  name="cancelRemove" class="btn btn-danger btn-lg">Annuler</button>
                                             </form>
                                         </div>
                                     </div>
@@ -431,7 +426,6 @@ include_once'../../controllers/profileCtrl.php';
                                             <h1>Souhaitez vous changer votre annonce de recherche ?</h1>
                                         </div>
                                         <div class="modal-body">
-                                            <p><span class="red">*</span> Le temps d'expiration sera reporté à 1 semaine par rapport à votre changement d'annonce !</p>
                                             <!--Formulaire d'annonce-->
                                             <form action="#" method="POST" class="form-group">
                                                 <!--Champs textarea-->
@@ -440,7 +434,6 @@ include_once'../../controllers/profileCtrl.php';
                                                 <!--Bouttons de validation ou d'annulation-->
                                                 <button type="submit"  name="changeResearch" class="btn btn-primary btn-lg">Changer mon annonce</button>
                                                 <button type="submit"  name="remove" class="btn btn-danger btn-lg">Supprimer l'annonce</button>
-                                                <button type="submit"  name="cancel" class="btn btn-secondary btn-lg">Annuler</button>
                                             </form>
                                         </div>
                                     </div>
@@ -449,9 +442,9 @@ include_once'../../controllers/profileCtrl.php';
                         </div>
                     </div>
                 </div>
-                <div class="row mt-5 col-xl-7 col-lg-7 col-md-12 col-sm-12 col-xs-12">
+                <div class="mt-5 col-xl-7 col-lg-7 col-md-12 col-sm-12 col-xs-12">
                     <!--Block d'affichage des contrats-->
-                    <div id="contractDisplay" class="profilBlock offset-sm-1 col-xl-12 col-lg-12 col-md-10 col-sm-10 col-xs-12">
+                    <div id="contractDisplay" class="profilBlock offset-xl-0 offset-lg-0 offset-md-1 offset-sm-1 col-xl-12 col-lg-12 col-md-10 col-sm-10 col-xs-12">
                         <div class="row profilBlockContent">
                             <div class="col-12 text-center">
                                 <h1>Vos contrats en cours</h1>
@@ -464,11 +457,12 @@ include_once'../../controllers/profileCtrl.php';
                             </div>
                         </div>
                     </div>
+                    <div class="row">
                     <!--Div d'ajout de groupe de l'utilisateur-->
-                    <div class="bandBlock offset-sm-1 col-xl-3 col-lg-3 col-md-10 col-sm-10 col-xs-12">
+                    <div class="bandBlock offset-xl-0 offset-lg-0 offset-md-1 offset-sm-1 offset-sm-1 col-xl-3 col-lg-3 col-md-10 col-sm-10 col-xs-12">
                         <a href="registerBand.php" class="addBandLink ">
                             <div class="bandContent col-12 text-center border">
-                                <i class="fas fa-music fa-5x addBand mt-5 mb-2 "></i>
+                                <i class="fas fa-music fa-3x addBand mt-5 mb-2 "></i>
                                 <?php if ($checkBand == 0) { ?>
                                     <p class="mb-5">Créez votre premier groupe !</p>
                                 <?php } else { ?>
@@ -477,15 +471,16 @@ include_once'../../controllers/profileCtrl.php';
                             </div>
                         </a>
                     </div>
-                    <div class="bandBlock offset-sm-1 col-xl-7 col-lg-7 col-md-10 col-sm-10 col-xs-12">
+                    <div class="bandBlock offset-xl-0 offset-lg-0 offset-md-1 offset-sm-1 offset-sm-1 col-xl-9 col-lg-9 col-md-10 col-sm-10 col-xs-12">
                         <div class="bandContent h-100 text-center pt-3">
                             <p>D'autres fonctionalité arrivent dans la prochaine version de Mermaid</p>
                         </div>
                     </div>
+                    </div>
                 </div>
                 <div class="row text-center col-12">
                     <?php foreach ($allMyBands as $bands) { ?>
-                        <div class="col-4">
+                        <div class="col-xl-4 col-lg-6 col--md-8 col--sm-12 col--xs-12">
                             <div class="bandBlock mt-3" id="<?= $bands->id ?>">
                                 <div class="bandContent">
                                     <div class="row mt-2 text-center">
@@ -536,9 +531,8 @@ include_once'../../controllers/profileCtrl.php';
                                     </div>
                                     <div class="modal-body text-center">
                                         <h2>Votre annonce</h2>
-                                        <p class="text-center"><span class="red">*</span>Vous ne pouvez publier qu'une annonce à la fois<br />
-                                            N'hésitez pas changer votre annonce ou votre rôle selon vos envies !<br />
-                                            (Une annonce dure exactement 1 semaine)</p>
+                                        <p class="text-center grey"><span class="red">*</span>Vous ne pouvez publier qu'une annonce à la fois<br />
+                                            N'hésitez pas changer votre annonce ou votre rôle selon vos envies !<br /></p>
                                         <!--Formulaire d'annonce-->
                                         <form action="#" method="POST" class="form-group text-center">
                                             <!--Champs textarea-->
@@ -546,7 +540,6 @@ include_once'../../controllers/profileCtrl.php';
                                             <textarea name="announceBand" id="announceBand" class="form-control">Bonjour, ...</textarea>
                                             <!--Bouttons de validation ou d'annulation-->
                                             <button type="submit"  name="addBandResearch" value="<?= $bands->id ?>" class="btn btn-primary btn-lg">Publier mon annonce</button>
-                                            <button type="submit"  name="cancelRemove" class="btn btn-danger btn-lg">Annuler</button>
                                             <p class="red"><?= (isset($errorList['announceBand'])) ? $errorList['announceBand'] : '' ?></p>
                                         </form>
                                     </div>
@@ -562,7 +555,6 @@ include_once'../../controllers/profileCtrl.php';
                                     </div>
                                     <div class="modal-body text-center">
                                         <h2 class="text-center">Voulez vous poster une annonce de recherche ?</h2>
-                                        <p><span class="red">*</span> Le temps d'expiration sera reporté à 1 semaine dès que votre annonce sera changée !</p>
                                         <!--Formulaire d'annonce-->
                                         <form action="#" method="POST" class="form-group">
                                             <!--Champs textarea-->
@@ -572,7 +564,6 @@ include_once'../../controllers/profileCtrl.php';
                                             <!--Bouttons de validation ou d'annulation-->
                                             <button type="submit"  name="changeBandResearch" class="btn btn-primary btn-lg">Changer mon annonce</button>
                                             <button type="submit"  name="removeBandResearch" class="btn btn-danger btn-lg">Supprimer l'annonce</button>
-                                            <button type="submit"  name="cancel" class="btn btn-secondary btn-lg">Annuler</button>
                                             <p class="red"><?= (isset($errorList['changeBandResearch'])) ? $errorList['changeBandResearch'] : '' ?></p>
                                             <p class="red"><?= (isset($errorList['removeBandResearch'])) ? $errorList['removeBandResearch'] : '' ?></p>
                                         </form>
@@ -620,7 +611,7 @@ include_once'../../controllers/profileCtrl.php';
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header text-center">
-                            <h2>Ajoutez une photo dans votre galery</h2>
+                            <h2>Ajoutez une photo dans votre galerie</h2>
                         </div>
                         <div class="modal-body p-3">
                             <form action="profile.php" id="formPhoto" method="POST" enctype="multipart/form-data" class="form-group col-12 text-center border p-3">

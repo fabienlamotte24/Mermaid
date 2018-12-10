@@ -81,7 +81,8 @@ include_once'../../controllers/bandCtrl.php';
                                                 <h2>Vous demandez la suppression de votre groupe de musique</h2>
                                             </div>
                                             <div class="modal-body">
-                                                <p>Confirmer ?</p>
+                                                <h2>Confirmer ?</h2>
+                                                <p class="text-center grey"><span class="red">*</span>Vous ne pourrez pas supprimer un groupe qui possède au moins un contrat !</p>
                                                 <form action="#" method="POST">
                                                     <button type="submit" name="removeMyBand" class="btn btn-danger btn-lg">Supprimer</button>
                                                     <button type="submit" name="cancelRemove" class="btn btn-primary btn-lg">Annuler</button>

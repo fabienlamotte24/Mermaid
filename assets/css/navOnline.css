@@ -14,6 +14,14 @@
     color:black;
     box-shadow:2px 2px 5px white;
     margin:0;
+    z-index: 2;
+}
+/*Gestion du fond de la nav bar*/
+@media screen and (max-width: 990px)
+{
+    .navbar-nav{
+        background-image:linear-gradient(to bottom, #8181F7, #08088A);
+    }
 }
 #logo{
     color:white;
@@ -24,13 +32,6 @@
 body, .container-fluid, .row, nav{
     margin:0;
     padding:0;
-}
-#dropdown{
-    background-color:#1f48bf;
-    color:black;
-    margin-top:0;
-    padding:10px;
-    border:2px solid black;
 }
 .listNav{
     color:white;
@@ -73,4 +74,8 @@ body, .container-fluid, .row, nav{
 #zeroNotif{
     background-color:green;
     color:white;
+}
+#focus{
+    color:orange;
+    font-weight:bold;
 }

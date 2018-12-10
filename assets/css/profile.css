@@ -50,9 +50,11 @@
     color:blue;
     cursor:pointer;
 }
+.grey{
+    color:grey;
+}
 h1{
-    font-size:1.2em;
-    font-weight: bold;
+    font-size:1.3em;
 }
 h2{
     font-size:1rem;
@@ -128,7 +130,6 @@ p{
 }
 .sentenceStatus{
     color:white;
-    font-family: 'painter';
     font-size:1rem;
 }
 .Titleband{

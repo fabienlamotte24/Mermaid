@@ -118,14 +118,14 @@ if (isset($_POST['changeAnnounce'])) {
      */
     if (!empty($_POST['announce'])) {
         //On stocke la valeur rentréée dans une variable protégée
-        $announce = htmlspecialchars($_POST['announce']);
+        $announce = htmlspecialchars(trim($_POST['announce']));
         //On instancie l'objet bandin Research, avec pour méthode le changement de l'annonce
         $changeAnnounce = NEW bandInResearch();
         //On donne aux attributs de l'objet les valeurs des variables protégées
-        $changeAnnounce->$research = $announce;
-        $changeAnnounce->$id_15968k4_band = htmlspecialchars(intval($_GET['id']));
-        $changeAnnounce->$dateCreation = date('Y-m-d H:i:s');
-        $changeAnnounce->$dateExpiration = date('Y-m-d H:i:s', strtotime('+1 week'));
+        $changeAnnounce->research = $announce;
+        $changeAnnounce->id_15968k4_band = htmlspecialchars(intval($_GET['id']));
+        $changeAnnounce->dateCreation = date('Y-m-d H:i:s');
+        $changeAnnounce->dateExpiration = date('Y-m-d H:i:s', strtotime('+1 week'));
         //On test la requête de changement de l'annonce
         if ($changeAnnounce->changeAnnounce()) {
             //On affiche le message de réussite

@@ -8,7 +8,7 @@ $errorConnectList = array();
 //Vérification du champs pseudo
 if (isset($_POST['pseudoConnect'])) {
     if (!empty($_POST['pseudoConnect'])) {
-        $pseudoConnect = htmlspecialchars($_POST['pseudoConnect']);
+        $pseudoConnect = htmlspecialchars(trim($_POST['pseudoConnect']));
     } else {
         $errorConnectList['pseudoConnect'] = 'Entrez votre identifiant';
     }
@@ -16,7 +16,7 @@ if (isset($_POST['pseudoConnect'])) {
 //Vérification du champs mot de passe
 if (isset($_POST['passConnect'])) {
     if (!empty($_POST['passConnect'])) {
-        $passwordConnect = $_POST['passConnect'];
+        $passwordConnect = htmlspecialchars(trim($_POST['passConnect']));
     } else {
         $errorConnectList['passConnect'] = 'Entrez votre mot de passe';
     }
@@ -28,6 +28,7 @@ if (isset($_POST['connexion']) && count($errorConnectList) == 0) {
     //Je donne à l'attribut pseudo de mon objet la valeur stockée dans la variable $pseudo
     $user->pseudo = $pseudoConnect;
     if ($user->userConnexion()) {
+        //Je vérifie le mot de passe rentré avec celui de la base de données
         if (password_verify($passwordConnect, $user->password)) {
             //On initialise la session
             session_start();

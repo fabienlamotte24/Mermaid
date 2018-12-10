@@ -207,7 +207,7 @@ if (isset($_POST['remove'])) {
         $errorList['announce'] = 'La suppression a échouée';
     }
 }
-//==================================================Condition d'ajout d'annonce pour un établissement=================================================
+//========================================================Condition d'ajout d'annonce pour un établissement=================================================
 //A la validation
 if (isset($_POST['addCompanyResearch'])) {
     if (!empty($_POST['announceCompany'])) {

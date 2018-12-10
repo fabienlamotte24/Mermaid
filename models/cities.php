@@ -30,7 +30,21 @@ class cities extends database {
         }
         return $result;
     }
-
+    /**
+     * Méthode servant à afficher la ville en fonction de l'id
+     */
+    public function searchCityById(){
+        $query = 'SELECT `city` FROM `15968k4_cities` '
+                . 'WHERE `id` = :id';
+        $result = $this->db->prepare($query);
+        $result->bindValue(':id', $this->id, PDO::PARAM_INT);
+        if($result->execute()){
+            if(is_object($result)){
+                $isObject = $result->fetch(PDO::FETCH_OBJ);
+            }
+        }
+        return $isObject;
+    }
     /**
      * Méthode magique destructeur
      */

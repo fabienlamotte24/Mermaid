@@ -27,36 +27,38 @@ include_once'controllers/publicRegisterCtrl.php';
                             <div class="row">
                                 <div class="col-6">
                                     <label for="pseudo">Pseudo: <span class="red">*</span> </label>
-                                    <input type="text" id="pseudo" name="pseudo" class="form-control text-center" maxlength="20" <?= (isset($_POST['pseudo'])) ? 'value="' . $_POST['pseudo'] . '"' : ' '; ?> />                            
-                                    <p class="red"><?= (isset($errorList['pseudo'])) ? $errorList['pseudo'] : ' ' ?></p>
+                                    <input type="text" id="pseudo" name="pseudo" class="form-control text-center" maxlength="20" <?= (isset($_POST['pseudo'])) ? 'value="' . $_POST['pseudo'] . '"' : ''; ?> />                            
+                                    <p class="red"><?= (isset($errorList['pseudo'])) ? $errorList['pseudo'] : '' ?></p>
                                 </div>
                                 <!--Champs adresse de messagerie-->
                                 <div class="col-6">
                                     <label for="mail">Email: <span class="red">*</span> </label>
-                                    <input type="mail" id="mail" name="mail" class="form-control text-center" maxlength="30" <?= (isset($mail)) ? 'value="' . $mail . '"' : ' '; ?> />
-                                    <p class="red"><?= (isset($errorList['mail'])) ? $errorList['mail'] : ' ' ?></p>
+                                    <input type="mail" id="mail" name="mail" class="form-control text-center" maxlength="30" <?= (isset($_POST['mail'])) ? 'value="' . $_POST['mail'] . '"' : ''; ?> />
+                                    <p class="red"><?= (isset($errorList['mail'])) ? $errorList['mail'] : '' ?></p>
                                 </div>
                                 <!--Champs mot de passe-->
                                 <div class="col-6">
                                     <label for="pass">Mot de passe: <span class="red">*</span> </label>
                                     <input type="password" id="pass" name="pass" placeholder="Mot de passe" class="form-control text-center" maxlength="20" />                            
-                                    <p class="red"><?= (isset($errorList['pass'])) ? $errorList['pass'] : ' ' ?></p>
+                                    <p class="red"><?= (isset($errorList['pass'])) ? $errorList['pass'] : '' ?></p>
                                 </div>
                                 <!--Champs répétition du mot de passe-->
                                 <div class="col-6">
                                     <label for="passRepeat">Mot de passe: <span class="red">*</span> </label>
                                     <input type="password" id="passRepeat" name="passRepeat" placeholder="Réécrivez le mot de passe" class="form-control text-center" maxlength="20" />                            
-                                    <p class="red"><?= (isset($errorList['passRepeat'])) ? $errorList['passRepeat'] : ' ' ?></p>
+                                    <p class="red"><?= (isset($errorList['passRepeat'])) ? $errorList['passRepeat'] : '' ?></p>
                                 </div>
                                 <div class="col-6">
                                     <!--Champs numéro de téléphone-->
                                     <label for="phoneNumber">Votre numéro de téléphone: <span class="red">*</span> </label>
-                                    <input type="text" name="phoneNumber" id="phoneNumber" class="form-control" maxlength="10" />
+                                    <input type="text" name="phoneNumber" id="phoneNumber" class="form-control" maxlength="10" value="<?=(isset($_POST['phoneNumber']))? $_POST['phoneNumber'] : ''?>" />
+                                    <p class="red"><?= (isset($errorList['phoneNumber'])) ? $errorList['phoneNumber'] : '' ?></p>
                                 </div>
                                 <div class="col-6">
                                     <!--Champs date de naissance-->
                                     <label for="birthDate">Votre date de naissance: <span class="red">*</span> </label>
-                                    <input type="date" name="birthDate" id="birthDate" class="form-control" />
+                                    <input type="date" name="birthDate" id="birthDate" class="form-control" value="<?=(isset($_POST['birthDate']))? $_POST['birthDate'] : ''?>" />
+                                    <p class="red"><?= (isset($errorList['birthDate'])) ? $errorList['birthDate'] : '' ?></p>
                                 </div>
                             </div>
                         </div>
@@ -65,7 +67,7 @@ include_once'controllers/publicRegisterCtrl.php';
                             <input type="submit" name="submit" value="Je valide mon inscription !" />
                         </div>
                     </form>
-                    <div id="result" class="<?= (isset($_POST['submit']) && count($errorList) == 0) ? 'blockForm' : 'invisible' ?> offset-xl-4 offset-lg-2 offset-md-2 col-xl-4 col-lg-8 col-md-8 col-sm-12 col-xs-12 form-group text-center">
+                    <div id="result" class="<?= (isset($success['submit']) && $success['submit'] == TRUE) ? 'blockForm' : 'invisible' ?> offset-xl-4 offset-lg-2 offset-md-2 col-xl-4 col-lg-8 col-md-8 col-sm-12 col-xs-12 form-group text-center">
                         <h2 class="green">Vous êtes bien inscrit(e) !</h2>
                         <p>Retournez à l'<a href="index.php"> accueil</a> pour vous connecter</p>
                     </div>

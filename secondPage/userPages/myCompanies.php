@@ -84,6 +84,7 @@ include_once'../../controllers/myCompaniesCtrl.php';
                                     <a href="#" data-toggle="modal" class="buttonRemove" data-target="#removeEstablishment">
                                         <input type="submit" class="form-control btn btn-danger" value="Supprimer mon établissement" />
                                     </a>
+                                    <!--Fenêtre modale de suppression de l'établissement-->
                                     <div class="modal fade" id="removeEstablishment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -91,7 +92,9 @@ include_once'../../controllers/myCompaniesCtrl.php';
                                                     <h2>Vous demandez la suppression de établissement</h2>
                                                 </div>
                                                 <div class="modal-body text-center">
-                                                    <p>Confirmer ?</p>
+                                                    <h2>Confirmer ?</h2>
+                                                    <p class="text-center grey"><span class="red">*</span>Vous ne pourrez pas supprimer un établissement qui possède au moins 1 contrat en cours</p>
+                                                    <!--Boutton de validation-->
                                                     <form action="#" method="POST">
                                                         <button type="submit" name="removeEstablishment" class="btn btn-danger btn-lg">Supprimer</button>
                                                         <button type="submit" name="cancelRemove" class="btn btn-primary btn-lg">Annuler</button>

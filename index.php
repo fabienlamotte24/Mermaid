@@ -37,17 +37,20 @@ include_once'controllers/connectCtrl.php';
                 </div>
                 <!--Section connectBlock, qui affiche les champs identifiant, mot de passe et le bouton de connexion-->
                 <div class="connectBlock pt-3 col-12 ">
-                    <form id="connectForm" method="POST" class="text-center offset-xl-4 offset-lg-4 offset-md-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12" action="#">
+                    <form id="connectForm" method="POST" class="text-center offset-xl-4 offset-lg-4 offset-md-4 col-xl-4 col-lg-4 col-md-4 
+                          col-sm-12 col-xs-12" action="#">
                         <!--Section d'Identifiant de l'utilisateur-->
                         <div id="user" class="col-12">
                             <img src="../assets/img/icoUser.png" id="icoUser" title="icone identifiant" alt="icone identifiant" />
-                            <input type="text" name="pseudoConnect" id="pseudoConnect" placeholder="Identifiant" maxlength="30" style="border: hidden; border: 0" />
+                            <input type="text" name="pseudoConnect" id="pseudoConnect" placeholder="Identifiant" maxlength="30" style="border: 
+                                   hidden; border: 0" />
                             <abbr><a href="forget.php?forget=login" class="forgot">Oublié ?</a></abbr>
                         </div>
                         <!--Section de Mot de passe de l'utilisateur-->
                         <div id="Pass" class="col-12">
                             <img src="../assets/img/icoPass.png" id="icoPass" title="icone Mot de passe" alt="icone Mot de passe" />
-                            <input type="password" name="passConnect" id="passConnect" placeholder="Mot de passe" maxlength="30" style="border: hidden; border: 0" />
+                            <input type="password" name="passConnect" id="passConnect" placeholder="Mot de passe" maxlength="30" style="border: 
+                                   hidden; border: 0" />
                             <abbr><a href="forget.php?forget=pass" class="forgot">Oublié ?</a></abbr>
                         </div>
                         <!--Section de Validation d'entrée de login et de mot de passe pour accéder au site-->

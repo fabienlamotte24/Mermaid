@@ -44,4 +44,3 @@ $checkNotif = $notif->countNotification();
 $showNotif = NEw notifications();
 $showNotif->id_15968k4_users = intval($_SESSION['id']);
 $myNotifs = $showNotif->showNotif();
-//==========================================================================Suppression des notifications==================================================

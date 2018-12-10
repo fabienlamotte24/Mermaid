@@ -3,7 +3,8 @@
 //Liste de tableaux vide pour gerer les erreurs et les validations de formulaire
 $errorList = array();
 $success = array();
-//======================================================================Changement de l'adresse postale====================
+//======================================================================Ajax pour l'affichage des villes===============================================
+//Liste des regex utilisées
 $regAddress = '/^[A-Za-z0-9\-\_.ôîûêéèçà\' ]+$/';
 $regCity = '/^[0-9]+$/';
 $regPostalCode = '/^[0-9]+$/';
@@ -16,8 +17,8 @@ if (isset($_POST['newPostalSearch'])) {
     $postalResearch = $postal->postalCodeList();
     echo json_encode($postalResearch);
 } else {
-//=======================================================================Changement des informations personnelles========================================
-    if (isset($_POST['changeUserInformations'])) {
+//=========================================================================Changement de l'adresse de messagerie===================================
+    if (isset($_POST['changeEmail'])) {
         /**
          * Vérification de l'adresse de messagerie
          */
@@ -25,7 +26,7 @@ if (isset($_POST['newPostalSearch'])) {
             /**
              * Nous faisons une vérification: si l'adresse mail entrée n'existe pas déjà
              */
-            $mail = htmlspecialchars($_POST['mail']);
+            $mail = htmlspecialchars(trim($_POST['mail']));
             //On instancie l'objet user, avec pour méthode la vérification de l'existence du mail entré
             $mailAlreadyUsed = NEW users();
             $mailAlreadyUsed->mail = $mail;
@@ -42,12 +43,31 @@ if (isset($_POST['newPostalSearch'])) {
             $errorList['mail'] = 'Veuillez entrer une adresse de messagerie !';
         }
         /**
+         * Si le formulaire ne contient aucune erreur, on procède au changement de l'adresse de messagerie
+         */
+        if(count($errorList) == 0){
+            //On instancie l'objet users, avec pour méthode le changement de l'adresse email
+            $changeEmail = NEW users();
+            //On donne à l'attribut de la classe la valeur de la variable $mailConfirm
+            $changeEmail->mail = $mailConfirm;
+            //Si la requete passe
+            if($changeEmail->changeEmail()){
+                //On affiche un message de succès
+                $success['emailChanged'] = 'Adresse de messagerie changée avec succès !';
+            } else {
+                $errorList['emailNotChanged'] = 'Erreur dans le changement de votre adresse de messagerie !';
+            }
+        }
+    }
+//=======================================================================Changement des informations personnelles========================================
+    if (isset($_POST['changeUserInformations'])) {
+        /**
          * Vérification du numéro de téléphone
          */
         if (!empty($_POST['phoneNumber'])) {
             //regex pour le numéro de téléphone
             $regPhone = '/^(06|07){1}[0-9]{8}$/';
-            $phoneNumber = htmlspecialchars($_POST['phoneNumber']);
+            $phoneNumber = htmlspecialchars(trim($_POST['phoneNumber']));
             if (preg_match($regPhone, $phoneNumber)) {
                 $phoneNumberConfirm = $phoneNumber;
             } else {
@@ -60,7 +80,7 @@ if (isset($_POST['newPostalSearch'])) {
          * Vérification de l'adresse postale
          */
         if (!empty($_POST['address'])) {
-            $address = htmlspecialchars($_POST['address']);
+            $address = htmlspecialchars(trim($_POST['address']));
         } else {
             $errorList['address'] = 'Veuillez entrer une adresse !';
         }
@@ -70,7 +90,7 @@ if (isset($_POST['newPostalSearch'])) {
         if (!empty($_POST['newPostalCode'])) {
             //Regex pour le code postal
             $regPostalCode = '/^[0-9]+$/';
-            $postalCode = htmlspecialchars($_POST['newPostalCode']);
+            $postalCode = htmlspecialchars(trim($_POST['newPostalCode']));
             if (preg_match($regPostalCode, $postalCode)) {
                 $postalCodeConfirm = $postalCode;
             } else {
@@ -83,7 +103,7 @@ if (isset($_POST['newPostalSearch'])) {
          * Vérification de la ville
          */
         if (!empty($_POST['newCitySelect'])) {
-            $city = htmlspecialchars(intval($_POST['newCitySelect']));
+            $city = htmlspecialchars(intval(trim($_POST['newCitySelect'])));
         } else {
             $errorList['newCitySelect'] = 'Veuillez sélectionner une ville !';
         }
@@ -93,13 +113,16 @@ if (isset($_POST['newPostalSearch'])) {
         if (count($errorList) == 0) {
             //On instancie l'objet users, avec pour méthode le changement des informations
             $change = NEW users();
-            $change->mail = $mailConfirm;
+            //On donne aux attributs de l'objet les valeurs des variables protégées vérifiées
             $change->phoneNumber = $phoneNumberConfirm;
             $change->address = $address;
             $change->id_15968k4_Cities = intval($city);
             $change->id = intval($_SESSION['id']);
+            //On teste la requête
             if ($change->changeContentsOfAccount()) {
+                //Si elle réussit, on affiche un message de validation...
                 $success['changeUserInformations'] = 'Informations changées avec succès';
+                //...puis on change les valeurs de sessions 
                 $_SESSION['mail'] = $mailConfirm;
                 $_SESSION['phoneNumber'] = $phoneNumberConfirm;
                 $_SESSION['address'] = $address;
@@ -122,13 +145,15 @@ if (isset($_POST['newPostalSearch'])) {
          */
         if (!empty($_POST['actualPass'])) {
             //Regex pour le mot de passe
-            $actualPass = htmlspecialchars($_POST['actualPass']);
+            $actualPass = htmlspecialchars(trim($_POST['actualPass']));
             //On instancie l'objet users, avec pour méthode la vérification du mot de passe
             $isCorrectPass = NEW users();
             $isCorrectPass->id = intval($_SESSION['id']);
             //On applique la requête associée
             $goodPass = $isCorrectPass->isCorrectPass();
+            //password verify compare les deux mots de passe
             if (password_verify($actualPass, $goodPass->password)) {
+                //On affiche un message de succès si les mots de passes sont identique
                 $success['actualPass'] = 'Le mot de passe est correct !';
             } else {
                 $errorList['actualPass'] = 'Le mot de passe est incorrect !';
@@ -143,7 +168,7 @@ if (isset($_POST['newPostalSearch'])) {
             //Regex pour le mot de passe
             $regPass = '/^[A-Za-z0-9çôîûêéèçà\-\'#@&!%$*]+$/';
             $pass1 = htmlspecialchars($_POST['pass1']);
-            if(preg_match($regPass, $_POST['pass1'])){
+            if (preg_match($regPass, $_POST['pass1'])) {
                 $pass1 = htmlspecialchars($_POST['pass1']);
             } else {
                 $errorList['pass1'] = 'Le mot de passe rentré contient des caractères interdits !';
@@ -154,7 +179,7 @@ if (isset($_POST['newPostalSearch'])) {
         /**
          * Vérification du second mot de passe
          */
-        if(!empty($_POST['pass2'])){
+        if (!empty($_POST['pass2'])) {
             $pass2 = htmlspecialchars($_POST['pass2']);
         } else {
             $errorList['pass2'] = 'Veuillez réécrire votre mot de passe !';
@@ -162,25 +187,29 @@ if (isset($_POST['newPostalSearch'])) {
         /**
          * On vérifie que les deux mots de passe concordent
          */
-        if($pass1 == $pass2){
+        if ($pass1 == $pass2) {
             $passToKeep = $pass1;
+        } else {
+            $errorList['testPass'] = 'Les mots de passes ne sont pas identiques !';
         }
         /**
          * On vérifie si le formulaire ne retourne aucune erreur
          */
-        if(count($errorList) == 0){
+        if (count($errorList) == 0) {
             //On instancie l'objet users, avec pour méthode le changement de mot de passe
             $changePass = NEW users();
+            //On donne aux attributs de l'objet les valeur des variables protégées
             $changePass->password = password_hash($passToKeep, PASSWORD_DEFAULT);
             $changePass->id = intval($_SESSION['id']);
-            if($changePass->changePass()){
+            //On test la requête
+            if ($changePass->changePass()) {
+                //Puis on affiche un message de validation ...
                 $success['changePass'] = 'Mot de passe changé avec succès !';
+                //...Puis on change la variable de session
                 $_SESSION['password'] = password_hash($passToKeep, PASSWORD_DEFAULT);
             } else {
                 $errorList['changePass'] = 'Erreur dans le changement de mot de passe !';
             }
-        } else {
-            $errorList['changePass'] = 'Il y a des erreurs dans votre formulaire !';
         }
     }
 //=========================================================================enregistrement de la photo=================================================================
@@ -190,7 +219,7 @@ if (isset($_POST['newPostalSearch'])) {
         if (!empty($_FILES['newFile']) && $_FILES['newFile']['error'] == 0) {
             //On test sa taille maximal
             if ($_FILES['newFile']['size'] <= 1000000) {
-                $enabled_extensions = array('jpg', 'jpeg', 'gif', 'png');
+                $enabled_extensions = array('jpg', 'jpeg', 'png');
                 $informationsFile = pathinfo($_FILES['newFile']['name']);
                 $extension_upload = $informationsFile['extension'];
                 //On test son extension
@@ -220,11 +249,7 @@ if (isset($_POST['newPostalSearch'])) {
             $errorList['submitFile'] = 'Merci d\'envoyer un fichier';
         }
     }
-//=====================================================================Vérification existence d'une photo===========================================
-    $thereIsAPhoto = NEW userPhotos();
-    $thereIsAPhoto->id = intval($_SESSION['id']);
-    $photo = $thereIsAPhoto->alreadyUsedPhoto();
-//=======================================================================Affichage des informations de compte============================================
+//=====================================================================Affichage des informations de compte============================================
 //On instancie l'objet user permettant l'affichage des informations
     $stockAllContent = NEW users();
 //On gère l'affichage des informations de l'utilisateur
@@ -233,10 +258,10 @@ if (isset($_POST['newPostalSearch'])) {
     $showAllContent = $stockAllContent->showCompleteUserContent();
 }
 //=========================================================================Suppression du compte==================================================
-if(isset($_POST['confirmRemove'])){
+if (isset($_POST['confirmRemove'])) {
     $removeUser = NEW users();
     $removeUser->id = intval($_SESSION['id']);
-    if($removeUser->removeUser()){
+    if ($removeUser->removeUser()) {
         //On vide les valeurs des variables de session
         session_unset();
         //destruction de la session

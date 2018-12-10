@@ -159,7 +159,6 @@
   margin-top: -40px;
   background: url("owl.video.play.png") no-repeat;
   cursor: pointer;
-  z-index: 1;
   -webkit-backface-visibility: hidden;
   transition: transform 100ms ease; }
 
